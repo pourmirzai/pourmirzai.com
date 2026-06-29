@@ -1,5 +1,7 @@
 # Build static site
-FROM node:20-alpine AS build
+# Node 22 required: engines >=22.12.0, npm 11 (allowScripts), Vite 8 + rolldown native toolchain.
+# See docs/memory.md ERR-005. node:20 (npm 10) breaks `npm ci`.
+FROM node:22-alpine AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci

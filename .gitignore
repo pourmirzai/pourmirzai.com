@@ -29,3 +29,4 @@ pnpm-debug.log*
 
 # cloudflare
 .wrangler/
+docs/memory.md
