@@ -4,9 +4,12 @@
 > conservationist (Asiatic cheetah) and web developer.
 
 A single-page, bilingual (FA/EN), fully animated personal website built with
-**Astro 4 + Tailwind CSS v4 + GSAP + Lenis**. Dark theme, split-screen hero
+**Astro 7 + Tailwind CSS v4 + GSAP + Lenis**. Dark theme, split-screen hero
 (nature × tech), RTL-aware, deployable as a static site to Cloudflare Pages /
 Vercel.
+
+> Requires **Node ≥ 22.12.0**. The project uses npm 11's `allowScripts`
+> (declared in `package.json`) so `esbuild`/`sharp` install scripts can run.
 
 ---
 
@@ -14,9 +17,9 @@ Vercel.
 
 | Layer       | Choice                                  |
 | ----------- | --------------------------------------- |
-| Framework   | Astro 4 (static output, island-less)    |
-| Styling     | Tailwind CSS v4 (`@tailwindcss/vite`)   |
-| Animation   | GSAP + ScrollTrigger, Lenis smooth scroll |
+| Framework   | Astro 7 (static output)                    |
+| Styling     | Tailwind CSS v4 (`@tailwindcss/vite`)      |
+| Animation   | GSAP, Lenis smooth scroll, IntersectionObserver reveals |
 | i18n        | Custom, **no reload** toggle (FA/EN)    |
 | Fonts       | Vazirmatn, Inter, JetBrains Mono (self-hosted via `@fontsource`) |
 | Icons       | Inline SVG (no icon-lib dependency)     |
@@ -44,9 +47,9 @@ public/              favicon.svg, og.svg, robots.txt
 src/
 ├── components/
 │   ├── Hero.astro  About.astro  TwoWorlds.astro
-│   ├── FeaturedWork.astro  Press.astro  Contact.astro
+│   ├── Press.astro  Contact.astro
 │   ├── Icon.astro            # inline SVG icon set
-│   └── svg/                  # CheetahSVG, IranMapSVG, FootprintSVG
+│   └── svg/                  # EcoNetworkSVG, IranMapSVG, FootprintSVG
 ├── i18n/ fa.json en.json      # all bilingual content
 ├── layouts/ Layout.astro      # head, header, footer, scripts
 ├── pages/ index.astro         # assembles all sections
@@ -81,11 +84,11 @@ update any text, links, projects, stats or timeline entries.
 | Social links               | `src/layouts/Layout.astro`, `Contact.astro` |
 | Contact form endpoint      | `Contact.astro` → `action="https://formspree.io/f/..."` |
 
-## Contact Form
+## Contact
 
-The form is wired for [Formspree](https://formspree.io). Replace the placeholder
-`your-form-id` in `src/components/Contact.astro` with your real form ID. Until
-then, submit shows a friendly "connect a backend" notice.
+The Contact section shows social links and a **spam-safe masked email**
+(`info [at] sarvinwildlife [dot] com`) that reveals the real address on
+click/focus. Edit it in `src/components/Contact.astro`.
 
 ## Accessibility & Performance
 

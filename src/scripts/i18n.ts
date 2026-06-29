@@ -105,32 +105,14 @@ function renderRepos(items: { name: string; desc: string; tag: string; url: stri
     .join("");
 }
 
-function renderFeatured(items: { title: string; desc: string; tags: string[]; url: string }[]): string {
+function renderPress(items: { name: string; url: string }[]): string {
   return items
     .map(
-      (f, i) => `
-      <article class="featured-card card card-hover group flex flex-col" data-reveal style="--i:${i}">
-        <div class="relative mb-5 flex h-40 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br ${i === 0 ? "from-nature-deep to-nature-gold" : i === 1 ? "from-tech-navy to-nature-deep" : "from-tech-navy to-tech-cyan/30"}">
-          <span class="absolute inset-0 grain"></span>
-          <svg viewBox="0 0 24 24" class="h-12 w-12 text-white/80" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"></path></svg>
-        </div>
-        <h3 class="text-lg font-bold text-text">${escapeHtml(f.title)}</h3>
-        <p class="mt-2 flex-1 text-sm text-muted">${escapeHtml(f.desc)}</p>
-        <div class="mt-4 flex flex-wrap gap-2">
-          ${f.tags.map((t) => `<span class="pill border-white/10 bg-white/5 text-muted">${escapeHtml(t)}</span>`).join("")}
-        </div>
-        <a href="${escapeHtml(f.url)}" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-tech-cyan">
-          <span>${escapeHtml(asString(getByPath(dict, "featured.viewLink")))}</span>
-          <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6m0-6L10 14M19 14v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg>
-        </a>
-      </article>`
+      (o) => `
+      <a href="${escapeHtml(o.url || "#")}" ${o.url && o.url !== "#" ? 'target="_blank" rel="noopener noreferrer"' : ""} class="press-logo card card-hover group flex h-28 items-center justify-center text-center" data-reveal>
+        <span class="font-mono text-lg font-semibold tracking-tight text-muted transition-colors group-hover:text-text">${escapeHtml(o.name)}</span>
+      </a>`
     )
-    .join("");
-}
-
-function renderSubjects(items: string[]): string {
-  return items
-    .map((s, i) => `<option value="${i}" ${i === 0 ? "selected" : ""}>${escapeHtml(s)}</option>`)
     .join("");
 }
 
@@ -140,8 +122,7 @@ const RENDERERS: Record<string, (dict: Dict) => string> = {
   "nature-achievements": (d) => renderAchievements(d.worlds.nature.achievements),
   "tech-stack": (d) => renderStack(d.worlds.tech.stack),
   "tech-repos": (d) => renderRepos(d.worlds.tech.repos),
-  featured: (d) => renderFeatured(d.featured.items),
-  subjects: (d) => renderSubjects(d.contact.subjects),
+  press: (d) => renderPress(d.press.outlets),
 };
 
 /* ---------- apply language ---------- */

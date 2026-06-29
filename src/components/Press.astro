@@ -1,14 +1,10 @@
 ---
 import fa from "../i18n/fa.json";
 import Icon from "./Icon.astro";
-
-const outlets = ["Newsweek", "IUCN NL", "Felidae Fund", "Arab News", "Hamshahri", "Shargh Daily"];
-// duplicate for seamless marquee
-const marquee = [...outlets, ...outlets];
 ---
 
 <section id="press" class="section-pad relative overflow-hidden">
-  <div class="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_0%,rgba(199,154,58,0.08),transparent_70%)]"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_0%,rgba(199,154,58,0.07),transparent_70%)]"></div>
   <div class="container-px relative">
     <div class="mx-auto max-w-2xl text-center">
       <p data-reveal class="eyebrow justify-center">
@@ -19,41 +15,26 @@ const marquee = [...outlets, ...outlets];
       <p data-reveal data-i18n="press.subtitle" class="mx-auto mt-4 text-muted">{fa.press.subtitle}</p>
     </div>
 
-    <!-- Quote card -->
-    <figure data-reveal class="mx-auto mt-12 max-w-3xl rounded-3xl border border-white/5 bg-surface/60 p-8 text-center md:p-12">
-      <svg viewBox="0 0 24 24" class="mx-auto mb-5 h-9 w-9 text-nature-gold-bright/60" fill="currentColor" aria-hidden="true"><path d="M9.5 6C6.5 6 4 8.5 4 11.5V18h6.5v-6.5H7.5C7.5 9.6 8.4 8.5 10 8.5V6h-.5Zm10 0C16.5 6 14 8.5 14 11.5V18h6.5v-6.5h-3C17.5 9.6 18.4 8.5 20 8.5V6h-.5Z" /></svg>
-      <blockquote data-i18n="press.quote" class="text-xl font-medium leading-relaxed text-text md:text-2xl">
-        {fa.press.quote}
-      </blockquote>
-      <figcaption data-i18n="press.quoteSource" class="mt-5 font-mono text-sm text-muted">
-        {fa.press.quoteSource}
-      </figcaption>
-    </figure>
-  </div>
-
-  <!-- Marquee -->
-  <div data-reveal class="group relative mt-14 flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-    <div class="flex shrink-0 animate-marquee items-center gap-12 pe-12 group-hover:[animation-play-state:paused]">
+    <!-- Monochrome, linked media outlets (data-driven) -->
+    <div
+      data-i18n-list="press"
+      class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6"
+    >
       {
-        marquee.map((o) => (
-          <span class="whitespace-nowrap font-mono text-lg font-semibold tracking-tight text-muted/70 transition-colors hover:text-text">
-            {o}
-          </span>
-        ))
-      }
-    </div>
-    <div class="flex shrink-0 animate-marquee items-center gap-12 pe-12 group-hover:[animation-play-state:paused]" aria-hidden="true">
-      {
-        marquee.map((o) => (
-          <span class="whitespace-nowrap font-mono text-lg font-semibold tracking-tight text-muted/70">
-            {o}
-          </span>
+        fa.press.outlets.map((o) => (
+          <a
+            href={o.url || "#"}
+            target={o.url && o.url !== "#" ? "_blank" : undefined}
+            rel={o.url && o.url !== "#" ? "noopener noreferrer" : undefined}
+            class="press-logo card card-hover group flex h-28 items-center justify-center text-center"
+            data-reveal
+          >
+            <span class="font-mono text-lg font-semibold tracking-tight text-muted transition-colors group-hover:text-text">
+              {o.name}
+            </span>
+          </a>
         ))
       }
     </div>
   </div>
-
-  <p data-reveal data-i18n="press.outlets" class="mt-8 text-center font-mono text-xs uppercase tracking-[0.2em] text-muted/60">
-    {fa.press.outlets}
-  </p>
 </section>
