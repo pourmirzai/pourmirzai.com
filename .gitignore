@@ -30,3 +30,4 @@ pnpm-debug.log*
 # cloudflare
 .wrangler/
 docs/memory.md
+pourmirzai-website-blueprint.md
