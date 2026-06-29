@@ -4,85 +4,108 @@ interface Props {
 }
 const { class: className = "" } = Astro.props;
 
-// Ecology nodes (gold) on the left cluster, Tech/AI nodes (cyan) on the right,
-// bridged through a central hub — "habitat complexity meets code & AI".
+// Two distinct clusters bridged together:
+//  LEFT  = ecology / habitat web (gold, organic)
+//  RIGHT = code + AI cluster (cyan)  <-- AI lives with code, not with ecology
 const ecoNodes = [
-  { cx: 60, cy: 90, r: 7, t: "gold", d: 0 },
-  { cx: 110, cy: 150, r: 5, t: "gold", d: 0.6 },
-  { cx: 90, cy: 210, r: 6, t: "gold", d: 1.2 },
-  { cx: 160, cy: 90, r: 4, t: "gold", d: 0.3 },
-  { cx: 150, cy: 180, r: 5, t: "gold", d: 0.9 },
-  { cx: 210, cy: 130, r: 4, t: "mix", d: 1.5 },
+  { cx: 55, cy: 95, r: 7, d: 0 },
+  { cx: 110, cy: 60, r: 5, d: 0.5 },
+  { cx: 130, cy: 140, r: 6, d: 1.0 },
+  { cx: 80, cy: 180, r: 5, d: 1.5 },
+  { cx: 150, cy: 205, r: 5, d: 0.3 },
+  { cx: 160, cy: 110, r: 4, d: 0.8 },
 ];
 const techNodes = [
-  { cx: 340, cy: 80, r: 6, t: "cyan", d: 0.4 },
-  { cx: 390, cy: 150, r: 7, t: "cyan", d: 1.0 },
-  { cx: 360, cy: 215, r: 5, t: "cyan", d: 1.6 },
-  { cx: 290, cy: 195, r: 4, t: "mix", d: 0.2 },
-  { cx: 300, cy: 95, r: 4, t: "cyan", d: 0.7 },
+  { cx: 300, cy: 90, r: 6, d: 0.4 },
+  { cx: 360, cy: 70, r: 5, d: 0.9 },
+  { cx: 400, cy: 130, r: 6, d: 1.3 },
+  { cx: 360, cy: 185, r: 5, d: 0.2 },
+  { cx: 295, cy: 175, r: 5, d: 1.1 },
+  { cx: 330, cy: 130, r: 7, d: 0.6 }, // central code/AI node
 ];
-const hub = { cx: 225, cy: 150, r: 9 };
-const links = [
-  [60, 90, 110, 150],
-  [110, 150, 90, 210],
-  [110, 150, 150, 180],
-  [60, 90, 160, 90],
-  [160, 90, 210, 130],
-  [150, 180, hub.cx, hub.cy],
-  [210, 130, hub.cx, hub.cy],
-  [90, 210, 150, 180],
-  [hub.cx, hub.cy, 290, 195],
-  [hub.cx, hub.cy, 300, 95],
-  [290, 195, 360, 215],
-  [300, 95, 340, 80],
-  [340, 80, 390, 150],
-  [390, 150, 360, 215],
+// edges within ecology cluster (food-web / habitat links)
+const ecoLinks = [
+  [55, 95, 110, 60],
+  [55, 95, 130, 140],
+  [110, 60, 160, 110],
+  [130, 140, 80, 180],
+  [130, 140, 160, 110],
+  [80, 180, 150, 205],
+  [130, 140, 150, 205],
 ];
-const fill = (t: string) => (t === "gold" ? "#c79a3a" : t === "cyan" ? "#64ffda" : "#e8c87f");
+// edges within tech cluster (code <-> AI)
+const techLinks = [
+  [300, 90, 360, 70],
+  [300, 90, 330, 130],
+  [360, 70, 400, 130],
+  [400, 130, 360, 185],
+  [360, 185, 295, 175],
+  [295, 175, 330, 130],
+  [330, 130, 400, 130],
+];
+// bridge: ecology <-> (code + AI)
+const bridge = [
+  [160, 110, 295, 175],
+  [150, 205, 295, 175],
+  [160, 110, 300, 90],
+];
 ---
 
 <svg
   class={className}
-  viewBox="0 0 450 270"
+  viewBox="0 0 450 260"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
   role="img"
-  aria-label="Ecological network connected to code and AI"
+  aria-label="Ecology network meeting a code and AI network"
 >
   <defs>
-    <linearGradient id="ecoLink" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#c79a3a" stop-opacity="0.65" />
-      <stop offset="100%" stop-color="#64ffda" stop-opacity="0.65" />
+    <linearGradient id="bridgeGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c79a3a" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#64ffda" stop-opacity="0.8" />
     </linearGradient>
-    <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#e8c87f" stop-opacity="0.9" />
-      <stop offset="100%" stop-color="#64ffda" stop-opacity="0.2" />
-    </radialGradient>
     <filter id="ecoBlur" x="-60%" y="-60%" width="220%" height="220%">
       <feGaussianBlur stdDeviation="3.2" />
     </filter>
   </defs>
 
-  <!-- connecting edges (ecology <-> tech) -->
-  <g stroke="url(#ecoLink)" stroke-width="1.2" stroke-opacity="0.7">
-    {links.map((l) => <line class="eco-link" x1={l[0]} y1={l[1]} x2={l[2]} y2={l[3]} />)}
+  <!-- ecology edges (gold) -->
+  <g stroke="#c79a3a" stroke-width="1.1" stroke-opacity="0.55">
+    {ecoLinks.map((l) => <line class="eco-link" x1={l[0]} y1={l[1]} x2={l[2]} y2={l[3]} />)}
   </g>
 
-  <!-- nodes -->
-  {[...ecoNodes, ...techNodes].map((n) => (
+  <!-- tech edges (cyan) -->
+  <g stroke="#64ffda" stroke-width="1.1" stroke-opacity="0.55">
+    {techLinks.map((l) => <line class="eco-link" x1={l[0]} y1={l[1]} x2={l[2]} y2={l[3]} style="animation-delay:.5s" />)}
+  </g>
+
+  <!-- bridge edges (gold -> cyan): nature meets code -->
+  <g stroke="url(#bridgeGrad)" stroke-width="1.5" stroke-opacity="0.85">
+    {bridge.map((l) => <line class="eco-link" x1={l[0]} y1={l[1]} x2={l[2]} y2={l[3]} style="animation-delay:1s" />)}
+  </g>
+
+  <!-- ecology nodes (gold) -->
+  {ecoNodes.map((n) => (
     <g>
-      <circle cx={n.cx} cy={n.cy} r={n.r + 3} fill={fill(n.t)} opacity="0.25" filter="url(#ecoBlur)" />
-      <circle class="eco-node" cx={n.cx} cy={n.cy} r={n.r} fill={fill(n.t)} style={`animation-delay:${n.d}s`} />
+      <circle cx={n.cx} cy={n.cy} r={n.r + 3} fill="#c79a3a" opacity="0.22" filter="url(#ecoBlur)" />
+      <circle class="eco-node" cx={n.cx} cy={n.cy} r={n.r} fill="#c79a3a" style={`animation-delay:${n.d}s`} />
     </g>
   ))}
 
-  <!-- central hub (the intersection) -->
-  <circle cx={hub.cx} cy={hub.cy} r={hub.r + 10} fill="url(#hubGlow)" />
-  <circle class="eco-node" cx={hub.cx} cy={hub.cy} r={hub.r} fill="#f0f0f0" style="animation-delay:.4s" />
+  <!-- tech nodes (cyan) -->
+  {techNodes.map((n) => (
+    <g>
+      <circle cx={n.cx} cy={n.cy} r={n.r + 3} fill="#64ffda" opacity="0.22" filter="url(#ecoBlur)" />
+      <circle class="eco-node" cx={n.cx} cy={n.cy} r={n.r} fill="#64ffda" style={`animation-delay:${n.d}s`} />
+    </g>
+  ))}
 
-  <!-- subtle code glyphs around hub -->
-  <g font-family="JetBrains Mono, monospace" font-size="11" fill="#64ffda" opacity="0.5">
-    <text x={hub.cx - 30} y={hub.cy - 26}>&lt;/&gt;</text>
-    <text x={hub.cx + 12} y={hub.cy + 34}>AI</text>
+  <!-- code + AI glyphs live together on the TECH cluster -->
+  <g font-family="JetBrains Mono, monospace" font-size="13" fill="#64ffda" opacity="0.9">
+    <text x={318} y={134}>&lt;/&gt;</text>
+  </g>
+  <g>
+    <rect x={386} y={150} width="34" height="18" rx="4" fill="#0a192f" stroke="#64ffda" stroke-opacity="0.5" />
+    <text x={394} y={163} font-family="JetBrains Mono, monospace" font-size="12" fill="#64ffda">AI</text>
   </g>
 </svg>
