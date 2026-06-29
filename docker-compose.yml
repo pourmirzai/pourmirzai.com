@@ -2,6 +2,10 @@ services:
   web:
     build: .
     container_name: pourmirzai-web
-    ports:
-      - "80:80"
+    # Coolify's Traefik proxy owns host 80/443 and routes the FQDN to this
+    # container over the Docker network. Do NOT publish host:80 (port conflict).
+    # `expose` declares the in-network port Traefik forwards to (Dockerfile EXPOSE 80).
+    # If Coolify doesn't auto-detect the port, set "Ports Exposes" = 80 in the service UI.
+    expose:
+      - "80"
     restart: unless-stopped
