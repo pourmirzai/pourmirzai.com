@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D0D0D" />
+      <stop offset="100%" stop-color="#0A192F" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#C79A3A" />
+      <stop offset="100%" stop-color="#8B6914" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#64FFDA" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#64FFDA" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+
+  <!-- split seam -->
+  <rect x="599" y="60" width="2" height="510" fill="#64FFDA" opacity="0.35" />
+
+  <!-- left label -->
+  <g transform="translate(120 120)" fill="#8B6914" font-family="monospace" font-size="22" letter-spacing="6">
+    <text>🌿 CONSERVATION</text>
+  </g>
+  <!-- right label -->
+  <g transform="translate(760 120)" fill="#64FFDA" font-family="monospace" font-size="22" letter-spacing="6">
+    <text>💻 TECHNOLOGY</text>
+  </g>
+
+  <!-- footprint -->
+  <g transform="translate(540 250) scale(2.4)" fill="url(#gold)">
+    <ellipse cx="9" cy="11" rx="2.6" ry="3.8" transform="rotate(-18 9 11)" />
+    <ellipse cx="15" cy="8.5" rx="2.6" ry="4" transform="rotate(-6 15 8.5)" />
+    <ellipse cx="20.5" cy="8.8" rx="2.6" ry="4" transform="rotate(8 20.5 8.8)" />
+    <ellipse cx="25.5" cy="12.2" rx="2.3" ry="3.5" transform="rotate(22 25.5 12.2)" />
+    <path d="M16 16.5c6.4-.6 11 3.2 10.6 8-.3 3.6-4 5-6.8 3.8-1.9-.8-2.2-3-3.8-3-1.6 0-1.9 2.2-3.8 3-2.8 1.2-6.5-.2-6.8-3.8-.5-4.8 4.2-8.6 10.6-8Z" />
+  </g>
+
+  <!-- name -->
+  <text x="600" y="470" fill="#F0F0F0" font-family="Inter, sans-serif" font-size="76" font-weight="700" text-anchor="middle">Morteza Pourmirzai</text>
+  <!-- tagline -->
+  <text x="600" y="525" fill="#8892A4" font-family="monospace" font-size="28" text-anchor="middle">Where Nature Meets Code</text>
+</svg>

@@ -1,0 +1,69 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+---
+
+<!-- Hand-crafted stylized Asiatic cheetah silhouette (running) -->
+<svg
+  class={className}
+  viewBox="0 0 520 240"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Asiatic cheetah silhouette"
+>
+  <defs>
+    <linearGradient id="cheetahGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c79a3a" />
+      <stop offset="100%" stop-color="#8b6914" />
+    </linearGradient>
+  </defs>
+
+  <g fill="url(#cheetahGrad)">
+    <!-- Tail (long, curved) -->
+    <path
+      d="M96 120 C40 118 6 96 4 70 C3 60 12 56 18 64 C24 72 24 86 50 92 C68 96 84 104 96 116 Z"
+    />
+    <!-- Body -->
+    <path
+      d="M110 118 C150 96 210 90 268 100 C312 108 350 118 384 120 C410 122 432 116 450 104 C462 96 478 98 478 112 C478 126 462 132 444 132 C420 132 392 128 360 130 C300 134 230 138 168 138 C140 138 118 132 110 120 Z"
+    />
+    <!-- Neck + head -->
+    <path
+      d="M430 104 C452 84 484 76 506 82 C514 84 516 92 510 98 C504 104 492 104 488 110 C494 112 500 116 500 122 C500 130 490 132 482 128 C468 122 454 120 446 122 C442 116 438 110 430 104 Z"
+    />
+    <!-- Ear -->
+    <path d="M486 82 C492 70 500 66 504 72 C500 80 494 84 486 84 Z" />
+
+    <!-- Front legs (extended, running) -->
+    <path d="M408 132 C416 160 426 188 430 210 C432 220 426 226 420 222 C414 218 410 206 406 192 C400 172 396 152 398 134 Z" />
+    <path d="M384 134 C386 156 380 176 372 192 C368 200 360 200 358 192 C356 180 362 162 370 148 C374 140 378 136 384 134 Z" />
+
+    <!-- Back legs (powerful, coiled) -->
+    <path d="M168 134 C160 158 150 180 140 196 C134 206 124 206 122 196 C120 184 126 166 136 150 C144 138 156 134 168 134 Z" />
+    <path d="M196 134 C196 160 204 184 214 200 C220 210 214 216 206 212 C196 206 188 188 184 168 C180 150 182 138 196 134 Z" />
+
+    <!-- Spots -->
+    <g class="cheetah-spots" fill="#2d5016" opacity="0.55">
+      <circle cx="200" cy="116" r="5" />
+      <circle cx="232" cy="112" r="6" />
+      <circle cx="266" cy="116" r="5" />
+      <circle cx="298" cy="112" r="6" />
+      <circle cx="330" cy="116" r="5" />
+      <circle cx="360" cy="118" r="5" />
+      <circle cx="218" cy="128" r="4" />
+      <circle cx="250" cy="128" r="5" />
+      <circle cx="284" cy="126" r="4" />
+      <circle cx="316" cy="128" r="5" />
+      <circle cx="348" cy="128" r="4" />
+      <circle cx="150" cy="122" r="4" />
+      <ellipse cx="150" cy="110" rx="8" ry="3" transform="rotate(-8 150 110)" />
+      <ellipse cx="186" cy="104" rx="7" ry="3" transform="rotate(-6 186 104)" />
+    </g>
+
+    <!-- Tear mark (cheetah signature) -->
+    <path d="M504 96 C506 102 506 108 504 112" stroke="#2d5016" stroke-width="2" fill="none" />
+  </g>
+</svg>

@@ -1,0 +1,56 @@
+---
+import fa from "../i18n/fa.json";
+import Icon from "./Icon.astro";
+
+const gradients = [
+  "from-nature-deep to-nature-gold",
+  "from-tech-navy to-nature-deep",
+  "from-tech-navy to-tech-cyan/30",
+];
+---
+
+<section id="work" class="section-pad relative overflow-hidden">
+  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+  <div class="container-px">
+    <div class="mx-auto max-w-2xl text-center">
+      <p data-reveal class="eyebrow justify-center">
+        <Icon name="code" size={14} />
+        <span data-i18n="featured.eyebrow">{fa.featured.eyebrow}</span>
+      </p>
+      <h2 data-reveal data-i18n="featured.title" class="heading-lg">{fa.featured.title}</h2>
+      <p data-reveal data-i18n="featured.subtitle" class="mx-auto mt-4 text-muted">{fa.featured.subtitle}</p>
+    </div>
+
+    <div data-i18n-list="featured" class="mt-12 grid gap-6 md:grid-cols-3">
+      {
+        fa.featured.items.map((f, i) => (
+          <article class="featured-card card card-hover group flex flex-col" data-reveal style={`--i:${i}`}>
+            <div class={`relative mb-5 flex h-40 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br ${gradients[i % gradients.length]}`}>
+              <span class="absolute inset-0 grain" />
+              {i === 0 ? (
+                <svg viewBox="0 0 520 240" class="h-24 w-auto opacity-90" fill="currentColor" aria-hidden="true">
+                  <path d="M96 120 C40 118 6 96 4 70 C3 60 12 56 18 64 C24 72 24 86 50 92 C68 96 84 104 96 116 Z M110 118 C150 96 210 90 268 100 C312 108 350 118 384 120 C410 122 432 116 450 104 C462 96 478 98 478 112 C478 126 462 132 444 132 C420 132 392 128 360 130 C300 134 230 138 168 138 C140 138 118 132 110 120 Z" />
+                </svg>
+              ) : i === 1 ? (
+                <Icon name="leaf" size={48} class="text-white/85" />
+              ) : (
+                <Icon name="code" size={48} class="text-white/85" />
+              )}
+            </div>
+            <h3 class="text-lg font-bold text-text">{f.title}</h3>
+            <p class="mt-2 flex-1 text-sm text-muted">{f.desc}</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {f.tags.map((t) => (
+                <span class="pill border-white/10 bg-white/5 text-muted">{t}</span>
+              ))}
+            </div>
+            <a href={f.url} target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-tech-cyan">
+              <span data-i18n="featured.viewLink">{fa.featured.viewLink}</span>
+              <svg viewBox="0 0 24 24" class="h-4 w-4 transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6m0-6L10 14M19 14v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" /></svg>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,141 @@
+---
+import fa from "../i18n/fa.json";
+import CheetahSVG from "./svg/CheetahSVG.astro";
+import Icon from "./Icon.astro";
+---
+
+<section id="hero" class="relative min-h-screen overflow-hidden bg-bg">
+  <!-- ===== SPLIT BACKGROUNDS ===== -->
+  <div class="absolute inset-0 grid grid-cols-1 md:grid-cols-2">
+    <!-- NATURE SIDE -->
+    <div
+      class="hero-side-nature relative isolate overflow-hidden bg-gradient-to-br from-nature-deep via-nature-deep/80 to-bg"
+    >
+      <!-- texture / vignette -->
+      <div class="absolute inset-0 grain opacity-60"></div>
+      <div
+        class="absolute inset-0 bg-[radial-gradient(120%_80%_at_30%_30%,rgba(199,154,58,0.18),transparent_60%)]"
+      >
+      </div>
+      <!-- particle canvas -->
+      <canvas id="nature-particles" class="absolute inset-0 h-full w-full"></canvas>
+
+      <!-- cheetah -->
+      <div class="absolute inset-0 flex items-center justify-center p-6">
+        <CheetahSVG class="cheetah-art w-[78%] max-w-xl drop-shadow-[0_20px_60px_rgba(0,0,0,0.6)]" />
+      </div>
+
+      <!-- label -->
+      <span
+        class="hero-label absolute bottom-6 start-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-nature-gold-bright/90"
+      >
+        <Icon name="leaf" size={14} />
+        <span data-i18n="hero.natureLabel">{fa.hero.natureLabel}</span>
+      </span>
+    </div>
+
+    <!-- TECH SIDE -->
+    <div
+      class="hero-side-tech relative isolate overflow-hidden bg-tech-navy"
+    >
+      <!-- grid pattern -->
+      <div
+        class="absolute inset-0 opacity-[0.18] [background-image:linear-gradient(to_right,rgba(100,255,218,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(100,255,218,0.12)_1px,transparent_1px)] [background-size:44px_44px]"
+      >
+      </div>
+      <div
+        class="absolute inset-0 bg-[radial-gradient(120%_80%_at_70%_30%,rgba(100,255,218,0.16),transparent_60%)]"
+      >
+      </div>
+
+      <!-- terminal -->
+      <div class="absolute inset-0 flex items-center justify-center p-6">
+        <div
+          class="terminal w-full max-w-md rounded-xl border border-white/10 bg-[#020c1b]/90 shadow-2xl backdrop-blur"
+        >
+          <div class="flex items-center gap-2 border-b border-white/5 px-4 py-2.5">
+            <span class="h-3 w-3 rounded-full bg-[#ff5f56]"></span>
+            <span class="h-3 w-3 rounded-full bg-[#ffbd2e]"></span>
+            <span class="h-3 w-3 rounded-full bg-[#27c93f]"></span>
+            <span class="ms-2 font-mono text-xs text-muted">morteza@pourmirzai: ~</span>
+          </div>
+          <div class="space-y-1.5 p-4 font-mono text-[13px] leading-relaxed">
+            <p class="text-tech-cyan/80">› const role = 'conservationist';</p>
+            <p class="text-nature-gold-bright/80">› const stack = ['php','ts','python'];</p>
+            <p class="flex items-center gap-1 text-text">
+              <span class="text-tech-cyan">$</span>
+              <span id="terminal-line" class="text-text/90"></span><span id="terminal-cursor" class="text-tech-cyan">▋</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- label -->
+      <span
+        class="hero-label absolute bottom-6 end-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-tech-cyan/90"
+      >
+        <Icon name="terminal" size={14} />
+        <span data-i18n="hero.techLabel">{fa.hero.techLabel}</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- center seam line -->
+  <div
+    class="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-tech-cyan/40 to-transparent md:block"
+  >
+  </div>
+
+  <!-- ===== CENTER CONTENT OVERLAY ===== -->
+  <div class="relative z-10 flex min-h-screen items-center">
+    <div class="container-px w-full py-28">
+      <div class="mx-auto max-w-2xl text-center">
+        <p data-hero-anim class="eyebrow justify-center">
+          <span class="h-px w-6 bg-tech-cyan/60"></span>
+          <span data-i18n="hero.roleNature">{fa.hero.roleNature}</span>
+          <span class="text-muted">×</span>
+          <span data-i18n="hero.roleTech">{fa.hero.roleTech}</span>
+          <span class="h-px w-6 bg-tech-cyan/60"></span>
+        </p>
+
+        <h1
+          data-hero-anim
+          data-i18n="hero.name"
+          class="heading-xl mt-4 text-[clamp(2.5rem,8vw,5rem)]"
+        >
+          {fa.hero.name}
+        </h1>
+
+        <p
+          data-hero-anim
+          data-i18n="hero.tagline"
+          class="mx-auto mt-5 max-w-xl text-lg text-text/90 sm:text-xl"
+        >
+          {fa.hero.tagline}
+        </p>
+
+        <div data-hero-anim class="mt-9 flex flex-wrap items-center justify-center gap-4">
+          <a href="#worlds" class="hero-cta btn btn-primary">
+            <span data-i18n="hero.cta_work">{fa.hero.cta_work}</span>
+            <Icon name="arrowDown" size={16} />
+          </a>
+          <a href="#contact" class="hero-cta btn btn-outline">
+            <span data-i18n="hero.cta_contact">{fa.hero.cta_contact}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- scroll hint -->
+  <a
+    href="#about"
+    class="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-1 text-muted transition-colors hover:text-tech-cyan md:flex"
+    aria-label="Scroll to about"
+  >
+    <span class="font-mono text-[10px] uppercase tracking-[0.3em]" data-i18n="hero.scroll">{fa.hero.scroll}</span>
+    <span class="flex h-9 w-5 items-start justify-center rounded-full border border-muted/40 p-1">
+      <span class="h-1.5 w-1 animate-bounce rounded-full bg-tech-cyan"></span>
+    </span>
+  </a>
+</section>

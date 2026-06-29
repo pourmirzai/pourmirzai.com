@@ -1,0 +1,26 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+---
+
+<!-- Cheetah footprint: main pad + 4 toe pads (no claw marks) -->
+<svg
+  class={className}
+  viewBox="0 0 100 110"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Cheetah footprint"
+>
+  <g fill="currentColor">
+    <!-- Toe pads -->
+    <ellipse cx="28" cy="34" rx="8" ry="12" transform="rotate(-18 28 34)" />
+    <ellipse cx="46" cy="26" rx="8" ry="13" transform="rotate(-6 46 26)" />
+    <ellipse cx="64" cy="27" rx="8" ry="13" transform="rotate(8 64 27)" />
+    <ellipse cx="80" cy="38" rx="7" ry="11" transform="rotate(22 80 38)" />
+    <!-- Main pad (trilobed) -->
+    <path d="M50 60 C70 58 86 72 84 88 C82 100 70 104 60 100 C54 98 52 92 50 92 C48 92 46 98 40 100 C30 104 18 100 16 88 C14 72 30 58 50 60 Z" />
+  </g>
+</svg>

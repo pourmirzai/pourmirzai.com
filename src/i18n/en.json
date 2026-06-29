@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "title": "Morteza Pourmirzai | Where Nature Meets Code",
+    "description": "Morteza Pourmirzai — conservationist with 17+ years on the frontline of Asiatic cheetah rescue, and a web developer. Where Nature Meets Code.",
+    "langName": "EN",
+    "langSwitch": "فا"
+  },
+  "nav": {
+    "about": "About",
+    "worlds": "Two Worlds",
+    "work": "Featured Work",
+    "press": "Press",
+    "contact": "Contact"
+  },
+  "hero": {
+    "name": "Morteza Pourmirzai",
+    "roleNature": "Asiatic Cheetah Conservationist",
+    "roleTech": "Web Developer",
+    "tagline": "Where Nature Meets Code",
+    "cta_work": "Explore My Work",
+    "cta_contact": "Let's Connect",
+    "scroll": "Scroll",
+    "natureLabel": "Wildlife",
+    "techLabel": "Tech"
+  },
+  "about": {
+    "eyebrow": "Who I Am",
+    "title": "Two Worlds, One Person",
+    "bio": "For over 17 years I have stood on the frontline of Asiatic cheetah conservation — the last of the species in Iran and the world — while building the web and architecting systems alongside it. From wildlife refuges to lines of code, my mission is one: building a more sustainable future.",
+    "bio2": "CEO & Co-Founder of Sarvin Wildlife Conservation, former CEO of the Iranian Cheetah Society, and an open-source developer on GitHub.",
+    "stats": {
+      "years": "17+ yrs",
+      "yearsLabel": "Wildlife Conservation",
+      "hectares": "5,600+",
+      "hectaresLabel": "Hectares Protected",
+      "repos": "17+",
+      "reposLabel": "GitHub Repositories",
+      "press": "3",
+      "pressLabel": "International Media"
+    },
+    "timelineTitle": "My Journey",
+    "timeline": [
+      { "year": "2007", "text": "Began environmental studies and volunteer conservation work" },
+      { "year": "2010s", "text": "Field projects with the Iranian Cheetah Society in Touran & Miandasht" },
+      { "year": "2018", "text": "Became CEO of the Iranian Cheetah Society" },
+      { "year": "2023", "text": "Founded Sarvin Wildlife Conservation" },
+      { "year": "2024", "text": "CEO & Co-Founder of Sarvin Wildlife" },
+      { "year": "2026", "text": "Presented at the Asia Conservation Congress, Nepal" }
+    ]
+  },
+  "worlds": {
+    "eyebrow": "Two Worlds",
+    "title": "Conservation & Technology",
+    "subtitle": "Two domains that seem far apart, yet complete each other in practice.",
+    "nature": {
+      "label": "Conservation World",
+      "title": "Saving the Asiatic Cheetah",
+      "desc": "Fieldwork to save the world's last Asiatic cheetahs — focused on habitat protection, camera traps and ranger training.",
+      "locationsTitle": "Activity Zones",
+      "projectsTitle": "Projects",
+      "achievementsTitle": "Key Achievements",
+      "projects": [
+        { "name": "Sarvin Wildlife Conservation", "desc": "Wildlife conservation trust & refuge", "url": "https://sarvinwildlife.com" },
+        { "name": "Iranian Cheetah Society", "desc": "Save the Asiatic Cheetah", "url": "https://savecheetah.com" },
+        { "name": "Cheetah Habitat Mapping", "desc": "Surveys & corridor protection", "url": "" }
+      ],
+      "achievements": [
+        "Secured 5,600 hectares of wildlife refuge",
+        "Deployed a camera-trap network",
+        "Trained rangers and local communities",
+        "Partnered with IUCN NL & World Land Trust"
+      ]
+    },
+    "tech": {
+      "label": "Tech World",
+      "title": "Building Web & Automation",
+      "desc": "Building tools, games and automations that serve both conservation and clients.",
+      "stackTitle": "My Stack",
+      "reposTitle": "Featured GitHub Repos",
+      "stack": ["PHP", "JavaScript", "TypeScript", "Python", "Bash", "Docker", "WordPress", "n8n", "AI/LLM", "Linux"],
+      "repos": [
+        { "name": "Cheetah-Game", "desc": "Interactive cheetah conservation game", "tag": "React + TS", "url": "https://github.com/pourmirzai/Cheetah-Game" },
+        { "name": "slidist", "desc": "Slide management tool", "tag": "JavaScript", "url": "https://github.com/pourmirzai/slidist" },
+        { "name": "webp-convertor", "desc": "Image to WebP converter", "tag": "JavaScript", "url": "https://github.com/pourmirzai/webp-convertor" },
+        { "name": "AI-Router", "desc": "AI model router", "tag": "Python", "url": "https://github.com/pourmirzai/AI-Router" }
+      ]
+    }
+  },
+  "featured": {
+    "eyebrow": "Featured Work",
+    "title": "Real Impact",
+    "subtitle": "Projects where nature and code meet.",
+    "viewLink": "View project",
+    "items": [
+      {
+        "title": "Cheetah Interactive Game",
+        "desc": "An interactive educational game to raise awareness for Asiatic cheetah conservation.",
+        "tags": ["React", "TypeScript", "Game"],
+        "url": "https://github.com/pourmirzai/Cheetah-Game"
+      },
+      {
+        "title": "Sarvin Wildlife Website",
+        "desc": "Official website of the Sarvin Wildlife Conservation trust.",
+        "tags": ["Web", "Conservation", "Branding"],
+        "url": "https://sarvinwildlife.com"
+      },
+      {
+        "title": "Slidist",
+        "desc": "A lightweight tool to manage and present slides.",
+        "tags": ["JavaScript", "Tool"],
+        "url": "https://github.com/pourmirzai/slidist"
+      }
+    ]
+  },
+  "press": {
+    "eyebrow": "Press",
+    "title": "Recognized Globally",
+    "subtitle": "The voice of Asiatic cheetah conservation in international media.",
+    "quote": "Iran's Asiatic cheetahs face an 'extremely' precarious risk of extinction.",
+    "quoteSource": "Newsweek — quoting Morteza Pourmirzai",
+    "outlets": "Newsweek · IUCN NL · Felidae Fund · Arab News · Hamshahri · Shargh Daily",
+    "podcast": "Podcast: Saving the Last Asiatic Cheetahs"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's Connect",
+    "subtitle": "Whether for conservation collaboration or a web development project — I'd love to hear from you.",
+    "formName": "Name",
+    "formNamePh": "Your name",
+    "formEmail": "Email",
+    "formEmailPh": "you@example.com",
+    "formSubject": "Subject",
+    "formMessage": "Message",
+    "formMessagePh": "Your message...",
+    "subjects": ["Conservation", "Web Development", "Media & Press", "Other"],
+    "submit": "Send Message",
+    "success": "Thank you! Your message has been sent.",
+    "emailLabel": "Email",
+    "locationLabel": "Tehran, Iran"
+  },
+  "footer": {
+    "tagline": "Where Nature Meets Code",
+    "rights": "All rights reserved.",
+    "madeWith": "Built with Astro, GSAP and love for the cheetah."
+  }
+}

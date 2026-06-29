@@ -1,0 +1,70 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+
+// Approximate activity coordinates on the stylized Iran map (viewBox 0 0 400 280)
+const sites = [
+  { id: "touran", cx: 150, cy: 120, label: "Touran" },
+  { id: "miandasht", cx: 230, cy: 70, label: "Miandasht" },
+  { id: "abbasabad", cx: 300, cy: 150, label: "Abbas Abad" },
+];
+---
+
+<svg
+  class={className}
+  viewBox="0 0 400 280"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Map of Iran with conservation activity sites"
+>
+  <defs>
+    <linearGradient id="iranFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2d5016" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#1a2f0d" stop-opacity="0.6" />
+    </linearGradient>
+    <filter id="dotGlow" x="-200%" y="-200%" width="500%" height="500%">
+      <feGaussianBlur stdDeviation="3" result="b" />
+      <feMerge>
+        <feMergeNode in="b" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Stylized Iran outline -->
+  <path
+    d="M70 150 L60 120 L72 96 L96 78 L120 66 L150 54 L188 44 L230 40 L272 46 L312 58 L342 78 L356 104 L360 132 L350 158 L332 178 L308 196 L282 210 L256 220 L226 226 L196 226 L168 218 L142 206 L116 196 L92 184 L76 168 Z"
+    fill="url(#iranFill)"
+    stroke="#6b8e4e"
+    stroke-width="1.5"
+    stroke-opacity="0.7"
+  />
+
+  <!-- Activity pulse dots -->
+  {
+    sites.map((s) => (
+      <g>
+        <circle
+          cx={s.cx}
+          cy={s.cy}
+          r="6"
+          fill="#c79a3a"
+          filter="url(#dotGlow)"
+          class="map-dot-core"
+        />
+        <circle
+          cx={s.cx}
+          cy={s.cy}
+          r="6"
+          fill="none"
+          stroke="#c79a3a"
+          stroke-width="2"
+          class="map-dot-pulse"
+        />
+      </g>
+    ))
+  }
+</svg>

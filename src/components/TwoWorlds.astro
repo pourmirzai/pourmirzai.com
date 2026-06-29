@@ -1,0 +1,166 @@
+---
+import fa from "../i18n/fa.json";
+import IranMapSVG from "./svg/IranMapSVG.astro";
+import Icon from "./Icon.astro";
+
+// decorative github-style contribution grid
+const grid = Array.from({ length: 7 * 22 }, (_, i) => {
+  const r = (Math.sin(i * 12.9898) * 43758.5453) % 1;
+  const v = Math.abs(r);
+  return v > 0.78 ? 3 : v > 0.55 ? 2 : v > 0.3 ? 1 : 0;
+});
+const cellColor = ["bg-white/5", "bg-tech-cyan/20", "bg-tech-cyan/45", "bg-tech-cyan/80"];
+---
+
+<section id="worlds" class="relative">
+  <div class="container-px section-pad">
+    <div class="mx-auto max-w-2xl text-center">
+      <p data-reveal class="eyebrow justify-center">
+        <Icon name="sparkle" size={14} />
+        <span data-i18n="worlds.eyebrow">{fa.worlds.eyebrow}</span>
+      </p>
+      <h2 data-reveal data-i18n="worlds.title" class="heading-lg">{fa.worlds.title}</h2>
+      <p data-reveal data-i18n="worlds.subtitle" class="mx-auto mt-4 text-muted">{fa.worlds.subtitle}</p>
+    </div>
+  </div>
+
+  <div class="container-px">
+    <div class="grid overflow-hidden rounded-3xl border border-white/5 lg:grid-cols-2">
+      <!-- ===== NATURE WORLD ===== -->
+      <div data-reveal class="relative isolate overflow-hidden bg-gradient-to-br from-[#16290c] via-nature-deep to-[#0d1f06] p-8 md:p-10">
+        <div class="absolute inset-0 grain opacity-50"></div>
+        <div class="relative">
+          <span class="pill border-nature-gold-bright/30 bg-nature-gold-bright/10 text-nature-gold-bright">
+            <span data-i18n="worlds.nature.label">{fa.worlds.nature.label}</span>
+          </span>
+          <h3 data-i18n="worlds.nature.title" class="mt-5 text-2xl font-bold text-text sm:text-3xl">
+            {fa.worlds.nature.title}
+          </h3>
+          <p data-i18n="worlds.nature.desc" class="mt-3 max-w-md text-sm text-text/75">
+            {fa.worlds.nature.desc}
+          </p>
+
+          <!-- Map -->
+          <div class="my-8 flex justify-center">
+            <div class="relative w-full max-w-xs">
+              <IranMapSVG class="w-full drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]" />
+            </div>
+          </div>
+
+          <!-- Projects -->
+          <h4 data-i18n="worlds.nature.projectsTitle" class="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-nature-gold-bright/80">
+            {fa.worlds.nature.projectsTitle}
+          </h4>
+          <div data-i18n-list="nature-projects" class="space-y-2.5">
+            {
+              fa.worlds.nature.projects.map((p) => (
+                <a
+                  href={p.url || undefined}
+                  target={p.url ? "_blank" : undefined}
+                  rel={p.url ? "noopener noreferrer" : undefined}
+                  role={p.url ? undefined : "group"}
+                  class="group flex items-center justify-between gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-4 transition-colors hover:border-nature-gold/40"
+                >
+                  <span class="min-w-0">
+                    <span class="block font-semibold text-text">{p.name}</span>
+                    <span class="block text-sm text-muted">{p.desc}</span>
+                  </span>
+                  {p.url && (
+                    <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-nature-gold-bright" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 4h6v6m0-6L10 14M19 14v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />
+                    </svg>
+                  )}
+                </a>
+              ))
+            }
+          </div>
+
+          <!-- Achievements -->
+          <h4 data-i18n="worlds.nature.achievementsTitle" class="mb-3 mt-7 font-mono text-xs uppercase tracking-[0.25em] text-nature-gold-bright/80">
+            {fa.worlds.nature.achievementsTitle}
+          </h4>
+          <ul data-i18n-list="nature-achievements" class="space-y-2.5">
+            {
+              fa.worlds.nature.achievements.map((t) => (
+                <li class="flex items-start gap-3" data-reveal>
+                  <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-nature-gold-bright/15 text-nature-gold-bright">
+                    <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                  </span>
+                  <span class="text-sm text-text/90">{t}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- ===== TECH WORLD ===== -->
+      <div data-reveal class="relative isolate overflow-hidden bg-gradient-to-br from-tech-navy via-[#0c1a33] to-[#070d1a] p-8 md:p-10">
+        <div class="absolute inset-0 opacity-10 [background-image:linear-gradient(to_right,rgba(100,255,218,0.2)_1px,transparent_1px),linear-gradient(to_bottom,rgba(100,255,218,0.2)_1px,transparent_1px)] [background-size:32px_32px]"></div>
+        <div class="relative">
+          <span class="pill border-tech-cyan/30 bg-tech-cyan/10 text-tech-cyan">
+            <span data-i18n="worlds.tech.label">{fa.worlds.tech.label}</span>
+          </span>
+          <h3 data-i18n="worlds.tech.title" class="mt-5 text-2xl font-bold text-text sm:text-3xl">
+            {fa.worlds.tech.title}
+          </h3>
+          <p data-i18n="worlds.tech.desc" class="mt-3 max-w-md text-sm text-text/75">
+            {fa.worlds.tech.desc}
+          </p>
+
+          <!-- Contribution grid -->
+          <div class="my-8">
+            <div class="mb-2 flex items-center justify-between font-mono text-[10px] uppercase tracking-wider text-muted">
+              <span>contributions</span>
+              <span class="flex items-center gap-1">
+                less
+                <span class="inline-block h-2.5 w-2.5 rounded-sm bg-white/5"></span>
+                <span class="inline-block h-2.5 w-2.5 rounded-sm bg-tech-cyan/20"></span>
+                <span class="inline-block h-2.5 w-2.5 rounded-sm bg-tech-cyan/45"></span>
+                <span class="inline-block h-2.5 w-2.5 rounded-sm bg-tech-cyan/80"></span>
+                more
+              </span>
+            </div>
+            <div class="grid grid-flow-col grid-rows-7 gap-1 overflow-hidden">
+              {grid.map((v) => <span class={`aspect-square rounded-[3px] ${cellColor[v]}`}></span>)}
+            </div>
+          </div>
+
+          <!-- Stack -->
+          <h4 data-i18n="worlds.tech.stackTitle" class="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-tech-cyan/80">
+            {fa.worlds.tech.stackTitle}
+          </h4>
+          <div data-i18n-list="tech-stack" class="flex flex-wrap gap-2">
+            {
+              fa.worlds.tech.stack.map((t) => (
+                <span class="pill border-tech-cyan/20 bg-tech-cyan/5 text-tech-cyan/90" data-reveal>{t}</span>
+              ))
+            }
+          </div>
+
+          <!-- Repos -->
+          <h4 data-i18n="worlds.tech.reposTitle" class="mb-3 mt-7 font-mono text-xs uppercase tracking-[0.25em] text-tech-cyan/80">
+            {fa.worlds.tech.reposTitle}
+          </h4>
+          <div data-i18n-list="tech-repos" class="grid gap-3 sm:grid-cols-2">
+            {
+              fa.worlds.tech.repos.map((r) => (
+                <a href={r.url} target="_blank" rel="noopener noreferrer" class="card card-hover group" data-reveal>
+                  <div class="flex items-center justify-between">
+                    <span class="flex items-center gap-2 font-mono text-sm font-semibold text-text">
+                      <svg viewBox="0 0 24 24" class="h-4 w-4 text-muted" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.36 9.36 0 0 1 12 6.84c.85 0 1.71.12 2.51.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z" /></svg>
+                      {r.name}
+                    </span>
+                    <svg viewBox="0 0 24 24" class="h-4 w-4 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-tech-cyan" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6m0-6L10 14M19 14v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" /></svg>
+                  </div>
+                  <p class="mt-2 text-sm text-muted">{r.desc}</p>
+                  <span class="pill mt-3 border-white/10 bg-white/5 text-muted">{r.tag}</span>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,90 @@
+---
+import fa from "../i18n/fa.json";
+import FootprintSVG from "./svg/FootprintSVG.astro";
+import Icon from "./Icon.astro";
+
+const stats = [
+  { key: "years", count: 17, suffix: "+", labelKey: "about.stats.yearsLabel", label: fa.about.stats.yearsLabel, val: fa.about.stats.years },
+  { key: "hectares", count: 5600, suffix: "+", labelKey: "about.stats.hectaresLabel", label: fa.about.stats.hectaresLabel, val: fa.about.stats.hectares },
+  { key: "repos", count: 17, suffix: "+", labelKey: "about.stats.reposLabel", label: fa.about.stats.reposLabel, val: fa.about.stats.repos },
+  { key: "press", count: 3, suffix: "", labelKey: "about.stats.pressLabel", label: fa.about.stats.pressLabel, val: fa.about.stats.press },
+];
+---
+
+<section id="about" class="section-pad relative overflow-hidden">
+  <!-- decorative footprints -->
+  <FootprintSVG class="pointer-events-none absolute -end-10 top-24 h-40 w-40 text-nature-gold/5" />
+  <FootprintSVG class="pointer-events-none absolute start-10 bottom-10 h-24 w-24 text-tech-cyan/5 rotate-12" />
+
+  <div class="container-px">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <!-- Portrait placeholder -->
+      <div data-reveal class="relative mx-auto max-w-sm">
+        <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-nature-gold-bright/20 to-tech-cyan/10 blur-2xl"></div>
+        <div
+          class="relative grain isolate flex aspect-[4/5] flex-col items-center justify-center overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-surface to-tech-navy"
+        >
+          <div class="absolute inset-0 opacity-20 [background-image:radial-gradient(circle_at_50%_20%,rgba(100,255,218,0.5),transparent_55%)]"></div>
+          <span class="font-mono text-7xl font-bold text-text/15">MP</span>
+          <FootprintSVG class="mt-4 h-14 w-14 text-nature-gold-bright/70" />
+          <p class="mt-4 font-mono text-xs uppercase tracking-[0.3em] text-muted">Tehran · IR</p>
+        </div>
+      </div>
+
+      <!-- Bio -->
+      <div>
+        <p data-reveal class="eyebrow">
+          <Icon name="leaf" size={14} />
+          <span data-i18n="about.eyebrow">{fa.about.eyebrow}</span>
+        </p>
+        <h2 data-reveal data-i18n="about.title" class="heading-lg">{fa.about.title}</h2>
+        <p data-reveal data-i18n="about.bio" class="mt-5 text-text/80">{fa.about.bio}</p>
+        <p data-reveal data-i18n="about.bio2" class="mt-4 text-muted">{fa.about.bio2}</p>
+
+        <!-- Stats -->
+        <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {
+            stats.map((s) => (
+              <div data-reveal class="rounded-2xl border border-white/5 bg-surface/60 p-4 text-center">
+                <div class="font-mono text-3xl font-bold text-text">
+                  <span data-count={s.count}>{s.val.replace(/[^\d۰-۹,]/g, "")}</span>
+                  {s.suffix && <span class="text-tech-cyan">{s.suffix}</span>}
+                </div>
+                <div data-i18n={s.labelKey} class="mt-1 text-xs leading-tight text-muted">
+                  {s.label}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="mt-20 lg:mt-28">
+      <h3 data-reveal data-i18n="about.timelineTitle" class="mb-8 text-center font-mono text-sm uppercase tracking-[0.3em] text-muted">
+        {fa.about.timelineTitle}
+      </h3>
+
+      <div class="relative mx-auto max-w-2xl">
+        <!-- vertical line -->
+        <div
+          class="absolute bottom-0 start-[5px] top-2 w-px bg-gradient-to-b from-nature-gold-bright via-tech-cyan/40 to-transparent"
+        >
+        </div>
+
+        <ol data-i18n-list="timeline" class="space-y-0">
+          {
+            fa.about.timeline.map((item) => (
+              <li class="timeline-item relative ps-8 pb-8" data-reveal>
+                <span class="timeline-dot absolute start-0 top-1.5 grid h-3 w-3 place-items-center rounded-full bg-nature-gold-bright ring-4 ring-nature-gold-bright/15" />
+                <span class="font-mono text-sm font-semibold text-tech-cyan">{item.year}</span>
+                <p class="mt-1 text-sm text-muted">{item.text}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
