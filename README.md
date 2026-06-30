@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-#< CLIXML
->>>>>>> 7992447cd6732a8f87f4f653893ea18af7c3bacd
 # Morteza Pourmirzai — Personal Website
 
 > Where Nature Meets Code — Personal site of Morteza Pourmirzai, wildlife conservationist and web developer.
