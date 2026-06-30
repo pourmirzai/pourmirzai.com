@@ -179,7 +179,7 @@ function applyLang(lang: Lang) {
 
 /* ---------- toggle ---------- */
 function currentLang(): Lang {
-  return (localStorage.getItem(STORAGE_KEY) as Lang) || "fa";
+  return (localStorage.getItem(STORAGE_KEY) as Lang) || "en";
 }
 
 function setLang(lang: Lang) {

@@ -85,7 +85,7 @@ function initReveals() {
 
 /* ============ STATS COUNTERS (IntersectionObserver) ============ */
 function localize(n: number): string {
-  const lang = (localStorage.getItem("lang") as "fa" | "en") || "fa";
+  const lang = (localStorage.getItem("lang") as "fa" | "en") || "en";
   try {
     return new Intl.NumberFormat(lang === "en" ? "en-US" : "fa-IR").format(n);
   } catch {
