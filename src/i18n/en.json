@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Morteza Pourmirzai | Where Nature Meets Code",
-    "description": "Morteza Pourmirzai — wildlife conservation practitioner, founder of Sarvin Wildlife Conservation, and digital infrastructure developer. Where Nature Meets Code.",
+    "title": "Morteza Pourmirzai | Where Nature Meets AI",
+    "description": "Morteza Pourmirzai — wildlife conservation leader, founder of Sarvin Wildlife Conservation and conservation technologist. Where Nature Meets AI.",
     "langName": "EN",
     "langSwitch": "فا"
   },
@@ -13,14 +13,22 @@
   },
   "hero": {
     "name": "Morteza Pourmirzai",
-    "roleNature": "Wildlife Conservation",
-    "roleTech": "Digital Infrastructure",
-    "tagline": "Where Nature Meets Code",
-    "cta_work": "Explore My Work",
+    "roleNature": "Wildlife Conservation Leader",
+    "roleTech": "Web Developer",
+    "intro": "17 years protecting the Asiatic Cheetah through science, technology and community.",
+    "tagline": "Where Nature Meets AI",
+    "cta_story": "Read My Story",
+    "cta_work": "My Conservation Work",
     "cta_contact": "Let's Connect",
     "scroll": "Scroll",
     "natureLabel": "Ecology",
-    "techLabel": "Tech"
+    "techLabel": "Tech",
+    "trust": {
+      "years": "17+ Years Experience",
+      "leader": "Conservation Leader",
+      "iucn": "IUCN Partner",
+      "sites": "30+ Sites Deployed"
+    }
   },
   "about": {
     "eyebrow": "About Me",
@@ -30,8 +38,8 @@
     "stats": {
       "years": "17+",
       "yearsLabel": "Years in Conservation",
-      "hectares": "5,600+",
-      "hectaresLabel": "Hectares Protected",
+      "sites": "30+",
+      "sitesLabel": "Sites Deployed",
       "repos": "10+",
       "reposLabel": "Technical Projects",
       "press": "6",

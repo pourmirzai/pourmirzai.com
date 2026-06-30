@@ -133,20 +133,67 @@ function initHero() {
     return;
   }
   const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-  tl.from(".hero-side-nature", { opacity: 0, duration: 0.9 })
-    .from(".hero-side-tech", { opacity: 0, duration: 0.9 }, "<")
-    .from("[data-hero-anim]", { y: 24, opacity: 0, duration: 0.7, stagger: 0.12 }, "-=0.4")
-    .from(".hero-cta", { y: 16, opacity: 0, duration: 0.6, stagger: 0.1 }, "-=0.3");
+  tl.from(".hero-bg", { opacity: 0, duration: 1.0 })
+    .from("[data-hero-anim]", { y: 26, opacity: 0, duration: 0.7, stagger: 0.12 }, "-=0.5")
+    .from(".hero-cta", { y: 16, opacity: 0, duration: 0.6, stagger: 0.1 }, "-=0.35");
+}
+
+/* ============ SCROLL-SPY: active nav link ============ */
+function initScrollSpy() {
+  const links = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]")
+  );
+  if (!links.length) return;
+
+  const byHref = new Map<string, HTMLAnchorElement>();
+  const sections: HTMLElement[] = [];
+  links.forEach((a) => {
+    const id = a.getAttribute("href") || "";
+    const sec = id ? document.querySelector(id) : null;
+    if (sec) {
+      byHref.set(id, a);
+      sections.push(sec as HTMLElement);
+    }
+  });
+  if (!sections.length) return;
+
+  const setActive = (id: string | null) => {
+    links.forEach((a) => {
+      const match = a.getAttribute("href") === id;
+      a.classList.toggle("is-active", match);
+      if (match) a.setAttribute("aria-current", "true");
+      else a.removeAttribute("aria-current");
+    });
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    setActive("#about");
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      // pick the most-visible section
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      if (visible[0]) setActive("#" + (visible[0].target as HTMLElement).id);
+    },
+    { rootMargin: "-45% 0px -50% 0px", threshold: [0, 0.25, 0.5, 1] }
+  );
+  sections.forEach((s) => io.observe(s));
 }
 
 /* ============ TERMINAL TYPEWRITER ============ */
+// Alternates between the two worlds: conservation fieldwork <-> web development.
 const SNIPPETS = [
-  "const mission = 'protect large carnivores';",
-  "git commit -m 'restore 5600 hectares'",
-  "npm run build:sarvinwildlife",
   "camera_traps.deploy({ site: 'Touran' })",
-  "await habitat.map('Miandasht');",
-  "docker compose up conservation-api",
+  "git push origin main",
+  "track.cheetah({ id: 'AC-14', corridor: true })",
+  "npm run build:portfolio",
+  "restore.habitat('Miandasht', 5600)",
+  "docker compose up -d",
+  "survey.report({ species: 'leopard' })",
+  "npx tailwindcss init",
 ];
 
 function initTerminal() {
@@ -275,6 +322,7 @@ function boot() {
   safe("lenis", initLenis);
   safe("header", initHeader);
   safe("hero", initHero);
+  safe("scrollspy", initScrollSpy);
   safe("counters", initCounters);
   safe("terminal", initTerminal);
   safe("particles", initParticles);

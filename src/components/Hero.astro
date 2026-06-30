@@ -1,127 +1,163 @@
 ---
 import fa from "../i18n/fa.json";
-import EcoNetworkSVG from "./svg/EcoNetworkSVG.astro";
 import Icon from "./Icon.astro";
+import { topoPaths, waypoints, corridor } from "../data/topo";
+
+const trust = [
+  { key: "hero.trust.years", label: fa.hero.trust.years },
+  { key: "hero.trust.leader", label: fa.hero.trust.leader },
+  { key: "hero.trust.iucn", label: fa.hero.trust.iucn },
+  { key: "hero.trust.sites", label: fa.hero.trust.sites },
+];
 ---
 
 <section id="hero" class="relative min-h-screen overflow-hidden bg-bg">
-  <!-- ===== SPLIT BACKGROUNDS ===== -->
-  <div class="absolute inset-0 grid grid-cols-1 md:grid-cols-2">
-    <!-- NATURE SIDE -->
-    <div
-      class="hero-side-nature relative isolate overflow-hidden bg-gradient-to-br from-nature-deep via-nature-deep/80 to-bg"
-    >
-      <!-- texture / vignette -->
-      <div class="absolute inset-0 grain opacity-60"></div>
-      <div
-        class="absolute inset-0 bg-[radial-gradient(120%_80%_at_30%_30%,rgba(199,154,58,0.18),transparent_60%)]"
-      >
-      </div>
-      <!-- particle canvas -->
-      <canvas id="nature-particles" class="absolute inset-0 h-full w-full"></canvas>
+  <!-- ===== ATMOSPHERIC BACKGROUND (dual nature / tech) ===== -->
+  <div class="hero-bg absolute inset-0" aria-hidden="true">
+    <!-- nature half -->
+    <div class="absolute inset-y-0 start-0 w-full md:w-1/2 bg-gradient-to-br from-nature-deep via-nature-deep/70 to-transparent"></div>
+    <!-- tech half - full topographic map with species movement -->
+    <div class="absolute inset-y-0 end-0 hidden w-1/2 bg-gradient-to-bl from-tech-navy via-tech-navy/80 to-transparent md:block">
+      <!-- tech topographic background -->
+      <svg class="absolute inset-0 h-full w-full" viewBox="0 0 1600 800" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Topographic tech map with species movement corridor">
+        <defs>
+          <linearGradient id="techCorridorGrad" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0%" stop-color="#64ffda" stop-opacity="0.95" />
+            <stop offset="100%" stop-color="#c79a3a" stop-opacity="0.85" />
+          </linearGradient>
+          <filter id="techTopoBlur" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="6" />
+          </filter>
+        </defs>
 
-      <!-- eco × tech network -->
-      <div class="absolute inset-0 flex items-center justify-center p-6">
-        <EcoNetworkSVG class="eco-art w-[88%] max-w-xl drop-shadow-[0_20px_60px_rgba(0,0,0,0.6)]" />
-      </div>
+        <!-- full-coverage topographic contour lines (tech style) -->
+        <g stroke="#4a9da6" stroke-opacity="0.5" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          {topoPaths.map((d) => <path d={d} />)}
+        </g>
 
-      <!-- label -->
-      <span
-        class="hero-label absolute bottom-6 start-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-nature-gold-bright/90"
-      >
-        <Icon name="leaf" size={14} />
-        <span data-i18n="hero.natureLabel">{fa.hero.natureLabel}</span>
-      </span>
+        <!-- tech species-movement corridor -->
+        <g stroke="url(#techCorridorGrad)" stroke-width="4" stroke-opacity="0.9" stroke-linecap="round">
+          {corridor.map((l) => (
+            <line class="tech-link" x1={l[0]} y1={l[1]} x2={l[2]} y2={l[3]} />
+          ))}
+        </g>
+
+        <!-- movement waypoints (pulsing cyan nodes) -->
+        {waypoints.map((n) => (
+          <g>
+            <circle cx={n.cx} cy={n.cy} r={n.r + 6} fill="#64ffda" opacity="0.25" filter="url(#techTopoBlur)" />
+            <circle class="tech-node" cx={n.cx} cy={n.cy} r={n.r} fill="#64ffda" style={`animation-delay:${n.d}s`} />
+          </g>
+        ))}
+      </svg>
     </div>
 
-    <!-- TECH SIDE -->
+    <!-- gold radial glow (nature) -->
     <div
-      class="hero-side-tech relative isolate overflow-hidden bg-tech-navy"
+      class="absolute inset-0 bg-[radial-gradient(60%_60%_at_22%_35%,rgba(199,154,58,0.20),transparent_60%)]"
     >
-      <!-- grid pattern -->
-      <div
-        class="absolute inset-0 opacity-[0.18] [background-image:linear-gradient(to_right,rgba(100,255,218,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(100,255,218,0.12)_1px,transparent_1px)] [background-size:44px_44px]"
-      >
-      </div>
-      <div
-        class="absolute inset-0 bg-[radial-gradient(120%_80%_at_70%_30%,rgba(100,255,218,0.16),transparent_60%)]"
-      >
-      </div>
-
-      <!-- terminal -->
-      <div class="absolute inset-0 flex items-center justify-center p-6">
-        <div
-          class="terminal w-full max-w-md rounded-xl border border-white/10 bg-[#020c1b]/90 shadow-2xl backdrop-blur"
-        >
-          <div class="flex items-center gap-2 border-b border-white/5 px-4 py-2.5">
-            <span class="h-3 w-3 rounded-full bg-[#ff5f56]"></span>
-            <span class="h-3 w-3 rounded-full bg-[#ffbd2e]"></span>
-            <span class="h-3 w-3 rounded-full bg-[#27c93f]"></span>
-            <span class="ms-2 font-mono text-xs text-muted">morteza@pourmirzai: ~</span>
-          </div>
-          <div class="space-y-1.5 p-4 font-mono text-[13px] leading-relaxed">
-            <p class="text-tech-cyan/80">› const role = 'conservationist';</p>
-            <p class="text-nature-gold-bright/80">› const stack = ['php','ts','python'];</p>
-            <p class="flex items-center gap-1 text-text">
-              <span class="text-tech-cyan">$</span>
-              <span id="terminal-line" class="text-text/90"></span><span id="terminal-cursor" class="text-tech-cyan">▋</span>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- label -->
-      <span
-        class="hero-label absolute bottom-6 end-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-tech-cyan/90"
-      >
-        <Icon name="terminal" size={14} />
-        <span data-i18n="hero.techLabel">{fa.hero.techLabel}</span>
-      </span>
     </div>
+    <!-- cyan radial glow (tech) -->
+    <div
+      class="absolute inset-0 bg-[radial-gradient(55%_55%_at_82%_55%,rgba(100,255,218,0.14),transparent_60%)]"
+    >
+    </div>
+
+    <!-- particle canvas (gold dust) -->
+    <canvas id="nature-particles" class="absolute inset-0 h-full w-full"></canvas>
+
+    <!-- grain / texture -->
+    <div class="absolute inset-0 grain opacity-50"></div>
   </div>
 
-  <!-- center seam line -->
-  <div
-    class="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-tech-cyan/40 to-transparent md:block"
-  >
-  </div>
-
-  <!-- ===== CENTER CONTENT OVERLAY ===== -->
+  <!-- ===== FOREGROUND CONTENT ===== -->
   <div class="relative z-10 flex min-h-screen items-center">
-    <div class="container-px w-full py-28">
-      <div class="mx-auto max-w-2xl text-center">
-        <p data-hero-anim class="eyebrow justify-center">
-          <span class="h-px w-6 bg-tech-cyan/60"></span>
-          <span data-i18n="hero.roleNature">{fa.hero.roleNature}</span>
-          <span class="text-muted">×</span>
-          <span data-i18n="hero.roleTech">{fa.hero.roleTech}</span>
-          <span class="h-px w-6 bg-tech-cyan/60"></span>
-        </p>
+    <div class="container-px w-full py-28 md:py-32">
+      <div class="mx-auto grid max-w-6xl items-stretch gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+        <!-- TEXT COLUMN -->
+        <div class="self-center text-center lg:text-start">
+          <!-- Name -->
+          <h1
+            data-hero-anim
+            data-i18n="hero.name"
+            class="heading-xl text-[clamp(2.75rem,7vw,4.75rem)]"
+          >
+            {fa.hero.name}
+          </h1>
 
-        <h1
-          data-hero-anim
-          data-i18n="hero.name"
-          class="heading-xl mt-4 text-[clamp(2.5rem,8vw,5rem)]"
-        >
-          {fa.hero.name}
-        </h1>
+          <!-- Dual role line -->
+          <p data-hero-anim class="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 font-mono text-sm uppercase tracking-[0.18em] sm:text-base lg:justify-start">
+            <span class="text-gradient-gold font-semibold" data-i18n="hero.roleNature">{fa.hero.roleNature}</span>
+            <span class="text-muted/70">&amp;</span>
+            <span class="text-gradient-cyan font-semibold" data-i18n="hero.roleTech">{fa.hero.roleTech}</span>
+          </p>
 
-        <p
-          data-hero-anim
-          data-i18n="hero.tagline"
-          class="mx-auto mt-5 max-w-xl text-lg text-text/90 sm:text-xl"
-        >
-          {fa.hero.tagline}
-        </p>
+          <!-- Intro (primary) -->
+          <p
+            data-hero-anim
+            data-i18n="hero.intro"
+            class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-text/90 sm:text-xl lg:mx-0"
+          >
+            {fa.hero.intro}
+          </p>
 
-        <div data-hero-anim class="mt-9 flex flex-wrap items-center justify-center gap-4">
-          <a href="#worlds" class="hero-cta btn btn-primary">
-            <span data-i18n="hero.cta_work">{fa.hero.cta_work}</span>
-            <Icon name="arrowDown" size={16} />
-          </a>
-          <a href="#contact" class="hero-cta btn btn-outline">
-            <span data-i18n="hero.cta_contact">{fa.hero.cta_contact}</span>
-          </a>
+          <!-- Poetic tagline (secondary / supporting) -->
+          <p
+            data-hero-anim
+            data-i18n="hero.tagline"
+            class="mx-auto mt-4 text-sm italic text-muted lg:mx-0"
+          >
+            {fa.hero.tagline}
+          </p>
+
+          <!-- CTAs -->
+          <div data-hero-anim class="mt-9 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+            <a href="#about" class="hero-cta btn btn-gold">
+              <span data-i18n="hero.cta_story">{fa.hero.cta_story}</span>
+              <Icon name="arrowDown" size={16} />
+            </a>
+            <a href="#worlds" class="hero-cta btn btn-outline">
+              <span data-i18n="hero.cta_work">{fa.hero.cta_work}</span>
+            </a>
+          </div>
+
+          <!-- Trust row -->
+          <ul data-hero-anim class="hero-trust mt-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-xs text-muted lg:justify-start">
+            {
+              trust.map((t, i) => (
+                <li class="flex items-center gap-4">
+                  {i > 0 && <span class="hidden h-3 w-px bg-white/15 sm:inline-block" aria-hidden="true" />}
+                  <span data-i18n={t.key}>{t.label}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <!-- HABITAT COLUMN: centered terminal only -->
+        <div data-hero-anim class="relative mx-auto w-full max-w-md lg:mx-0 lg:max-w-none lg:min-h-[560px]">
+          <!-- centered terminal — the only box (always LTR), translucent glass -->
+          <div class="relative flex h-full min-h-[480px] items-center justify-center p-6 lg:min-h-[560px]">
+            <div
+              dir="ltr"
+              class="terminal w-full max-w-sm rounded-xl border border-white/15 bg-[#020c1b]/45 text-left shadow-2xl shadow-black/40 backdrop-blur-md"
+            >
+              <div class="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
+                <span class="h-3 w-3 rounded-full bg-[#ff5f56]"></span>
+                <span class="h-3 w-3 rounded-full bg-[#ffbd2e]"></span>
+                <span class="h-3 w-3 rounded-full bg-[#27c93f]"></span>
+                <span class="ms-2 font-mono text-xs text-muted">morteza@pourmirzai: ~</span>
+              </div>
+              <div class="space-y-1.5 p-4 font-mono text-[13px] leading-relaxed">
+                <p class="text-nature-gold-bright/90">› const world = 'conservation';</p>
+                <p class="text-tech-cyan/90">› const role = 'web developer';</p>
+                <p class="flex items-center gap-1 text-text">
+                  <span class="text-tech-cyan">$</span>
+                  <span id="terminal-line" class="text-text/90"></span><span id="terminal-cursor" class="text-tech-cyan">▋</span>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

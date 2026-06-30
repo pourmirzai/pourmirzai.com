@@ -1,0 +1,48 @@
+---
+import { topoPaths, waypoints, corridor } from "../../data/topo";
+
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 1600 800"
+  preserveAspectRatio="xMidYMid slice"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Topographic habitat map with a species-movement corridor"
+>
+  <defs>
+    <linearGradient id="corridorGrad" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c79a3a" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#64ffda" stop-opacity="0.85" />
+    </linearGradient>
+    <filter id="topoBlur" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6" />
+    </filter>
+  </defs>
+
+  <!-- full-coverage topographic contour lines -->
+  <g stroke="#8a9a7a" stroke-opacity="0.5" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    {topoPaths.map((d) => <path d={d} />)}
+  </g>
+
+  <!-- species-movement corridor -->
+  <g stroke="url(#corridorGrad)" stroke-width="4" stroke-opacity="0.9" stroke-linecap="round">
+    {corridor.map((l) => (
+      <line class="eco-link" x1={l[0]} y1={l[1]} x2={l[2]} y2={l[3]} />
+    ))}
+  </g>
+
+  <!-- movement waypoints (pulsing gold nodes) -->
+  {waypoints.map((n) => (
+    <g>
+      <circle cx={n.cx} cy={n.cy} r={n.r + 6} fill="#c79a3a" opacity="0.25" filter="url(#topoBlur)" />
+      <circle class="eco-node" cx={n.cx} cy={n.cy} r={n.r} fill="#c79a3a" style={`animation-delay:${n.d}s`} />
+    </g>
+  ))}
+</svg>
