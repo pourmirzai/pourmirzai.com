@@ -1,14 +1,13 @@
-# Morteza Pourmirzai — Personal Website
+# Morteza Pourmirzai â€” Personal Website
 
-> **Where Nature Meets Code** — the personal site of Morteza Pourmirzai, wildlife
+> **Where Nature Meets Code** â€” the personal site of Morteza Pourmirzai, wildlife
 > conservationist (Asiatic cheetah) and web developer.
 
 A single-page, bilingual (FA/EN), fully animated personal website built with
 **Astro 7 + Tailwind CSS v4 + GSAP + Lenis**. Dark theme, split-screen hero
-(nature × tech), RTL-aware, deployable as a static site to Cloudflare Pages /
-Vercel.
+(nature Ã— tech), RTL-aware, served as a static build via Docker + nginx.
 
-> Requires **Node ≥ 22.12.0**. The project uses npm 11's `allowScripts`
+> Requires **Node â‰¥ 22.12.0**. The project uses npm 11's `allowScripts`
 > (declared in `package.json`) so `esbuild`/`sharp` install scripts can run.
 
 ---
@@ -17,13 +16,13 @@ Vercel.
 
 | Layer       | Choice                                  |
 | ----------- | --------------------------------------- |
-| Framework   | Astro 7 (static output)                    |
-| Styling     | Tailwind CSS v4 (`@tailwindcss/vite`)      |
+| Framework   | Astro 7 (static output)                 |
+| Styling     | Tailwind CSS v4 (`@tailwindcss/vite`)   |
 | Animation   | GSAP, Lenis smooth scroll, IntersectionObserver reveals |
 | i18n        | Custom, **no reload** toggle (FA/EN)    |
-| Fonts       | Vazirmatn, Inter, JetBrains Mono (self-hosted via `@fontsource`) |
+| Fonts       | Vazirmatn, Inter, Noto Sans Arabic (self-hosted via `@fontsource`) |
 | Icons       | Inline SVG (no icon-lib dependency)     |
-| Contact     | Formspree-ready (no backend)            |
+| Contact     | Spam-safe masked email (no backend)     |
 
 ## Getting Started
 
@@ -42,21 +41,22 @@ npm run dev      # http://localhost:4321
 
 ## Project Structure
 
-```
+```text
 public/              favicon.svg, og.svg, robots.txt
 src/
-├── components/
-│   ├── Hero.astro  About.astro  TwoWorlds.astro
-│   ├── Press.astro  Contact.astro
-│   ├── Icon.astro            # inline SVG icon set
-│   └── svg/                  # EcoNetworkSVG, IranMapSVG, FootprintSVG
-├── i18n/ fa.json en.json      # all bilingual content
-├── layouts/ Layout.astro      # head, header, footer, scripts
-├── pages/ index.astro         # assembles all sections
-├── scripts/
-│   ├── i18n.ts                # language toggle + list re-render
-│   └── main.ts                # Lenis, GSAP reveals, terminal, particles, counters
-└── styles/ global.css         # theme tokens, components, RTL, reduced-motion
+â”œâ”€â”€ components/
+â”‚   â”œâ”€â”€ Hero.astro  About.astro  TwoWorlds.astro
+â”‚   â”œâ”€â”€ Press.astro  Contact.astro
+â”‚   â”œâ”€â”€ Icon.astro            # inline SVG icon set
+â”‚   â””â”€â”€ svg/                  # EcoNetworkSVG, IranMapSVG, HabitatTopoSVG, FootprintSVG
+â”œâ”€â”€ data/ topo.ts             # topographic contour + corridor path data
+â”œâ”€â”€ i18n/ fa.json en.json     # all bilingual content
+â”œâ”€â”€ layouts/ Layout.astro     # head, header, footer, scripts
+â”œâ”€â”€ pages/ index.astro        # assembles all sections
+â”œâ”€â”€ scripts/
+â”‚   â”œâ”€â”€ i18n.ts               # language toggle + list re-render
+â”‚   â””â”€â”€ main.ts               # Lenis, GSAP reveals, terminal, particles, counters
+â””â”€â”€ styles/ global.css        # theme tokens, components, RTL, reduced-motion
 ```
 
 ## i18n (Bilingual, no reload)
@@ -70,19 +70,19 @@ src/
 
 ## Content
 
-All copy lives in `src/i18n/fa.json` and `src/i18n/en.json` — edit those files to
+All copy lives in `src/i18n/fa.json` and `src/i18n/en.json` â€” edit those files to
 update any text, links, projects, stats or timeline entries.
 
 ## Customisation Cheatsheet
 
-| Want to change…            | Edit                                  |
+| Want to changeâ€¦            | Edit                                  |
 | -------------------------- | ------------------------------------- |
 | Colors / fonts / tokens    | `src/styles/global.css` (`@theme`)    |
 | Any text                   | `src/i18n/{fa,en}.json`               |
 | Section order / page       | `src/pages/index.astro`               |
 | Animations                 | `src/scripts/main.ts`                 |
 | Social links               | `src/layouts/Layout.astro`, `Contact.astro` |
-| Contact form endpoint      | `Contact.astro` → `action="https://formspree.io/f/..."` |
+| Contact email (masked)     | `src/components/Contact.astro`        |
 
 ## Contact
 
@@ -99,13 +99,20 @@ click/focus. Edit it in `src/components/Contact.astro`.
 
 ## Deploy
 
-Static output in `dist/`. On **Cloudflare Pages** set:
+The project ships with a multi-stage **Dockerfile** and **docker-compose.yml**
+that build the static site and serve it with **nginx**.
 
-- Build command: `npm run build`
-- Output directory: `dist`
+```bash
+docker compose up --build      # builds dist/ then serves on port 80
+```
 
-(Works the same on Vercel / Netlify.)
+- Build stage (`node:22-alpine`): `npm ci` + `npm run build` â†’ `dist/`
+- Runtime stage (`nginx:1.27-alpine`): serves `dist/` on `:80` via `nginx.conf`
+  (gzip, long-cache hashed assets, SPA fallback).
+
+For static hosts (Cloudflare Pages / Vercel / Netlify): build command
+`npm run build`, output directory `dist`.
 
 ---
 
-© Morteza Pourmirzai. Built with Astro, GSAP and love for the cheetah.
+Â© Morteza Pourmirzai. Built with Astro, GSAP and love for the cheetah.

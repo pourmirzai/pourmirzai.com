@@ -16,18 +16,22 @@ pnpm-debug.log*
 
 # environment variables
 .env
-.env.production
-.env.local
+.env.*
+!.env.example
 
-# macOS
+# OS
 .DS_Store
+Thumbs.db
 
 # editor
 .vscode/*
 !.vscode/extensions.json
 .idea/
 
-# cloudflare
-.wrangler/
+# AI editor configs
+.kilo/
+
+# internal docs (not for public repo)
 docs/memory.md
+docs/CHANGELOG.md
 pourmirzai-website-blueprint.md
