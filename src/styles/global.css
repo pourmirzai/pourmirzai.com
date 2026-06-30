@@ -357,3 +357,154 @@ html.reveal-safe [data-reveal] {
   opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+
+/* ============================================================
+   HERO FUSION ANIMATIONS
+   ============================================================ */
+
+/* Wave animations */
+@keyframes waveMorph {
+  0%, 100% {
+    d: path("M0,540 Q320,400 640,540 T1280,540 T1920,540 L1920,1080 L0,1080 Z");
+  }
+  25% {
+    d: path("M0,520 Q320,380 640,520 T1280,520 T1920,520 L1920,1080 L0,1080 Z");
+  }
+  50% {
+    d: path("M0,560 Q320,420 640,560 T1280,560 T1920,560 L1920,1080 L0,1080 Z");
+  }
+  75% {
+    d: path("M0,500 Q320,360 640,500 T1280,500 T1920,500 L1920,1080 L0,1080 Z");
+  }
+}
+
+.wave {
+  transform-origin: center bottom;
+  animation: waveMorph 12s ease-in-out infinite;
+}
+
+.wave-1 { animation-delay: 0s; }
+.wave-2 { animation-delay: -4s; }
+.wave-3 { animation-delay: -8s; }
+
+/* Topographic lines fade in */
+@keyframes topoFadeIn {
+  from {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 0.4;
+  }
+}
+
+.topo-line {
+  stroke-dasharray: 1000;
+  animation: topoFadeIn 2s ease-out forwards;
+  animation-delay: calc(var(--delay, 0) * 1s);
+}
+
+/* Corridor line animation */
+@keyframes corridorPulse {
+  0%, 100% {
+    stroke-dashoffset: 0;
+    stroke-opacity: 0.7;
+  }
+  50% {
+    stroke-dashoffset: -12;
+    stroke-opacity: 1;
+  }
+}
+
+.corridor-line {
+  animation: corridorPulse 4s ease-in-out infinite;
+}
+
+/* Floating nodes */
+@keyframes nodeFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(4px, -6px) scale(1.05);
+  }
+  66% {
+    transform: translate(-4px, 4px) scale(0.98);
+  }
+}
+
+@keyframes nodeGlow {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.floating-node {
+  animation: nodeFloat 6s ease-in-out infinite, nodeGlow 3s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.floating-node.tech {
+  animation-duration: 5s, 2.5s;
+}
+
+.floating-node.nature {
+  animation-duration: 7s, 3.5s;
+}
+
+/* Fusion cards */
+@keyframes cardFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.fusion-card {
+  transition: box-shadow 0.3s ease, z-index 0s 0.15s;
+  position: relative;
+  z-index: 1;
+  will-change: transform, box-shadow;
+}
+
+.fusion-card:hover {
+  z-index: 100;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7);
+}
+
+.nature-card {
+  animation: cardFloat 7s ease-in-out infinite;
+  z-index: 2;
+}
+
+.terminal-card {
+  animation: cardFloat 8s ease-in-out infinite reverse;
+  z-index: 3;
+}
+
+/* Hero CTAs */
+.hero-cta {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.hero-cta:hover::before {
+  transform: translateX(100%);
+}

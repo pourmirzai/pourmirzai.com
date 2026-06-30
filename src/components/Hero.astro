@@ -2,145 +2,106 @@
 import fa from "../i18n/fa.json";
 import Icon from "./Icon.astro";
 import { topoPaths, waypoints, corridor } from "../data/topo";
-
-const trust = [
-  { key: "hero.trust.years", label: fa.hero.trust.years },
-  { key: "hero.trust.leader", label: fa.hero.trust.leader },
-  { key: "hero.trust.iucn", label: fa.hero.trust.iucn },
-  { key: "hero.trust.sites", label: fa.hero.trust.sites },
-];
 ---
 
 <section id="hero" class="relative min-h-screen overflow-hidden bg-bg">
-  <!-- ===== ATMOSPHERIC BACKGROUND (dual nature / tech) ===== -->
+  <!-- ===== ATMOSPHERIC BACKGROUND (organic fusion) ===== -->
   <div class="hero-bg absolute inset-0" aria-hidden="true">
-    <!-- nature half -->
-    <div class="absolute inset-y-0 start-0 w-full md:w-1/2 bg-gradient-to-br from-nature-deep via-nature-deep/70 to-transparent"></div>
-    <!-- tech half - full topographic map with species movement -->
-    <div class="absolute inset-y-0 end-0 hidden w-1/2 bg-gradient-to-bl from-tech-navy via-tech-navy/80 to-transparent md:block">
-      <!-- tech topographic background -->
-      <svg class="absolute inset-0 h-full w-full" viewBox="0 0 1600 800" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Topographic tech map with species movement corridor">
-        <defs>
-          <linearGradient id="techCorridorGrad" x1="0" y1="1" x2="1" y2="0">
-            <stop offset="0%" stop-color="#64ffda" stop-opacity="0.95" />
-            <stop offset="100%" stop-color="#c79a3a" stop-opacity="0.85" />
-          </linearGradient>
-          <filter id="techTopoBlur" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur stdDeviation="6" />
-          </filter>
-        </defs>
+    <!-- Base layers - INCREASED OPACITY for better contrast -->
+    <div class="absolute inset-0 bg-gradient-to-br from-tech-navy/60 via-bg to-nature-deep/50"></div>
 
-        <!-- full-coverage topographic contour lines (tech style) -->
-        <g stroke="#4a9da6" stroke-opacity="0.5" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          {topoPaths.map((d) => <path d={d} />)}
-        </g>
+    <!-- Morphing organic boundary wave -->
+    <svg class="absolute inset-0 h-full w-full" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#c79a3a" stop-opacity="0.25" />
+          <stop offset="50%" stop-color="#64ffda" stop-opacity="0.20" />
+          <stop offset="100%" stop-color="#2d5016" stop-opacity="0.30" />
+        </linearGradient>
+        <filter id="waveGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="20" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      </defs>
 
-        <!-- tech species-movement corridor -->
-        <g stroke="url(#techCorridorGrad)" stroke-width="4" stroke-opacity="0.9" stroke-linecap="round">
-          {corridor.map((l) => (
-            <line class="tech-link" x1={l[0]} y1={l[1]} x2={l[2]} y2={l[3]} />
-          ))}
-        </g>
+      <!-- Organic wave paths - morphing boundary between worlds -->
+      <g class="wave-container" filter="url(#waveGlow)">
+        <path class="wave wave-1" d="M0,540 Q320,400 640,540 T1280,540 T1920,540 L1920,1080 L0,1080 Z" fill="url(#waveGradient)" opacity="0.5" />
+        <path class="wave wave-2" d="M0,580 Q320,440 640,580 T1280,580 T1920,580 L1920,1080 L0,1080 Z" fill="url(#waveGradient)" opacity="0.4" />
+        <path class="wave wave-3" d="M0,620 Q320,480 640,620 T1280,620 T1920,620 L1920,1080 L0,1080 Z" fill="url(#waveGradient)" opacity="0.3" />
+      </g>
 
-        <!-- movement waypoints (pulsing cyan nodes) -->
-        {waypoints.map((n) => (
-          <g>
-            <circle cx={n.cx} cy={n.cy} r={n.r + 6} fill="#64ffda" opacity="0.25" filter="url(#techTopoBlur)" />
-            <circle class="tech-node" cx={n.cx} cy={n.cy} r={n.r} fill="#64ffda" style={`animation-delay:${n.d}s`} />
-          </g>
+      <!-- Topographic tech layer (right side) -->
+      <g class="topo-layer" stroke="#4a9da6" stroke-opacity="0.4" stroke-width="2.5" fill="none" stroke-linecap="round">
+        {topoPaths.slice(0, 15).map((d) => <path class="topo-line" d={d} />)}
+      </g>
+
+      <!-- Connection corridor - animated path between worlds -->
+      <g class="corridor-layer">
+        {corridor.map((l, i) => (
+          <line
+            class="corridor-line"
+            x1={l[0]} y1={l[1]} x2={l[2]} y2={l[3]}
+            stroke="url(#techCorridorGrad)"
+            stroke-width="2.5"
+            stroke-opacity="0.7"
+            stroke-dasharray="4 8"
+            style={`animation-delay: ${i * 0.15}s`}
+          />
         ))}
-      </svg>
-    </div>
+      </g>
 
-    <!-- gold radial glow (nature) -->
-    <div
-      class="absolute inset-0 bg-[radial-gradient(60%_60%_at_22%_35%,rgba(199,154,58,0.20),transparent_60%)]"
-    >
-    </div>
-    <!-- cyan radial glow (tech) -->
-    <div
-      class="absolute inset-0 bg-[radial-gradient(55%_55%_at_82%_55%,rgba(100,255,218,0.14),transparent_60%)]"
-    >
-    </div>
+      <!-- Floating nodes -->
+      {waypoints.map((n) => (
+        <g class={`floating-node node-${n.cx > 800 ? 'tech' : 'nature'}`} style={`--delay: ${n.d}s`}>
+          <circle cx={n.cx} cy={n.cy} r={n.r + 8} fill={n.cx > 800 ? '#64ffda' : '#c79a3a'} opacity="0.20" />
+          <circle cx={n.cx} cy={n.cy} r={n.r + 4} fill={n.cx > 800 ? '#64ffda' : '#c79a3a'} opacity="0.35" />
+          <circle cx={n.cx} cy={n.cy} r={n.r} fill={n.cx > 800 ? '#64ffda' : '#c79a3a'} opacity="1" />
+        </g>
+      ))}
+    </svg>
 
-    <!-- particle canvas (gold dust) -->
-    <canvas id="nature-particles" class="absolute inset-0 h-full w-full"></canvas>
+    <!-- Radial glows - INCREASED for better contrast -->
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_20%_40%,rgba(199,154,58,0.25),transparent_55%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_85%_45%,rgba(100,255,218,0.20),transparent_55%)]"></div>
 
-    <!-- grain / texture -->
-    <div class="absolute inset-0 grain opacity-50"></div>
+    <!-- Particle canvas -->
+    <canvas id="fusion-particles" class="absolute inset-0 h-full w-full"></canvas>
+
+    <!-- Grain overlay -->
+    <div class="absolute inset-0 grain opacity-40"></div>
   </div>
 
   <!-- ===== FOREGROUND CONTENT ===== -->
   <div class="relative z-10 flex min-h-screen items-center">
-    <div class="container-px w-full py-28 md:py-32">
-      <div class="mx-auto grid max-w-6xl items-stretch gap-12 lg:grid-cols-[1.15fr_0.85fr]">
-        <!-- TEXT COLUMN -->
-        <div class="self-center text-center lg:text-start">
-          <!-- Name -->
-          <h1
-            data-hero-anim
-            data-i18n="hero.name"
-            class="heading-xl text-[clamp(2.75rem,7vw,4.75rem)]"
-          >
-            {fa.hero.name}
-          </h1>
-
-          <!-- Dual role line -->
-          <p data-hero-anim class="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 font-mono text-sm uppercase tracking-[0.18em] sm:text-base lg:justify-start">
-            <span class="text-gradient-gold font-semibold" data-i18n="hero.roleNature">{fa.hero.roleNature}</span>
-            <span class="text-muted/70">&amp;</span>
-            <span class="text-gradient-cyan font-semibold" data-i18n="hero.roleTech">{fa.hero.roleTech}</span>
-          </p>
-
-          <!-- Intro (primary) -->
-          <p
-            data-hero-anim
-            data-i18n="hero.intro"
-            class="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-text/90 sm:text-xl lg:mx-0"
-          >
-            {fa.hero.intro}
-          </p>
-
-          <!-- Poetic tagline (secondary / supporting) -->
-          <p
-            data-hero-anim
-            data-i18n="hero.tagline"
-            class="mx-auto mt-4 text-sm italic text-muted lg:mx-0"
-          >
-            {fa.hero.tagline}
-          </p>
-
-          <!-- CTAs -->
-          <div data-hero-anim class="mt-9 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
-            <a href="#about" class="hero-cta btn btn-gold">
-              <span data-i18n="hero.cta_story">{fa.hero.cta_story}</span>
-              <Icon name="arrowDown" size={16} />
-            </a>
-            <a href="#worlds" class="hero-cta btn btn-outline">
-              <span data-i18n="hero.cta_work">{fa.hero.cta_work}</span>
-            </a>
+    <div class="container-px w-full py-20 md:py-28">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1fr_1fr]">
+        <!-- VISUAL COLUMN (left) - Floating interactive cards -->
+        <div data-hero-anim class="relative order-2 lg:order-1 h-[400px] lg:h-[500px]">
+          <!-- Nature card -->
+          <div class="fusion-card nature-card absolute top-[5%] left-[5%] w-[60%] max-w-[280px] rounded-2xl border border-nature-gold/40 bg-nature-deep/40 backdrop-blur-sm shadow-xl overflow-hidden">
+            <div class="mb-0 flex items-center gap-2 px-4 pt-4 pb-2">
+              <div class="h-2 w-2 rounded-full bg-nature-gold-bright animate-pulse"></div>
+              <span class="font-mono text-xs text-nature-gold-bright">NATURE</span>
+            </div>
+            <div class="aspect-[4/3] overflow-hidden">
+              <img
+                src="/images/cheetah-nature.webp"
+                alt="Iranian Cheetah Conservation"
+                class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </div>
+            <div class="p-4">
+              <h3 class="text-sm font-bold text-nature-gold-bright" data-i18n="hero.natureCardTitle">{fa.hero.natureCardTitle}</h3>
+              <p class="mt-2 text-xs text-muted/80 leading-relaxed" data-i18n="hero.natureCardDesc">{fa.hero.natureCardDesc}</p>
+            </div>
           </div>
 
-          <!-- Trust row -->
-          <ul data-hero-anim class="hero-trust mt-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-xs text-muted lg:justify-start">
-            {
-              trust.map((t, i) => (
-                <li class="flex items-center gap-4">
-                  {i > 0 && <span class="hidden h-3 w-px bg-white/15 sm:inline-block" aria-hidden="true" />}
-                  <span data-i18n={t.key}>{t.label}</span>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <!-- HABITAT COLUMN: centered terminal only -->
-        <div data-hero-anim class="relative mx-auto w-full max-w-md lg:mx-0 lg:max-w-none lg:min-h-[560px]">
-          <!-- centered terminal — the only box (always LTR), translucent glass -->
-          <div class="relative flex h-full min-h-[480px] items-center justify-center p-6 lg:min-h-[560px]">
+          <!-- Terminal (overlapping nature card) -->
+          <div class="fusion-card terminal-card absolute bottom-[12%] right-[8%] w-[75%] max-w-[320px]">
             <div
               dir="ltr"
-              class="terminal w-full max-w-sm rounded-xl border border-white/15 bg-[#020c1b]/45 text-left shadow-2xl shadow-black/40 backdrop-blur-md"
+              class="rounded-xl border border-white/15 bg-[#020c1b]/70 text-left shadow-2xl shadow-black/40 backdrop-blur-md"
             >
               <div class="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
                 <span class="h-3 w-3 rounded-full bg-[#ff5f56]"></span>
@@ -159,19 +120,72 @@ const trust = [
             </div>
           </div>
         </div>
+
+        <!-- TEXT COLUMN (right) -->
+        <div data-hero-anim class="order-1 lg:order-2 text-center lg:text-start">
+          <!-- Eyebrow -->
+          <div class="mb-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-tech-cyan/90">
+            <span class="h-px w-6 bg-tech-cyan/50"></span>
+            <span>{fa.hero.roleNature} × {fa.hero.roleTech}</span>
+            <span class="h-px w-6 bg-tech-cyan/50"></span>
+          </div>
+
+          <!-- Name - large, gradient -->
+          <h1
+            data-i18n="hero.name"
+            class="heading-xl text-[clamp(2.5rem,6vw,4.5rem)] font-bold tracking-tight"
+          >
+            <span class="bg-gradient-to-r from-text via-text to-text/90 bg-clip-text text-transparent">
+              {fa.hero.name}
+            </span>
+          </h1>
+
+          <!-- Dual role badges -->
+          <div class="mt-5 flex flex-wrap items-center justify-center gap-3 lg:justify-start font-bold">
+            <span class="inline-flex items-center gap-2 rounded-full border border-nature-gold/50 bg-nature-gold/20 px-4 py-2">
+              <span class="h-1.5 w-1.5 rounded-full bg-nature-gold-bright"></span>
+              <span class="text-sm text-nature-gold-bright" data-i18n="hero.roleNature">{fa.hero.roleNature}</span>
+            </span>
+            <span class="text-muted/50 text-lg">×</span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-tech-cyan/50 bg-tech-cyan/20 px-4 py-2">
+              <span class="h-1.5 w-1.5 rounded-full bg-tech-cyan"></span>
+              <span class="text-sm text-tech-cyan" data-i18n="hero.roleTech">{fa.hero.roleTech}</span>
+            </span>
+          </div>
+
+          <!-- Brief intro -->
+          <p
+            data-i18n="hero.intro"
+            class="mt-6 max-w-lg text-base leading-relaxed text-text/85 sm:text-lg lg:mx-0"
+          >
+            {fa.hero.intro}
+          </p>
+
+          <!-- CTAs -->
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+            <a href="#about" class="hero-cta btn btn-gold group">
+              <span data-i18n="hero.cta_story">{fa.hero.cta_story}</span>
+              <Icon name="arrowDown" size={14} class="transition-transform group-hover:translate-y-0.5" />
+            </a>
+            <a href="#worlds" class="hero-cta btn btn-outline">
+              <span data-i18n="hero.cta_work">{fa.hero.cta_work}</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- scroll hint -->
+  <!-- Scroll hint -->
   <a
     href="#about"
-    class="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-1 text-muted transition-colors hover:text-tech-cyan md:flex"
+    class="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-muted/60 transition-colors hover:text-tech-cyan md:flex"
     aria-label="Scroll to about"
   >
-    <span class="font-mono text-[10px] uppercase tracking-[0.3em]" data-i18n="hero.scroll">{fa.hero.scroll}</span>
-    <span class="flex h-9 w-5 items-start justify-center rounded-full border border-muted/40 p-1">
-      <span class="h-1.5 w-1 animate-bounce rounded-full bg-tech-cyan"></span>
-    </span>
+    <span class="font-mono text-[9px] uppercase tracking-[0.3em]" data-i18n="hero.scroll">{fa.hero.scroll}</span>
+    <div class="relative h-10 w-6">
+      <span class="absolute left-1/2 top-2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-tech-cyan/80 animate-bounce"></span>
+      <span class="absolute inset-0 rounded-full border border-muted/30"></span>
+    </div>
   </a>
 </section>

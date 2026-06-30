@@ -135,7 +135,24 @@ function initHero() {
   const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
   tl.from(".hero-bg", { opacity: 0, duration: 1.0 })
     .from("[data-hero-anim]", { y: 26, opacity: 0, duration: 0.7, stagger: 0.12 }, "-=0.5")
-    .from(".hero-cta", { y: 16, opacity: 0, duration: 0.6, stagger: 0.1 }, "-=0.35");
+    .from(".hero-cta", { y: 16, opacity: 0, duration: 0.6, stagger: 0.1 }, "-=0.35")
+    .from(".fusion-card", {
+      scale: 0.9,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.15,
+      ease: "back.out(1.2)"
+    }, "-=0.4");
+
+  // Continuous wave animation using GSAP
+  gsap.to(".wave", {
+    y: "-=20",
+    duration: 4,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+    stagger: 1.5
+  });
 }
 
 /* ============ SCROLL-SPY: active nav link ============ */
@@ -230,9 +247,76 @@ function initTerminal() {
   setTimeout(tick, 700);
 }
 
-/* ============ NATURE PARTICLES (canvas dust) ============ */
+/* ============ FLOATING CARDS INTERACTION ============ */
+function initFloatingCards() {
+  const cards = document.querySelectorAll<HTMLElement>(".fusion-card");
+  if (prefersReduced || !cards.length) return;
+
+  cards.forEach((card) => {
+    let isHovered = false;
+    let rafId = 0;
+
+    const updateTilt = (e: MouseEvent) => {
+      if (!isHovered) return;
+
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // Calculate rotation (inverted for natural feel)
+      const rotateX = ((y - centerY) / centerY) * -8; // Max 8deg
+      const rotateY = ((x - centerX) / centerX) * 8;  // Max 8deg
+
+      // Apply with GSAP for smoothness
+      gsap.to(card, {
+        x: 0,
+        y: -8,
+        rotationX: rotateX,
+        rotationY: rotateY,
+        duration: 0.2,
+        ease: "power2.out",
+        overwrite: true
+      });
+    };
+
+    card.addEventListener("mouseenter", (e) => {
+      isHovered = true;
+      // Pause float animation
+      gsap.set(card, { animationPlayState: "paused" });
+      // Initial tilt
+      updateTilt(e);
+    });
+
+    card.addEventListener("mousemove", (e) => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => updateTilt(e));
+    });
+
+    card.addEventListener("mouseleave", () => {
+      isHovered = false;
+      if (rafId) cancelAnimationFrame(rafId);
+
+      // Smooth return to floating state
+      gsap.to(card, {
+        x: 0,
+        y: 0,
+        rotationX: 0,
+        rotationY: 0,
+        duration: 0.4,
+        ease: "power2.out",
+        onComplete: () => {
+          gsap.set(card, { animationPlayState: "running" });
+        }
+      });
+    });
+  });
+}
+
+/* ============ FUSION PARTICLES (dual nature + tech) ============ */
 function initParticles() {
-  const canvas = document.getElementById("nature-particles") as HTMLCanvasElement | null;
+  const canvas = document.getElementById("fusion-particles") as HTMLCanvasElement | null;
   if (!canvas || prefersReduced) return;
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
@@ -240,8 +324,19 @@ function initParticles() {
   let w = 0;
   let h = 0;
   let raf = 0;
-  type P = { x: number; y: number; r: number; vx: number; vy: number; a: number };
+  type P = {
+    x: number;
+    y: number;
+    r: number;
+    vx: number;
+    vy: number;
+    a: number;
+    type: "nature" | "tech";
+    hue: number;
+  };
   let particles: P[] = [];
+  let mouseX = 0;
+  let mouseY = 0;
 
   const resize = () => {
     w = parent.clientWidth;
@@ -252,41 +347,81 @@ function initParticles() {
     canvas.style.width = w + "px";
     canvas.style.height = h + "px";
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const count = Math.min(60, Math.floor((w * h) / 16000));
+    const count = Math.min(80, Math.floor((w * h) / 12000));
     particles = Array.from({ length: count }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
-      r: Math.random() * 1.6 + 0.4,
-      vx: (Math.random() - 0.5) * 0.22,
-      vy: -(Math.random() * 0.35 + 0.08),
-      a: Math.random() * 0.45 + 0.1,
+      r: Math.random() * 2 + 0.5,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: -(Math.random() * 0.4 + 0.1),
+      a: Math.random() * 0.5 + 0.1,
+      type: Math.random() > 0.5 ? "nature" : "tech",
+      hue: Math.random() > 0.5 ? 40 + Math.random() * 10 : 165 + Math.random() * 15,
     }));
   };
+
   const draw = () => {
     ctx.clearRect(0, 0, w, h);
     for (const p of particles) {
+      // Gentle mouse attraction
+      const dx = mouseX - p.x;
+      const dy = mouseY - p.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 200) {
+        p.vx += dx * 0.0001;
+        p.vy += dy * 0.0001;
+      }
+
       p.x += p.vx;
       p.y += p.vy;
-      if (p.y < -5) {
-        p.y = h + 5;
+
+      // Damping
+      p.vx *= 0.99;
+      p.vy *= 0.99;
+
+      // Reset particles that go off screen
+      if (p.y < -10) {
+        p.y = h + 10;
         p.x = Math.random() * w;
       }
-      if (p.x < -5) p.x = w + 5;
-      if (p.x > w + 5) p.x = -5;
+      if (p.x < -10) p.x = w + 10;
+      if (p.x > w + 10) p.x = -10;
+
+      // Draw particle
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(199, 154, 58, ${p.a})`;
+      if (p.type === "nature") {
+        ctx.fillStyle = `hsla(${p.hue}, 65%, 50%, ${p.a})`;
+      } else {
+        ctx.fillStyle = `hsla(${p.hue}, 80%, 60%, ${p.a})`;
+      }
+      ctx.fill();
+
+      // Glow effect
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * 2, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${p.hue}, ${p.type === "nature" ? 65 : 80}%, 50%, ${p.a * 0.3})`;
       ctx.fill();
     }
     raf = requestAnimationFrame(draw);
   };
+
   resize();
   draw();
+
   window.addEventListener("resize", () => {
     cancelAnimationFrame(raf);
     resize();
     draw();
   });
+
+  // Mouse tracking
+  document.addEventListener("mousemove", (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+  });
+
   const io = new IntersectionObserver(
     (entries) =>
       entries.forEach((e) => {
@@ -325,6 +460,7 @@ function boot() {
   safe("scrollspy", initScrollSpy);
   safe("counters", initCounters);
   safe("terminal", initTerminal);
+  safe("floatingCards", initFloatingCards);
   safe("particles", initParticles);
 }
 
