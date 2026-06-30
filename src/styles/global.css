@@ -25,7 +25,7 @@
 
   /* Fonts */
   --font-sans: "Vazirmatn", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-mono: "Noto Sans Arabic", ui-monospace, SFMono-Regular, monospace;
 
   /* Easing */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
