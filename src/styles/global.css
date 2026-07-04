@@ -277,6 +277,22 @@
     background: color-mix(in srgb, var(--color-tech-cyan) 12%, transparent);
     border-color: color-mix(in srgb, var(--color-tech-cyan) 30%, transparent);
   }
+  /* Wordmark: outlet name rendered as an inline SVG (see scripts/wordmark.ts).
+     currentColor drives the gold→cyan hover recolor. */
+  .press-wordmark-box {
+    @apply flex min-w-0 items-center overflow-hidden;
+    color: var(--color-nature-gold-bright);
+    transition: color 0.3s ease;
+  }
+  .press-card:hover .press-wordmark-box {
+    color: var(--color-tech-cyan);
+  }
+  .press-wordmark {
+    height: 26px;
+    width: auto;
+    max-width: 100%;
+    display: block;
+  }
 }
 
 /* ============================================================

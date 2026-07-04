@@ -1,5 +1,6 @@
 import fa from "../i18n/fa.json";
 import en from "../i18n/en.json";
+import { pressWordmark } from "./wordmark";
 
 type Dict = typeof fa;
 
@@ -106,20 +107,13 @@ function renderRepos(items: { name: string; desc: string; tag: string; url: stri
 }
 
 function renderPress(items: { name: string; url: string }[], readLabel: string): string {
-  const initials = (name: string) =>
-    name
-      .split(/\s+/)
-      .slice(0, 2)
-      .map((w) => w[0]?.toUpperCase() ?? "")
-      .join("");
   return items
     .map(
       (o) => `
       <a href="${escapeHtml(o.url || "#")}" ${o.url && o.url !== "#" ? 'target="_blank" rel="noopener noreferrer"' : ""} class="press-card group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-cyan/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg" data-reveal>
-        <span class="press-monogram" aria-hidden="true">${escapeHtml(initials(o.name))}</span>
-        <span class="min-w-0 flex-1">
-          <span class="block truncate font-semibold text-text">${escapeHtml(o.name)}</span>
-          <span class="mt-0.5 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted transition-colors group-hover:text-tech-cyan">
+        <span class="press-wordmark-box flex-1">${pressWordmark(o.name)}</span>
+        <span class="shrink-0">
+          <span class="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted transition-colors group-hover:text-tech-cyan">
             <span>${escapeHtml(readLabel)}</span>
             <svg viewBox="0 0 24 24" class="h-3 w-3 shrink-0 transition-transform group-hover:translate-x-0.5 flip-x" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </span>

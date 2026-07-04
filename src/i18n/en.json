@@ -97,12 +97,13 @@
     "subtitle": "Interviews and features I've been part of. Click any logo to read.",
     "readLabel": "Read",
     "outlets": [
-      { "name": "Newsweek", "url": "#" },
-      { "name": "IUCN NL", "url": "#" },
-      { "name": "Felidae Fund", "url": "#" },
-      { "name": "Arab News", "url": "#" },
-      { "name": "Hamshahri", "url": "#" },
-      { "name": "Shargh Daily", "url": "#" }
+      { "name": "Newsweek", "url": "https://www.newsweek.com/irans-cheetahs-dire-risk-just-12-remain-wild-extinction-asiatic-1668518" },
+      { "name": "People", "url": "https://people.com/pets/12-asiatic-cheetahs-left-in-iran/" },
+      { "name": "IUCN NL", "url": "https://www.iucn.nl/en/story/protecting-the-asiatic-cheetah-in-iran-meet-morteza-pourmirzai/" },
+      { "name": "Felidae Fund", "url": "https://felidaefund.org/news/general/the-asiatic-cheetah-a-subspecies-on-the-brink-of-extinction" },
+      { "name": "Zoos Media", "url": "https://zoos.media/media-echo/asiatic-cheetahs-in-danger/?lang=en" },
+      { "name": "Iran Daily", "url": "https://newspaper.irandaily.ir/8153/4/24730" },
+      { "name": "TEDxSUT", "url": "https://www.youtube.com/watch?v=hujt7mFA_Ak" }
     ]
   },
   "contact": {
