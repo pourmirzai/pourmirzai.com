@@ -12,20 +12,27 @@
       <stop offset="0%" stop-color="#64FFDA" stop-opacity="0.18" />
       <stop offset="100%" stop-color="#64FFDA" stop-opacity="0" />
     </radialGradient>
+    <radialGradient id="seamGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#64FFDA" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#64FFDA" stop-opacity="0" />
+    </radialGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)" />
   <rect width="1200" height="630" fill="url(#glow)" />
 
   <!-- split seam -->
   <rect x="599" y="60" width="2" height="510" fill="#64FFDA" opacity="0.35" />
+  <!-- fusion node where the two worlds meet -->
+  <circle cx="600" cy="315" r="70" fill="url(#seamGlow)" />
+  <circle cx="600" cy="315" r="7" fill="#64FFDA" />
 
   <!-- left label -->
-  <g transform="translate(120 120)" fill="#8B6914" font-family="monospace" font-size="22" letter-spacing="6">
-    <text>🌿 CONSERVATION</text>
+  <g transform="translate(120 120)" fill="#C79A3A" font-family="monospace" font-size="22" letter-spacing="6">
+    <text>CONSERVATION</text>
   </g>
   <!-- right label -->
-  <g transform="translate(760 120)" fill="#64FFDA" font-family="monospace" font-size="22" letter-spacing="6">
-    <text>💻 TECHNOLOGY</text>
+  <g transform="translate(820 120)" fill="#64FFDA" font-family="monospace" font-size="22" letter-spacing="6" text-anchor="end">
+    <text x="260">TECHNOLOGY</text>
   </g>
 
   <!-- footprint -->
@@ -40,5 +47,5 @@
   <!-- name -->
   <text x="600" y="470" fill="#F0F0F0" font-family="Inter, sans-serif" font-size="76" font-weight="700" text-anchor="middle">Morteza Pourmirzai</text>
   <!-- tagline -->
-  <text x="600" y="525" fill="#8892A4" font-family="monospace" font-size="28" text-anchor="middle">Where Nature Meets Code</text>
+  <text x="600" y="525" fill="#8892A4" font-family="monospace" font-size="28" text-anchor="middle">Where Nature Meets AI</text>
 </svg>

@@ -53,7 +53,7 @@ function renderNatureProjects(items: { name: string; desc: string; url: string }
   return items
     .map(
       (p) => `
-      <a ${p.url ? `href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer"` : 'role="group"'} class="group flex items-center justify-between gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-4 transition-colors hover:border-nature-gold/40">
+      <a ${p.url ? `href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer"` : 'role="group"'} class="group flex items-center justify-between gap-3 rounded-xl border border-white/5 bg-white/[0.02] p-4 transition-colors hover:border-nature-gold/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nature-gold-bright/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg">
         <span class="min-w-0">
           <span class="block font-semibold text-text">${escapeHtml(p.name)}</span>
           <span class="block text-sm text-muted">${escapeHtml(p.desc)}</span>
@@ -90,7 +90,7 @@ function renderRepos(items: { name: string; desc: string; tag: string; url: stri
   return items
     .map(
       (r) => `
-      <a href="${escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer" class="card card-hover group" data-reveal>
+      <a href="${escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer" class="card card-hover group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-cyan/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg" data-reveal>
         <div class="flex items-center justify-between">
           <span class="flex items-center gap-2 font-mono text-sm font-semibold text-text">
             <svg viewBox="0 0 24 24" class="h-4 w-4 text-muted" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.36 9.36 0 0 1 12 6.84c.85 0 1.71.12 2.51.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"></path></svg>
@@ -105,12 +105,25 @@ function renderRepos(items: { name: string; desc: string; tag: string; url: stri
     .join("");
 }
 
-function renderPress(items: { name: string; url: string }[]): string {
+function renderPress(items: { name: string; url: string }[], readLabel: string): string {
+  const initials = (name: string) =>
+    name
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((w) => w[0]?.toUpperCase() ?? "")
+      .join("");
   return items
     .map(
       (o) => `
-      <a href="${escapeHtml(o.url || "#")}" ${o.url && o.url !== "#" ? 'target="_blank" rel="noopener noreferrer"' : ""} class="press-logo card card-hover group flex h-28 items-center justify-center text-center" data-reveal>
-        <span class="font-mono text-lg font-semibold tracking-tight text-muted transition-colors group-hover:text-text">${escapeHtml(o.name)}</span>
+      <a href="${escapeHtml(o.url || "#")}" ${o.url && o.url !== "#" ? 'target="_blank" rel="noopener noreferrer"' : ""} class="press-card group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-cyan/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg" data-reveal>
+        <span class="press-monogram" aria-hidden="true">${escapeHtml(initials(o.name))}</span>
+        <span class="min-w-0 flex-1">
+          <span class="block truncate font-semibold text-text">${escapeHtml(o.name)}</span>
+          <span class="mt-0.5 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted transition-colors group-hover:text-tech-cyan">
+            <span>${escapeHtml(readLabel)}</span>
+            <svg viewBox="0 0 24 24" class="h-3 w-3 shrink-0 transition-transform group-hover:translate-x-0.5 flip-x" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </span>
       </a>`
     )
     .join("");
@@ -122,7 +135,7 @@ const RENDERERS: Record<string, (dict: Dict) => string> = {
   "nature-achievements": (d) => renderAchievements(d.worlds.nature.achievements),
   "tech-stack": (d) => renderStack(d.worlds.tech.stack),
   "tech-repos": (d) => renderRepos(d.worlds.tech.repos),
-  press: (d) => renderPress(d.press.outlets),
+  press: (d) => renderPress(d.press.outlets, d.press.readLabel),
 };
 
 /* ---------- apply language ---------- */

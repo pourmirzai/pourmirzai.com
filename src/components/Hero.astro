@@ -1,10 +1,10 @@
 ---
-import fa from "../i18n/fa.json";
+import fa from "../i18n/en.json";
 import Icon from "./Icon.astro";
 import { topoPaths, waypoints, corridor } from "../data/topo";
 ---
 
-<section id="hero" class="relative min-h-screen overflow-hidden bg-bg">
+<section id="hero" class="relative min-h-screen min-h-[100svh] overflow-hidden bg-bg">
   <!-- ===== ATMOSPHERIC BACKGROUND (organic fusion) ===== -->
   <div class="hero-bg absolute inset-0" aria-hidden="true">
     <!-- Base layers - INCREASED OPACITY for better contrast -->
@@ -69,11 +69,11 @@ import { topoPaths, waypoints, corridor } from "../data/topo";
     <canvas id="fusion-particles" class="absolute inset-0 h-full w-full"></canvas>
 
     <!-- Grain overlay -->
-    <div class="absolute inset-0 grain opacity-40"></div>
+    <div class="absolute inset-0 grain opacity-20"></div>
   </div>
 
   <!-- ===== FOREGROUND CONTENT ===== -->
-  <div class="relative z-10 flex min-h-screen items-center">
+  <div class="relative z-10 flex min-h-screen min-h-[100svh] items-center">
     <div class="container-px w-full py-20 md:py-28">
       <div class="mx-auto grid items-center gap-8 md:gap-12 md:grid-cols-[1fr_1fr] lg:gap-16 xl:gap-20 lg:max-w-[1400px] xl:max-w-[1600px] 2xl:max-w-[1800px]">
         <!-- VISUAL COLUMN (left) - Floating interactive cards -->
@@ -109,7 +109,7 @@ import { topoPaths, waypoints, corridor } from "../data/topo";
                 <span class="h-3 w-3 rounded-full bg-[#27c93f]"></span>
                 <span class="ms-2 font-mono text-xs text-muted">morteza@pourmirzai: ~</span>
               </div>
-              <div class="space-y-1.5 p-4 font-mono text-[13px] leading-relaxed">
+              <div class="space-y-1.5 p-4 font-terminal text-[16px] leading-relaxed tracking-wide">
                 <p class="text-nature-gold-bright/90">› const world = 'conservation';</p>
                 <p class="text-tech-cyan/90">› const role = 'web developer';</p>
                 <p class="flex items-center gap-1 text-text">
@@ -122,32 +122,32 @@ import { topoPaths, waypoints, corridor } from "../data/topo";
         </div>
 
         <!-- TEXT COLUMN (right) -->
-        <div data-hero-anim class="order-1 md:order-1 text-center md:text-start lg:order-2">
+        <div data-hero-anim class="hero-text-panel order-1 md:order-1 text-center md:text-start lg:order-2">
           <!-- Eyebrow -->
-          <div class="mb-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-tech-cyan/90 xl:text-[11px] xl:gap-2.5 2xl:text-xs 2xl:gap-3">
-            <span class="h-px w-6 bg-tech-cyan/50 xl:w-8 2xl:w-10"></span>
+          <div class="mb-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-tech-cyan xl:text-[11px] xl:gap-2.5 2xl:text-xs 2xl:gap-3">
+            <span class="h-px w-6 bg-tech-cyan/60 xl:w-8 2xl:w-10"></span>
             <span>{fa.hero.roleNature} × {fa.hero.roleTech}</span>
-            <span class="h-px w-6 bg-tech-cyan/50 xl:w-8 2xl:w-10"></span>
+            <span class="h-px w-6 bg-tech-cyan/60 xl:w-8 2xl:w-10"></span>
           </div>
 
           <!-- Name - large, gradient -->
           <h1
             data-i18n="hero.name"
-            class="heading-xl text-[clamp(2.5rem,5vw,4rem)] sm:text-[clamp(3rem,5.5vw,5rem)] xl:text-[clamp(3.5rem,6vw,5.5rem)] 2xl:text-[6rem] font-bold tracking-tight"
+            class="heading-xl hero-legible text-[clamp(2.5rem,5vw,4rem)] sm:text-[clamp(3rem,5.5vw,5rem)] xl:text-[clamp(3.5rem,6vw,5.5rem)] 2xl:text-[6rem] font-bold tracking-tight"
           >
-            <span class="bg-gradient-to-r from-text via-text to-text/90 bg-clip-text text-transparent">
+            <span class="bg-gradient-to-r from-white via-text to-nature-gold-bright bg-clip-text text-transparent">
               {fa.hero.name}
             </span>
           </h1>
 
           <!-- Dual role badges -->
           <div class="mt-5 flex flex-wrap items-center justify-center gap-3 md:justify-start font-bold">
-            <span class="inline-flex items-center gap-2 rounded-full border border-nature-gold/50 bg-nature-gold/20 px-4 py-2 xl:px-5 xl:py-2.5 2xl:px-6 2xl:py-3">
+            <span class="inline-flex items-center gap-2 rounded-full border border-nature-gold/60 bg-nature-gold/25 px-4 py-2 backdrop-blur-sm xl:px-5 xl:py-2.5 2xl:px-6 2xl:py-3">
               <span class="h-1.5 w-1.5 rounded-full bg-nature-gold-bright xl:h-2 xl:w-2 2xl:h-2.5 2xl:w-2.5"></span>
               <span class="text-sm text-nature-gold-bright xl:text-base 2xl:text-lg" data-i18n="hero.roleNature">{fa.hero.roleNature}</span>
             </span>
-            <span class="text-muted/50 text-lg xl:text-xl 2xl:text-2xl">×</span>
-            <span class="inline-flex items-center gap-2 rounded-full border border-tech-cyan/50 bg-tech-cyan/20 px-4 py-2 xl:px-5 xl:py-2.5 2xl:px-6 2xl:py-3">
+            <span class="fusion-node" aria-hidden="true"><span></span></span>
+            <span class="inline-flex items-center gap-2 rounded-full border border-tech-cyan/60 bg-tech-cyan/20 px-4 py-2 backdrop-blur-sm xl:px-5 xl:py-2.5 2xl:px-6 2xl:py-3">
               <span class="h-1.5 w-1.5 rounded-full bg-tech-cyan xl:h-2 xl:w-2 2xl:h-2.5 2xl:w-2.5"></span>
               <span class="text-sm text-tech-cyan xl:text-base 2xl:text-lg" data-i18n="hero.roleTech">{fa.hero.roleTech}</span>
             </span>
@@ -156,7 +156,7 @@ import { topoPaths, waypoints, corridor } from "../data/topo";
           <!-- Brief intro -->
           <p
             data-i18n="hero.intro"
-            class="mt-6 mx-auto max-w-lg text-base leading-relaxed text-text/85 sm:text-lg md:mx-0 lg:text-xl xl:text-xl xl:max-w-xl 2xl:text-2xl 2xl:max-w-2xl"
+            class="hero-legible mt-6 mx-auto max-w-lg text-base leading-relaxed text-text sm:text-lg md:mx-0 lg:text-xl xl:text-xl xl:max-w-xl 2xl:text-2xl 2xl:max-w-2xl"
           >
             {fa.hero.intro}
           </p>

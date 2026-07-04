@@ -99,6 +99,7 @@
     "eyebrow": "Press",
     "title": "In the Media",
     "subtitle": "Interviews and features I've been part of. Click any logo to read.",
+    "readLabel": "Read",
     "outlets": [
       { "name": "Newsweek", "url": "#" },
       { "name": "IUCN NL", "url": "#" },

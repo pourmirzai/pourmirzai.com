@@ -1,6 +1,14 @@
 ---
-import fa from "../i18n/fa.json";
+import fa from "../i18n/en.json";
 import Icon from "./Icon.astro";
+
+// Derive a 1–2 letter monogram from an outlet name (e.g. "IUCN NL" → "IN").
+const initials = (name: string) =>
+  name
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase() ?? "")
+    .join("");
 ---
 
 <section id="press" class="section-pad relative overflow-hidden">
@@ -15,10 +23,10 @@ import Icon from "./Icon.astro";
       <p data-reveal data-i18n="press.subtitle" class="mx-auto mt-4 text-muted">{fa.press.subtitle}</p>
     </div>
 
-    <!-- Monochrome, linked media outlets (data-driven) -->
+    <!-- Press mentions: monogram + name + read affordance (data-driven) -->
     <div
       data-i18n-list="press"
-      class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6"
+      class="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
     >
       {
         fa.press.outlets.map((o) => (
@@ -26,11 +34,18 @@ import Icon from "./Icon.astro";
             href={o.url || "#"}
             target={o.url && o.url !== "#" ? "_blank" : undefined}
             rel={o.url && o.url !== "#" ? "noopener noreferrer" : undefined}
-            class="press-logo card card-hover group flex h-28 items-center justify-center text-center"
+            class="press-card group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-cyan/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
             data-reveal
           >
-            <span class="font-mono text-lg font-semibold tracking-tight text-muted transition-colors group-hover:text-text">
-              {o.name}
+            <span class="press-monogram" aria-hidden="true">{initials(o.name)}</span>
+            <span class="min-w-0 flex-1">
+              <span class="block truncate font-semibold text-text">{o.name}</span>
+              <span class="mt-0.5 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted transition-colors group-hover:text-tech-cyan">
+                <span data-i18n="press.readLabel">{fa.press.readLabel}</span>
+                <svg viewBox="0 0 24 24" class="h-3 w-3 shrink-0 transition-transform group-hover:translate-x-0.5 flip-x" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </span>
             </span>
           </a>
         ))

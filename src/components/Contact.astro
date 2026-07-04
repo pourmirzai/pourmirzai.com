@@ -1,5 +1,5 @@
 ---
-import fa from "../i18n/fa.json";
+import fa from "../i18n/en.json";
 import Icon from "./Icon.astro";
 
 const socials = [
@@ -35,7 +35,7 @@ const socials = [
         <a
           id="email-link"
           href="#"
-          class="font-mono text-base text-text transition-colors hover:text-tech-cyan"
+          class="rounded-md font-mono text-base text-text transition-colors hover:text-tech-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-cyan/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
         >
           info [at] sarvinwildlife [dot] com
         </a>
@@ -58,7 +58,7 @@ const socials = [
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                class="grid h-12 w-12 place-items-center rounded-xl border border-white/10 text-muted transition-all hover:-translate-y-0.5 hover:border-tech-cyan hover:text-tech-cyan"
+                class="grid h-12 w-12 place-items-center rounded-xl border border-white/10 text-muted transition-all hover:-translate-y-0.5 hover:border-tech-cyan hover:text-tech-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-cyan/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
                 <Icon name={s.name} size={20} />
               </a>

@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import fa from "../i18n/fa.json";
+import fa from "../i18n/en.json";
 import portrait from "../assets/morteza-portrait.jpg";
 import FootprintSVG from "./svg/FootprintSVG.astro";
 import Icon from "./Icon.astro";
@@ -14,6 +14,13 @@ const stats = [
 ---
 
 <section id="about" class="section-pad relative overflow-hidden">
+  <!-- subtle surface band: breaks the flat-black rhythm between Hero and Two Worlds -->
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 -z-10 border-y border-white/5 bg-gradient-to-b from-transparent via-surface/30 to-transparent"
+  >
+  </div>
+
   <!-- decorative footprints -->
   <FootprintSVG class="pointer-events-none absolute -end-10 top-24 h-40 w-40 text-nature-gold/5" />
   <FootprintSVG class="pointer-events-none absolute start-10 bottom-10 h-24 w-24 text-tech-cyan/5 rotate-12" />
