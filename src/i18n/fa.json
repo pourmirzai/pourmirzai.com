@@ -68,9 +68,7 @@
       "achievementsTitle": "دستاوردها",
       "projects": [
         { "name": "سروین، حفاظت حیات وحش", "desc": "بنیان‌گذاری و مدیریت موسسه", "url": "https://sarvinwildlife.com" },
-        { "name": "انجمن یوزپلنگ ایرانی", "desc": "مدیرعامل سابق — انجمن یوزپلنگ ایرانی", "url": "https://wildlife.ir" },
-        { "name": "پایش جمعیت یوزپلنگ آسیایی", "desc": "شرکت در تیم پایش و تحقیقاتی", "url": "https://www.biorxiv.org/content/10.1101/2025.10.27.684750v1.full" },
-        { "name": "آزادسازی ۵۶۰۰ هکتار زیستگاه به نفع یوزپلنگ ایرانی", "desc": "خرید پروانه چرای دام در توران ", "url": "https://www.iucn.nl/en/news/hope-for-asiatic-cheetah-in-iran/" }
+        { "name": "انجمن یوزپلنگ ایرانی", "desc": "مدیرعامل سابق — انجمن یوزپلنگ ایرانی", "url": "https://wildlife.ir" }
 
       ],
       "achievements": [
@@ -85,7 +83,7 @@
       "title": "زیرساخت دیجیتال و اتوماسیون",
       "desc": "توسعهٔ زیرساخت، مدیریت سرور و اتوماسیون که هم حفاظت و هم سیستم‌های آنلاین را پیش می‌برد.",
       "stackTitle": "ابزارهای من",
-      "reposTitle": "پروژه‌های گیت‌هاب",
+      "reposTitle": "پروژه‌های پابلیک در گیت‌هاب",
       "stack": ["PHP", "TypeScript", "Bash", "Docker", "WordPress", "n8n", "AI/LLM", "Linux"],
       "repos": [
         { "name": "Cheetah-Game", "desc": "بازی تعاملی آموزش حفاظت از یوزپلنگ", "tag": "React + TS", "url": "https://github.com/pourmirzai/Cheetah-Game" },

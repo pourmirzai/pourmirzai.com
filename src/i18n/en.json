@@ -68,9 +68,7 @@
       "achievementsTitle": "Key Achievements",
       "projects": [
         { "name": "Sarvin Wildlife Conservation", "desc": "Founded & lead the institute", "url": "https://sarvinwildlife.com" },
-        { "name": "Iranian Cheetah Society", "desc": "Former CEO — Iranian Cheetah Society", "url": "https://wildlife.ir" },
-        { "name": "Asiatic Cheetah Population Monitoring", "desc": "Part of the monitoring and research team", "url": "https://www.biorxiv.org/content/10.1101/2025.10.27.684750v1.full" },
-        { "name": "Securing 5,600 hectares of habitat for the Iranian cheetah", "desc": "Purchased livestock grazing rights in Touran", "url": "https://www.iucn.nl/en/news/hope-for-asiatic-cheetah-in-iran/" }
+        { "name": "Iranian Cheetah Society", "desc": "Former CEO — Iranian Cheetah Society", "url": "https://wildlife.ir" }
       ],
       "achievements": [
         "Secured 5,600 hectares of habitat for the Iranian cheetah",
@@ -84,7 +82,7 @@
       "title": "Digital Infrastructure & Automation",
       "desc": "Infrastructure development, server management and automation that serve both conservation and online systems.",
       "stackTitle": "My Stack",
-      "reposTitle": "GitHub Projects",
+      "reposTitle": "Public GitHub Projects",
       "stack": ["PHP", "TypeScript", "Bash", "Docker", "WordPress", "n8n", "AI/LLM", "Linux"],
       "repos": [
         { "name": "Cheetah-Game", "desc": "Interactive cheetah conservation game", "tag": "React + TS", "url": "https://github.com/pourmirzai/Cheetah-Game" },
