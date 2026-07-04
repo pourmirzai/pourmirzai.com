@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Morteza Pourmirzai | Where Nature Meets AI",
-    "description": "Morteza Pourmirzai — wildlife conservation leader, founder of Sarvin Wildlife Conservation and conservation technologist. Where Nature Meets AI.",
+    "title": "Morteza Pourmirzai | Where Nature Meets Code",
+    "description": "Morteza Pourmirzai — wildlife conservation leader, founder of Sarvin and conservation technologist. Where Nature Meets AI.",
     "langName": "EN",
     "langSwitch": "فا"
   },
@@ -13,10 +13,10 @@
   },
   "hero": {
     "name": "Morteza Pourmirzai",
-    "roleNature": "Wildlife Conservation Leader",
+    "roleNature": "Wildlife Conservation",
     "roleTech": "Web Developer",
-    "intro": "17 years protecting the Asiatic Cheetah through science, technology and community.",
-    "tagline": "Where Nature Meets AI",
+    "intro": "17 years protecting the Asiatic Cheetah.",
+    "tagline": "Where Nature Meets Code",
     "cta_story": "Read My Story",
     "cta_work": "My Conservation Work",
     "cta_contact": "Let's Connect",
@@ -24,37 +24,35 @@
     "natureLabel": "Ecology",
     "techLabel": "Tech",
     "natureCardTitle": "Striving to Conserve the Iranian Cheetah",
-    "natureCardDesc": "Active in protecting the Iranian cheetah in Touran and Miandasht",
+    "natureCardDesc": "Active in protecting the Iranian cheetah in the Iranian plateau.",
     "trust": {
       "years": "17+ Years Experience",
-      "leader": "Conservation Leader",
-      "iucn": "IUCN Partner",
-      "sites": "30+ Sites Deployed"
+      "leader": "Conservationist",
+      "iucn": "IUCN Member",
+      "sites": "50+ Websites"
     }
   },
   "about": {
     "eyebrow": "About Me",
     "title": "Two Worlds, One Person",
-    "bio": "I am Morteza Pourmirzai, a wildlife conservation practitioner and founder of Sarvin Wildlife Conservation. My work focuses on the protection of threatened species—particularly large carnivores such as the Asiatic cheetah and leopard—as well as habitat management and restoration. I take an approach that integrates science, community engagement, and practical policy implementation in conservation projects. Previously, I served as CEO of the Iranian Cheetah Society, where I was involved in a range of field, research, and cross-sector initiatives. Alongside my conservation work, I have a strong background in technical infrastructure, including server management, web optimization, and system development. This combination allows me to design and support projects that are both scientifically grounded and technically robust.",
-    "bio2": "I believe effective conservation depends on the integration of knowledge, technology, and human collaboration—and I aim to bring these elements together in everything I do.",
+    "bio": "I am Morteza Pourmirzai, a wildlife conservation practitioner and founder of Sarvin Wildlife Conservation Institute. My main focus is on the protection of threatened species—particularly the Asiatic cheetah—as well as the management and restoration of natural habitats. Throughout my years of activity, I have strived to apply an approach grounded in ethics, science, community engagement, and effective policymaking in conservation projects. Before founding Sarvin, I served as CEO of the Iranian Cheetah Society, where I took part in a range of educational, research, field, and cross-sector initiatives. My experience is not limited to the field; alongside my conservation work, I also engage in developing digital infrastructure, web design, server management, and the optimization of online systems.",
+    "bio2": "I believe effective conservation of nature depends on the integration of knowledge, technology, and human-ethical collaboration—and I strive to bring these three together in everything I do.",
     "stats": {
       "years": "17+",
       "yearsLabel": "Years in Conservation",
-      "sites": "30+",
-      "sitesLabel": "Sites Deployed",
-      "repos": "10+",
-      "reposLabel": "Technical Projects",
-      "press": "6",
+      "sites": "50+",
+      "sitesLabel": "Websites",
+      "repos": "5+",
+      "reposLabel": "Coding Projects",
+      "press": "6+",
       "pressLabel": "International Media"
     },
     "timelineTitle": "My Journey",
     "timeline": [
       { "year": "2007", "text": "Began environmental studies and volunteer conservation work" },
-      { "year": "2010s", "text": "Field projects with the Iranian Cheetah Society in Touran & Miandasht" },
-      { "year": "2018", "text": "Became CEO of the Iranian Cheetah Society" },
-      { "year": "2023", "text": "Founded Sarvin Wildlife Conservation" },
-      { "year": "2024", "text": "CEO & Co-Founder of Sarvin Wildlife" },
-      { "year": "2026", "text": "Presented at the Asia Conservation Congress, Nepal" }
+      { "year": "2010s", "text": "Educational and awareness projects with the Iranian Cheetah Society" },
+      { "year": "2018", "text": "Became CEO of the Iranian Cheetah Society and took part in conservation and habitat restoration projects" },
+      { "year": "2024", "text": "Founded Sarvin Wildlife Conservation" }
     ]
   },
   "worlds": {
@@ -63,21 +61,22 @@
     "subtitle": "Two domains that seem far apart, yet complete each other in practice.",
     "nature": {
       "label": "Conservation World",
-      "title": "Protecting Large Carnivores",
-      "desc": "Protecting threatened species like the Asiatic cheetah and leopard — focused on habitat management and restoration, camera traps and community engagement.",
+      "title": "Protecting Threatened Cats",
+      "desc": "Protecting threatened species like the Asiatic cheetah — focused on habitat management and restoration, camera traps and community engagement.",
       "locationsTitle": "Activity Zones",
       "projectsTitle": "Organizations",
       "achievementsTitle": "Key Achievements",
       "projects": [
-        { "name": "Sarvin Wildlife Conservation", "desc": "Founded & lead the conservation trust", "url": "https://sarvinwildlife.com" },
-        { "name": "Iranian Cheetah Society", "desc": "Former CEO — Save the Asiatic Cheetah", "url": "https://savecheetah.com" },
-        { "name": "Habitat Mapping & Restoration", "desc": "Surveys & corridor protection", "url": "" }
+        { "name": "Sarvin Wildlife Conservation", "desc": "Founded & lead the institute", "url": "https://sarvinwildlife.com" },
+        { "name": "Iranian Cheetah Society", "desc": "Former CEO — Iranian Cheetah Society", "url": "https://wildlife.ir" },
+        { "name": "Asiatic Cheetah Population Monitoring", "desc": "Part of the monitoring and research team", "url": "https://www.biorxiv.org/content/10.1101/2025.10.27.684750v1.full" },
+        { "name": "Securing 5,600 hectares of habitat for the Iranian cheetah", "desc": "Purchased livestock grazing rights in Touran", "url": "https://www.iucn.nl/en/news/hope-for-asiatic-cheetah-in-iran/" }
       ],
       "achievements": [
-        "Secured 5,600 hectares of wildlife refuge",
+        "Secured 5,600 hectares of habitat for the Iranian cheetah",
         "Deployed a camera-trap network",
         "Trained rangers and local communities",
-        "Partnered with IUCN NL & World Land Trust"
+        "Partnered with national and international organizations"
       ]
     },
     "tech": {
@@ -86,12 +85,11 @@
       "desc": "Infrastructure development, server management and automation that serve both conservation and online systems.",
       "stackTitle": "My Stack",
       "reposTitle": "GitHub Projects",
-      "stack": ["PHP", "JavaScript", "TypeScript", "Python", "Bash", "Docker", "WordPress", "n8n", "AI/LLM", "Linux"],
+      "stack": ["PHP", "TypeScript", "Bash", "Docker", "WordPress", "n8n", "AI/LLM", "Linux"],
       "repos": [
         { "name": "Cheetah-Game", "desc": "Interactive cheetah conservation game", "tag": "React + TS", "url": "https://github.com/pourmirzai/Cheetah-Game" },
-        { "name": "slidist", "desc": "Slide management tool", "tag": "JavaScript", "url": "https://github.com/pourmirzai/slidist" },
-        { "name": "webp-convertor", "desc": "Image to WebP converter", "tag": "JavaScript", "url": "https://github.com/pourmirzai/webp-convertor" },
-        { "name": "AI-Router", "desc": "AI model router", "tag": "Python", "url": "https://github.com/pourmirzai/AI-Router" }
+        { "name": "slidist", "desc": "Free social media slide maker tool", "tag": "JavaScript", "url": "https://github.com/pourmirzai/slidist" },
+        { "name": "webp-convertor", "desc": "Image to WebP converter", "tag": "JavaScript", "url": "https://github.com/pourmirzai/webp-convertor" }
       ]
     }
   },
