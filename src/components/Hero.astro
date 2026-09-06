@@ -1,191 +1,265 @@
 ---
 import fa from "../i18n/en.json";
 import Icon from "./Icon.astro";
-import { topoPaths, waypoints, corridor } from "../data/topo";
+import { topoPaths, corridor } from "../data/topo";
 ---
 
-<section id="hero" class="relative min-h-screen min-h-[100svh] overflow-hidden bg-bg">
-  <!-- ===== ATMOSPHERIC BACKGROUND (organic fusion) ===== -->
+<section id="hero" class="relative min-h-screen min-h-[100svh] overflow-hidden bg-bg flex items-center">
+  <!-- ===== ATMOSPHERIC BACKGROUND (Organic × Tech Fusion) ===== -->
   <div class="hero-bg absolute inset-0" aria-hidden="true">
-    <!-- Base layers - INCREASED OPACITY for better contrast -->
-    <div class="absolute inset-0 bg-gradient-to-br from-tech-navy/60 via-bg to-nature-deep/50"></div>
+    <!-- Deep gradient backdrop -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0a192f]/50 via-bg to-[#122409]/45"></div>
 
-    <!-- Morphing organic boundary wave -->
-    <svg class="absolute inset-0 h-full w-full" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Organic Wave Boundary SVG -->
+    <svg class="absolute inset-0 h-full w-full pointer-events-none" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#c79a3a" stop-opacity="0.25" />
-          <stop offset="50%" stop-color="#64ffda" stop-opacity="0.20" />
-          <stop offset="100%" stop-color="#2d5016" stop-opacity="0.30" />
+          <stop offset="0%" stop-color="#c79a3a" stop-opacity="0.22" />
+          <stop offset="50%" stop-color="#64ffda" stop-opacity="0.18" />
+          <stop offset="100%" stop-color="#2d5016" stop-opacity="0.25" />
         </linearGradient>
         <filter id="waveGlow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="20" result="blur" />
+          <feGaussianBlur stdDeviation="25" result="blur" />
           <feComposite in="SourceGraphic" in2="blur" operator="over" />
         </filter>
       </defs>
 
-      <!-- Organic wave paths - morphing boundary between worlds -->
-      <g class="wave-container" filter="url(#waveGlow)">
-        <path class="wave wave-1" d="M0,540 Q320,400 640,540 T1280,540 T1920,540 L1920,1080 L0,1080 Z" fill="url(#waveGradient)" opacity="0.5" />
-        <path class="wave wave-2" d="M0,580 Q320,440 640,580 T1280,580 T1920,580 L1920,1080 L0,1080 Z" fill="url(#waveGradient)" opacity="0.4" />
-        <path class="wave wave-3" d="M0,620 Q320,480 640,620 T1280,620 T1920,620 L1920,1080 L0,1080 Z" fill="url(#waveGradient)" opacity="0.3" />
+      <!-- Morphing organic wave layers -->
+      <g filter="url(#waveGlow)">
+        <path class="wave wave-1" d="M0,540 Q320,400 640,540 T1280,540 T1920,540 L1920,1080 L0,1080 Z" fill="url(#waveGradient)" opacity="0.6" />
+        <path class="wave wave-2" d="M0,580 Q320,440 640,580 T1280,580 T1920,580 L1920,1080 L0,1080 Z" fill="url(#waveGradient)" opacity="0.45" />
       </g>
 
-      <!-- Topographic tech layer (right side) -->
-      <g class="topo-layer" stroke="#4a9da6" stroke-opacity="0.4" stroke-width="2.5" fill="none" stroke-linecap="round">
-        {topoPaths.slice(0, 15).map((d) => <path class="topo-line" d={d} />)}
+      <!-- Topographic line accents -->
+      <g stroke="#3c6b1f" stroke-opacity="0.25" stroke-width="1.5" fill="none" stroke-linecap="round">
+        {topoPaths.slice(0, 12).map((d) => <path class="topo-line" d={d} />)}
       </g>
 
-      <!-- Connection corridor - animated path between worlds -->
-      <g class="corridor-layer">
+      <!-- Corridor lines -->
+      <g>
         {corridor.map((l, i) => (
           <line
             class="corridor-line"
             x1={l[0]} y1={l[1]} x2={l[2]} y2={l[3]}
-            stroke="url(#techCorridorGrad)"
-            stroke-width="2.5"
-            stroke-opacity="0.7"
+            stroke="#64ffda"
+            stroke-width="1.8"
+            stroke-opacity="0.35"
             stroke-dasharray="4 8"
-            style={`animation-delay: ${i * 0.15}s`}
+            style={`animation-delay: ${i * 0.2}s`}
           />
         ))}
       </g>
-
-      <!-- Floating nodes -->
-      {waypoints.map((n) => (
-        <g class={`floating-node node-${n.cx > 800 ? 'tech' : 'nature'}`} style={`--delay: ${n.d}s`}>
-          <circle cx={n.cx} cy={n.cy} r={n.r + 8} fill={n.cx > 800 ? '#64ffda' : '#c79a3a'} opacity="0.20" />
-          <circle cx={n.cx} cy={n.cy} r={n.r + 4} fill={n.cx > 800 ? '#64ffda' : '#c79a3a'} opacity="0.35" />
-          <circle cx={n.cx} cy={n.cy} r={n.r} fill={n.cx > 800 ? '#64ffda' : '#c79a3a'} opacity="1" />
-        </g>
-      ))}
     </svg>
 
-    <!-- Radial glows - INCREASED for better contrast -->
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_20%_40%,rgba(199,154,58,0.25),transparent_55%)]"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_85%_45%,rgba(100,255,218,0.20),transparent_55%)]"></div>
+    <!-- Ambient glowing radial orbs -->
+    <div class="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-[#c79a3a]/12 blur-[120px]"></div>
+    <div class="absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-[#64ffda]/10 blur-[130px]"></div>
 
-    <!-- Particle canvas -->
+    <!-- Interactive Neural Particles Canvas -->
     <canvas id="fusion-particles" class="absolute inset-0 h-full w-full"></canvas>
 
-    <!-- Grain overlay -->
-    <div class="absolute inset-0 grain opacity-20"></div>
+    <!-- Film Grain Texture Overlay -->
+    <div class="absolute inset-0 grain opacity-25 pointer-events-none"></div>
   </div>
 
   <!-- ===== FOREGROUND CONTENT ===== -->
-  <div class="relative z-10 flex min-h-screen min-h-[100svh] items-center">
-    <div class="container-px w-full py-20 md:py-28">
-      <div class="mx-auto grid items-center gap-8 md:gap-12 md:grid-cols-[1fr_1fr] lg:gap-16 xl:gap-20 lg:max-w-[1400px] xl:max-w-[1600px] 2xl:max-w-[1800px]">
-        <!-- VISUAL COLUMN (left) - Floating interactive cards -->
-        <div data-hero-anim class="hidden md:block relative order-2 lg:order-1 h-[400px] lg:h-[500px] xl:h-[600px] w-full">
-          <!-- Nature card -->
-          <div class="fusion-card nature-card absolute top-[5%] left-[5%] w-[45%] max-w-[220px] lg:max-w-[320px] lg:w-[60%] xl:max-w-[360px] xl:w-[60%] 2xl:max-w-[400px] 2xl:w-[60%] rounded-2xl border border-nature-gold/40 bg-nature-deep/40 backdrop-blur-sm shadow-xl overflow-hidden">
-            <div class="mb-0 flex items-center gap-2 px-4 pt-4 pb-2">
-              <div class="h-2 w-2 rounded-full bg-nature-gold-bright animate-pulse"></div>
-              <span class="font-mono text-xs text-nature-gold-bright">NATURE</span>
+  <div class="relative z-10 w-full py-24 md:py-32">
+    <div class="container-px">
+      <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-14 xl:gap-16">
+        
+        <!-- VISUAL COLUMN: DUAL-CORE INTERACTIVE HUD (5 Cols on LG) -->
+        <div data-hero-anim class="order-2 lg:order-1 lg:col-span-5 relative perspective-1000">
+          <!-- Main Camera-Trap Telemetry Card -->
+          <div class="spotlight-card spotlight-card-gold p-4 sm:p-5 shadow-2xl backdrop-blur-xl border border-nature-gold/30">
+            <!-- Header Bar -->
+            <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
+              <div class="flex items-center gap-2">
+                <span class="relative flex h-2.5 w-2.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-nature-gold-bright opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-nature-gold-bright"></span>
+                </span>
+                <span class="font-mono text-xs font-semibold text-nature-gold-bright tracking-wider uppercase" data-i18n="hero.natureCardTitle">
+                  {fa.hero.natureCardTitle}
+                </span>
+              </div>
+              <span class="font-mono text-[10px] text-muted border border-white/10 px-2 py-0.5 rounded-full bg-white/5">
+                LIVE REC
+              </span>
             </div>
-            <div class="aspect-[4/3] overflow-hidden">
+
+            <!-- Image with HUD Grid Overlay -->
+            <div class="relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10 bg-black/40">
               <img
                 src="/images/cheetah-nature.webp"
-                alt="Iranian Cheetah Conservation"
+                alt="Asiatic Cheetah Field Camera-Trap Telemetry"
                 class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                loading="eager"
               />
-            </div>
-            <div class="p-4">
-              <h3 class="text-sm font-bold text-nature-gold-bright" data-i18n="hero.natureCardTitle">{fa.hero.natureCardTitle}</h3>
-              <p class="mt-2 text-xs text-muted/80 leading-relaxed" data-i18n="hero.natureCardDesc">{fa.hero.natureCardDesc}</p>
-            </div>
-          </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none"></div>
 
-          <!-- Terminal (overlapping nature card) -->
-          <div class="fusion-card terminal-card absolute bottom-[12%] right-[8%] w-[65%] max-w-[280px] lg:max-w-[360px] lg:w-[75%] xl:max-w-[400px] xl:w-[75%] 2xl:max-w-[440px] 2xl:w-[75%]">
-            <div
-              dir="ltr"
-              class="rounded-xl border border-white/15 bg-[#020c1b]/70 text-left shadow-2xl shadow-black/40 backdrop-blur-md"
-            >
-              <div class="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
-                <span class="h-3 w-3 rounded-full bg-[#ff5f56]"></span>
-                <span class="h-3 w-3 rounded-full bg-[#ffbd2e]"></span>
-                <span class="h-3 w-3 rounded-full bg-[#27c93f]"></span>
-                <span class="ms-2 font-mono text-xs text-muted">morteza@pourmirzai: ~</span>
+              <!-- HUD Reticle & Corner Brackets -->
+              <div class="absolute top-2.5 left-2.5 w-4 h-4 border-t-2 border-l-2 border-nature-gold-bright/60"></div>
+              <div class="absolute top-2.5 right-2.5 w-4 h-4 border-t-2 border-r-2 border-nature-gold-bright/60"></div>
+              <div class="absolute bottom-2.5 left-2.5 w-4 h-4 border-b-2 border-l-2 border-nature-gold-bright/60"></div>
+              <div class="absolute bottom-2.5 right-2.5 w-4 h-4 border-b-2 border-r-2 border-nature-gold-bright/60"></div>
+
+              <!-- Telemetry Overlay Data -->
+              <div class="absolute bottom-2.5 inset-x-3 flex items-end justify-between font-mono text-[11px] text-white/90 drop-shadow">
+                <div>
+                  <div class="text-[9px] text-nature-gold-bright font-bold uppercase tracking-widest">Target Specimen</div>
+                  <div class="font-semibold">{fa.hero.telemetry.species}</div>
+                </div>
+                <div class="text-end">
+                  <div class="text-[9px] text-tech-cyan uppercase tracking-widest">{fa.hero.telemetry.coordinates}</div>
+                  <div class="text-[10px] text-muted">{fa.hero.telemetry.location}</div>
+                </div>
               </div>
-              <div class="space-y-1.5 p-4 font-terminal text-[16px] leading-relaxed tracking-wide">
-                <p class="text-nature-gold-bright/90">› const world = 'conservation';</p>
-                <p class="text-tech-cyan/90">› const role = 'web developer';</p>
-                <p class="flex items-center gap-1 text-text">
-                  <span class="text-tech-cyan">$</span>
-                  <span id="terminal-line" class="text-text/90"></span><span id="terminal-cursor" class="text-tech-cyan">▋</span>
-                </p>
+            </div>
+
+            <!-- Overlapping Code Terminal HUD -->
+            <div class="mt-4 rounded-xl border border-white/15 bg-[#030914]/90 backdrop-blur-2xl shadow-xl overflow-hidden text-left" dir="ltr">
+              <!-- Terminal Window Bar with Interactive Tabs -->
+              <div class="flex items-center justify-between border-b border-white/10 px-3.5 py-2 bg-white/[0.02]">
+                <div class="flex items-center gap-1.5">
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#ff5f56]/80"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]/80"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#27c93f]/80"></span>
+                </div>
+                <!-- Interactive Tabs -->
+                <div class="flex items-center gap-1 font-mono text-[10px]">
+                  <button
+                    type="button"
+                    data-term-tab="ops"
+                    class="px-2 py-0.5 rounded border border-tech-cyan/40 bg-tech-cyan/10 text-tech-cyan transition-colors"
+                  >
+                    field_ops.sh
+                  </button>
+                  <button
+                    type="button"
+                    data-term-tab="deploy"
+                    class="px-2 py-0.5 rounded border border-transparent text-muted hover:text-white transition-colors"
+                  >
+                    deploy.ts
+                  </button>
+                  <button
+                    type="button"
+                    data-term-tab="ai"
+                    class="px-2 py-0.5 rounded border border-transparent text-muted hover:text-white transition-colors"
+                  >
+                    habitat_ai.py
+                  </button>
+                </div>
+              </div>
+
+              <!-- Terminal Body Output -->
+              <div class="p-3.5 font-terminal text-[15px] leading-relaxed text-text">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-tech-cyan font-bold">›</span>
+                  <span id="terminal-line" class="text-white/95"></span>
+                  <span class="text-tech-cyan animate-pulse">▋</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- TEXT COLUMN (right) -->
-        <div data-hero-anim class="hero-text-panel order-1 md:order-1 text-center md:text-start lg:order-2">
-          <!-- Eyebrow -->
-          <div class="mb-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-tech-cyan xl:text-[11px] xl:gap-2.5 2xl:text-xs 2xl:gap-3">
-            <span class="h-px w-6 bg-tech-cyan/60 xl:w-8 2xl:w-10"></span>
-            <span><span data-i18n="hero.roleNature">{fa.hero.roleNature}</span> × <span data-i18n="hero.roleTech">{fa.hero.roleTech}</span></span>
-            <span class="h-px w-6 bg-tech-cyan/60 xl:w-8 2xl:w-10"></span>
+        <!-- TEXT COLUMN: MONUMENTAL EDITORIAL (7 Cols on LG) -->
+        <div data-hero-anim class="order-1 lg:order-2 lg:col-span-7 text-center md:text-start hero-text-panel">
+          
+          <!-- Status Pill -->
+          <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1.5 text-xs text-emerald-300 backdrop-blur-md shadow-sm">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+            </span>
+            <span class="font-mono text-[11px] font-medium tracking-wide" data-i18n="hero.statusPill">{fa.hero.statusPill}</span>
           </div>
 
-          <!-- Name - large, gradient -->
+          <!-- Monumental Name Headline with Radiant Iridescence -->
           <h1
-            data-i18n="hero.name"
-            class="heading-xl hero-legible text-[clamp(2.5rem,5vw,4rem)] sm:text-[clamp(3rem,5.5vw,5rem)] xl:text-[clamp(3.5rem,6vw,5.5rem)] 2xl:text-[6rem] font-bold tracking-tight"
+            class="text-4xl sm:text-6xl md:text-7xl xl:text-8xl font-black tracking-tight leading-[1.05]"
           >
-            <span class="bg-gradient-to-r from-white via-text to-nature-gold-bright bg-clip-text text-transparent">
+            <span class="bg-gradient-to-r from-white via-[#e2e8f0] to-[#c79a3a] bg-clip-text text-transparent drop-shadow-sm" data-i18n="hero.name">
               {fa.hero.name}
             </span>
           </h1>
 
-          <!-- Dual role badges -->
-          <div class="mt-5 flex flex-wrap items-center justify-center gap-3 md:justify-start font-bold">
-            <span class="inline-flex items-center gap-2 rounded-full border border-nature-gold/60 bg-nature-gold/25 px-4 py-2 backdrop-blur-sm xl:px-5 xl:py-2.5 2xl:px-6 2xl:py-3">
-              <span class="h-1.5 w-1.5 rounded-full bg-nature-gold-bright xl:h-2 xl:w-2 2xl:h-2.5 2xl:w-2.5"></span>
-              <span class="text-sm text-nature-gold-bright xl:text-base 2xl:text-lg" data-i18n="hero.roleNature">{fa.hero.roleNature}</span>
+          <!-- Dual Identity Badges -->
+          <div class="mt-5 flex flex-wrap items-center justify-center gap-3 md:justify-start font-mono">
+            <span class="inline-flex items-center gap-2 rounded-full border border-nature-gold/50 bg-nature-gold/15 px-4 py-2 text-xs font-semibold text-nature-gold-bright backdrop-blur-sm shadow-sm transition-all duration-300 hover:border-nature-gold-bright hover:bg-nature-gold/25">
+              <span class="h-2 w-2 rounded-full bg-nature-gold-bright"></span>
+              <span data-i18n="hero.roleNature">{fa.hero.roleNature}</span>
             </span>
+            
             <span class="fusion-node" aria-hidden="true"><span></span></span>
-            <span class="inline-flex items-center gap-2 rounded-full border border-tech-cyan/60 bg-tech-cyan/20 px-4 py-2 backdrop-blur-sm xl:px-5 xl:py-2.5 2xl:px-6 2xl:py-3">
-              <span class="h-1.5 w-1.5 rounded-full bg-tech-cyan xl:h-2 xl:w-2 2xl:h-2.5 2xl:w-2.5"></span>
-              <span class="text-sm text-tech-cyan xl:text-base 2xl:text-lg" data-i18n="hero.roleTech">{fa.hero.roleTech}</span>
+
+            <span class="inline-flex items-center gap-2 rounded-full border border-tech-cyan/50 bg-tech-cyan/15 px-4 py-2 text-xs font-semibold text-tech-cyan backdrop-blur-sm shadow-sm transition-all duration-300 hover:border-tech-cyan hover:bg-tech-cyan/25">
+              <span class="h-2 w-2 rounded-full bg-tech-cyan"></span>
+              <span data-i18n="hero.roleTech">{fa.hero.roleTech}</span>
             </span>
           </div>
 
-          <!-- Brief intro -->
+          <!-- Atmospheric Lead Intro -->
           <p
             data-i18n="hero.intro"
-            class="hero-legible mt-6 mx-auto max-w-lg text-base leading-relaxed text-text sm:text-lg md:mx-0 lg:text-xl xl:text-xl xl:max-w-xl 2xl:text-2xl 2xl:max-w-2xl"
+            class="mt-6 text-base sm:text-lg md:text-xl text-text/85 max-w-2xl leading-relaxed font-sans"
           >
             {fa.hero.intro}
           </p>
 
-          <!-- CTAs -->
-          <div class="mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start xl:gap-4 2xl:gap-5">
-            <a href="#about" class="hero-cta btn btn-gold group px-7 py-3 xl:px-8 xl:py-3.5 2xl:px-10 2xl:py-4 xl:text-base 2xl:text-lg">
+          <!-- Interactive Action Buttons -->
+          <div class="mt-9 flex flex-wrap items-center justify-center gap-4 md:justify-start">
+            <a
+              href="#about"
+              class="btn btn-gold group px-8 py-3.5 text-sm font-bold tracking-wide shadow-lg shadow-nature-gold/20"
+            >
               <span data-i18n="hero.cta_story">{fa.hero.cta_story}</span>
-              <Icon name="arrowDown" size={14} class="transition-transform group-hover:translate-y-0.5 xl:size-4 2xl:size-5" />
+              <Icon name="arrowDown" size={16} class="transition-transform duration-300 group-hover:translate-y-1" />
             </a>
-            <a href="#worlds" class="hero-cta btn btn-outline px-7 py-3 xl:px-8 xl:py-3.5 2xl:px-10 2xl:py-4 xl:text-base 2xl:text-lg">
+
+            <a
+              href="#worlds"
+              class="btn btn-outline group px-8 py-3.5 text-sm font-semibold tracking-wide border-white/20 hover:border-tech-cyan hover:text-tech-cyan"
+            >
               <span data-i18n="hero.cta_work">{fa.hero.cta_work}</span>
+              <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </a>
           </div>
+
+          <!-- Trust Badges Strip -->
+          <div class="mt-12 pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center md:text-start">
+            <div>
+              <div class="font-mono text-xl font-bold text-nature-gold-bright" data-i18n="hero.trust.years">{fa.hero.trust.years}</div>
+              <div class="text-[11px] text-muted mt-0.5">Asiatic Cheetah Core</div>
+            </div>
+            <div>
+              <div class="font-mono text-xl font-bold text-tech-cyan" data-i18n="hero.trust.sites">{fa.hero.trust.sites}</div>
+              <div class="text-[11px] text-muted mt-0.5">Cloud & Web Systems</div>
+            </div>
+            <div>
+              <div class="font-mono text-xl font-bold text-emerald-400" data-i18n="hero.trust.iucn">{fa.hero.trust.iucn}</div>
+              <div class="text-[11px] text-muted mt-0.5">Cat Specialist Group</div>
+            </div>
+            <div>
+              <div class="font-mono text-xl font-bold text-text" data-i18n="hero.trust.leader">{fa.hero.trust.leader}</div>
+              <div class="text-[11px] text-muted mt-0.5">Founder, Sarvin Institute</div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Scroll hint -->
+  <!-- Ambient Scroll Hint -->
   <a
     href="#about"
-    class="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-muted/60 transition-colors hover:text-tech-cyan md:flex"
-    aria-label="Scroll to about"
+    class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center gap-2 text-muted/60 hover:text-tech-cyan transition-colors"
+    aria-label="Scroll to about section"
   >
-    <span class="font-mono text-[9px] uppercase tracking-[0.3em]" data-i18n="hero.scroll">{fa.hero.scroll}</span>
-    <div class="relative h-10 w-6">
-      <span class="absolute left-1/2 top-2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-tech-cyan/80 animate-bounce"></span>
-      <span class="absolute inset-0 rounded-full border border-muted/30"></span>
+    <span class="font-mono text-[10px] uppercase tracking-[0.25em]" data-i18n="hero.scroll">{fa.hero.scroll}</span>
+    <div class="w-5 h-8 rounded-full border border-white/20 flex justify-center pt-1.5">
+      <span class="w-1 h-2 rounded-full bg-tech-cyan animate-bounce"></span>
     </div>
   </a>
 </section>

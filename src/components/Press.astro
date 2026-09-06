@@ -5,21 +5,23 @@ import { pressWordmark } from "../scripts/wordmark";
 ---
 
 <section id="press" class="section-pad relative overflow-hidden">
-  <div class="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_0%,rgba(199,154,58,0.07),transparent_70%)]"></div>
+  <!-- Subtle gold radiant ambient glow -->
+  <div class="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_0%,rgba(199,154,58,0.06),transparent_70%)] pointer-events-none"></div>
+
   <div class="container-px relative">
-    <div class="mx-auto max-w-2xl text-center">
+    <div class="mx-auto max-w-2xl text-center mb-14">
       <p data-reveal class="eyebrow justify-center">
         <Icon name="sparkle" size={14} />
         <span data-i18n="press.eyebrow">{fa.press.eyebrow}</span>
       </p>
-      <h2 data-reveal data-i18n="press.title" class="heading-lg">{fa.press.title}</h2>
-      <p data-reveal data-i18n="press.subtitle" class="mx-auto mt-4 text-muted">{fa.press.subtitle}</p>
+      <h2 data-reveal data-i18n="press.title" class="heading-lg tracking-tight">{fa.press.title}</h2>
+      <p data-reveal data-i18n="press.subtitle" class="mx-auto mt-4 text-base sm:text-lg text-muted font-sans max-w-xl">{fa.press.subtitle}</p>
     </div>
 
-    <!-- Press mentions: monogram + name + read affordance (data-driven) -->
+    <!-- Media Mentions Bento Grid -->
     <div
       data-i18n-list="press"
-      class="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+      class="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
     >
       {
         fa.press.outlets.map((o) => (
@@ -27,18 +29,25 @@ import { pressWordmark } from "../scripts/wordmark";
             href={o.url || "#"}
             target={o.url && o.url !== "#" ? "_blank" : undefined}
             rel={o.url && o.url !== "#" ? "noopener noreferrer" : undefined}
-            class="press-card group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-cyan/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            class="press-card spotlight-card group p-5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-cyan/60"
             data-reveal
           >
-            <span class="press-wordmark-box flex-1" set:html={pressWordmark(o.name)} />
-            <span class="shrink-0">
-              <span class="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted transition-colors group-hover:text-tech-cyan">
-                <span data-i18n="press.readLabel">{fa.press.readLabel}</span>
-                <svg viewBox="0 0 24 24" class="h-3 w-3 shrink-0 transition-transform group-hover:translate-x-0.5 flip-x" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
+            <div class="flex items-center justify-between w-full">
+              <span class="press-wordmark-box flex-1" set:html={pressWordmark(o.name)} />
+              <span class="shrink-0 flex items-center gap-2">
+                {o.year && (
+                  <span class="font-mono text-[10px] text-muted/70 px-2 py-0.5 rounded-full bg-white/5 border border-white/5">
+                    {o.year}
+                  </span>
+                )}
+                <span class="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted transition-colors group-hover:text-tech-cyan">
+                  <span data-i18n="press.readLabel">{fa.press.readLabel}</span>
+                  <svg viewBox="0 0 24 24" class="h-3 w-3 shrink-0 transition-transform group-hover:translate-x-0.5 flip-x" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </span>
               </span>
-            </span>
+            </div>
           </a>
         ))
       }

@@ -709,3 +709,222 @@ h1.hero-legible {
 .hero-cta:hover::before {
   transform: translateX(100%);
 }
+
+
+/* ============================================================
+   AWARD-CLASS DESIGN EXTENSIONS
+   ============================================================ */
+
+/* ---------- Custom Magnetic Cursor ---------- */
+@media (pointer: fine) {
+  .custom-cursor {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    will-change: transform;
+    transition: opacity 0.3s ease;
+  }
+  .cursor-dot {
+    position: fixed;
+    top: -4px;
+    left: -4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: #64ffda;
+    box-shadow: 0 0 10px #64ffda, 0 0 20px rgba(100, 255, 218, 0.4);
+    pointer-events: none;
+    z-index: 10000;
+    transition: transform 0.15s ease-out, background-color 0.3s ease;
+  }
+  .cursor-ring {
+    position: fixed;
+    top: -20px;
+    left: -20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    border: 1.5px solid rgba(100, 255, 218, 0.4);
+    pointer-events: none;
+    z-index: 9999;
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                top 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                left 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease,
+                background-color 0.3s ease;
+  }
+  body.cursor-hover .cursor-ring {
+    width: 64px;
+    height: 64px;
+    top: -32px;
+    left: -32px;
+    border-color: rgba(199, 154, 58, 0.6);
+    background-color: rgba(100, 255, 218, 0.06);
+    backdrop-filter: blur(2px);
+  }
+  body.cursor-hover .cursor-dot {
+    transform: scale(1.5);
+    background: #c79a3a;
+  }
+}
+@media (pointer: coarse) {
+  .custom-cursor, .cursor-dot, .cursor-ring {
+    display: none !important;
+  }
+}
+
+/* ---------- Spotlight Cards (Mouse-following specular reflection) ---------- */
+.spotlight-card {
+  position: relative;
+  isolation: isolate;
+  background: color-mix(in srgb, var(--color-surface) 75%, transparent);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition: border-color 0.4s ease, transform 0.3s ease, box-shadow 0.4s ease;
+}
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    650px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(100, 255, 218, 0.08),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+.spotlight-card:hover {
+  border-color: rgba(100, 255, 218, 0.25);
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.8), 0 0 30px -10px rgba(100, 255, 218, 0.15);
+}
+
+.spotlight-card-gold:hover {
+  border-color: rgba(199, 154, 58, 0.35);
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.8), 0 0 30px -10px rgba(199, 154, 58, 0.18);
+}
+.spotlight-card-gold::before {
+  background: radial-gradient(
+    650px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(199, 154, 58, 0.12),
+    transparent 45%
+  );
+}
+
+/* ---------- 3D Tilt Perspective Container ---------- */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* ---------- Audio Equalizer Visualizer ---------- */
+.eq-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+  width: 14px;
+}
+.eq-bar {
+  width: 2.5px;
+  background-color: var(--color-tech-cyan);
+  border-radius: 1px;
+  transition: height 0.2s ease;
+}
+.eq-bar-1 { height: 40%; }
+.eq-bar-2 { height: 80%; }
+.eq-bar-3 { height: 60%; }
+
+.is-playing .eq-bar-1 {
+  animation: eqPulse1 0.8s ease-in-out infinite alternate;
+}
+.is-playing .eq-bar-2 {
+  animation: eqPulse2 0.6s ease-in-out infinite alternate;
+}
+.is-playing .eq-bar-3 {
+  animation: eqPulse3 0.7s ease-in-out infinite alternate;
+}
+@keyframes eqPulse1 { 0% { height: 25%; } 100% { height: 100%; } }
+@keyframes eqPulse2 { 0% { height: 90%; } 100% { height: 30%; } }
+@keyframes eqPulse3 { 0% { height: 40%; } 100% { height: 85%; } }
+
+/* ---------- Toast Notification ---------- */
+#toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 10000;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+[dir="rtl"] #toast-container {
+  right: auto;
+  left: 1.5rem;
+}
+.toast-msg {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  background: rgba(13, 20, 30, 0.9);
+  border: 1px solid rgba(100, 255, 218, 0.3);
+  backdrop-filter: blur(16px);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(100, 255, 218, 0.2);
+  transform: translateY(20px) scale(0.95);
+  opacity: 0;
+  transition: transform 0.35s var(--ease-out-expo), opacity 0.35s ease;
+}
+.toast-msg.toast-show {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* ---------- Sanctuary Radar Ping & Beacon Animation ---------- */
+@keyframes radarPing {
+  0% {
+    r: 6;
+    stroke-opacity: 0.9;
+    stroke-width: 2;
+  }
+  100% {
+    r: 28;
+    stroke-opacity: 0;
+    stroke-width: 0.5;
+  }
+}
+.radar-pulse {
+  animation: radarPing 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  transform-origin: center;
+}
+
+/* ---------- Telemetry Live Badge ---------- */
+.telemetry-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}

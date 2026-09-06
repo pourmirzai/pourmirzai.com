@@ -6,70 +6,111 @@ import FootprintSVG from "./svg/FootprintSVG.astro";
 import Icon from "./Icon.astro";
 
 const stats = [
-  { key: "years", count: 17, suffix: "+", labelKey: "about.stats.yearsLabel", label: fa.about.stats.yearsLabel, val: fa.about.stats.years },
-  { key: "sites", count: 30, suffix: "+", labelKey: "about.stats.sitesLabel", label: fa.about.stats.sitesLabel, val: fa.about.stats.sites },
-  { key: "repos", count: 10, suffix: "+", labelKey: "about.stats.reposLabel", label: fa.about.stats.reposLabel, val: fa.about.stats.repos },
-  { key: "press", count: 6, suffix: "", labelKey: "about.stats.pressLabel", label: fa.about.stats.pressLabel, val: fa.about.stats.press },
+  { key: "years", count: 17, suffix: "+", labelKey: "about.stats.yearsLabel", label: fa.about.stats.yearsLabel, noteKey: "about.stats.yearsNote", note: fa.about.stats.yearsNote, val: fa.about.stats.years },
+  { key: "repos", count: 5600, suffix: "", labelKey: "about.stats.reposLabel", label: fa.about.stats.reposLabel, noteKey: "about.stats.reposNote", note: fa.about.stats.reposNote, val: fa.about.stats.repos },
+  { key: "sites", count: 50, suffix: "+", labelKey: "about.stats.sitesLabel", label: fa.about.stats.sitesLabel, noteKey: "about.stats.sitesNote", note: fa.about.stats.sitesNote, val: fa.about.stats.sites },
+  { key: "press", count: 14, suffix: "+", labelKey: "about.stats.pressLabel", label: fa.about.stats.pressLabel, noteKey: "about.stats.pressNote", note: fa.about.stats.pressNote, val: fa.about.stats.press },
 ];
 ---
 
 <section id="about" class="section-pad relative overflow-hidden">
-  <!-- subtle surface band: breaks the flat-black rhythm between Hero and Two Worlds -->
+  <!-- Subtle atmospheric gradient backdrop -->
   <div
     aria-hidden="true"
-    class="absolute inset-0 -z-10 border-y border-white/5 bg-gradient-to-b from-transparent via-surface/30 to-transparent"
+    class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_50%,rgba(199,154,58,0.06),transparent)] pointer-events-none"
   >
   </div>
 
-  <!-- decorative footprints -->
-  <FootprintSVG class="pointer-events-none absolute -end-10 top-24 h-40 w-40 text-nature-gold/5" />
-  <FootprintSVG class="pointer-events-none absolute start-10 bottom-10 h-24 w-24 text-tech-cyan/5 rotate-12" />
+  <!-- Decorative Cheetah footprints -->
+  <FootprintSVG class="pointer-events-none absolute -end-12 top-20 h-48 w-48 text-nature-gold/[0.04]" />
+  <FootprintSVG class="pointer-events-none absolute start-8 bottom-16 h-32 w-32 text-tech-cyan/[0.04] rotate-12" />
 
   <div class="container-px">
-    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-      <!-- Portrait -->
-      <div data-reveal class="relative mx-auto max-w-sm">
-        <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-nature-gold-bright/20 to-tech-cyan/10 blur-2xl"></div>
-        <figure class="about-portrait-frame relative overflow-hidden rounded-[2rem] border border-white/10">
-          <Image
-            src={portrait}
-            alt="Morteza Pourmirzai — wildlife conservation leader"
-            width={640}
-            height={800}
-            densities={[1, 2]}
-            loading="lazy"
-            decoding="async"
-            class="h-full w-full object-cover"
-          />
-          <div
-            aria-hidden="true"
-            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg/60 via-transparent to-transparent"
-          >
+    <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+      
+      <!-- Left Column: 3D Portrait & Manifesto Quote (5 Cols on LG) -->
+      <div data-reveal class="lg:col-span-5 relative mx-auto w-full max-w-md perspective-1000">
+        <!-- Glowing aura behind portrait -->
+        <div class="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-tr from-nature-gold-bright/20 via-transparent to-tech-cyan/20 blur-3xl opacity-70"></div>
+        
+        <!-- Portrait Frame -->
+        <figure class="spotlight-card spotlight-card-gold relative overflow-hidden rounded-3xl border border-white/15 p-2 shadow-2xl">
+          <div class="relative aspect-[4/5] overflow-hidden rounded-2xl">
+            <Image
+              src={portrait}
+              alt="Morteza Pourmirzai — Conservation Technologist"
+              width={640}
+              height={800}
+              densities={[1, 2]}
+              loading="lazy"
+              decoding="async"
+              class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+            />
+            <div
+              aria-hidden="true"
+              class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/10"
+            >
+            </div>
+
+            <!-- Coordinate Watermark Tag -->
+            <div class="absolute bottom-3 start-3 end-3 flex items-center justify-between text-[11px] font-mono text-white/90 drop-shadow">
+              <span class="flex items-center gap-1.5">
+                <span class="h-1.5 w-1.5 rounded-full bg-nature-gold-bright animate-ping"></span>
+                <span>Touran · Miandasht · Global</span>
+              </span>
+              <span class="text-tech-cyan/90">35.8° N · 55.4° E</span>
+            </div>
           </div>
         </figure>
+
+        <!-- Manifesto Quote Card -->
+        <div class="mt-4 rounded-2xl border border-white/10 bg-surface/80 p-5 backdrop-blur-xl shadow-xl">
+          <p class="font-mono text-[10px] text-nature-gold-bright uppercase tracking-widest flex items-center gap-1.5">
+            <Icon name="sparkle" size={12} />
+            <span>Guiding Philosophy</span>
+          </p>
+          <blockquote data-i18n="about.quote" class="mt-2 text-xs sm:text-sm text-text/85 italic leading-relaxed font-sans">
+            "{fa.about.quote}"
+          </blockquote>
+        </div>
       </div>
 
-      <!-- Bio -->
-      <div>
+      <!-- Right Column: Editorial Dossier & Bento Metrics (7 Cols on LG) -->
+      <div class="lg:col-span-7">
         <p data-reveal class="eyebrow">
           <Icon name="leaf" size={14} />
           <span data-i18n="about.eyebrow">{fa.about.eyebrow}</span>
         </p>
-        <h2 data-reveal data-i18n="about.title" class="heading-lg">{fa.about.title}</h2>
-        <p data-reveal data-i18n="about.bio" class="mt-5 text-text/80">{fa.about.bio}</p>
-        <p data-reveal data-i18n="about.bio2" class="mt-4 text-muted">{fa.about.bio2}</p>
 
-        <!-- Stats -->
+        <h2 data-reveal data-i18n="about.title" class="heading-lg tracking-tight">
+          {fa.about.title}
+        </h2>
+
+        <p data-reveal data-i18n="about.bio" class="mt-6 text-base sm:text-lg text-text/90 leading-relaxed font-sans">
+          {fa.about.bio}
+        </p>
+
+        <p data-reveal data-i18n="about.bio2" class="mt-4 text-sm sm:text-base text-muted leading-relaxed font-sans">
+          {fa.about.bio2}
+        </p>
+
+        <!-- Bento-Grid Metrics -->
         <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {
             stats.map((s) => (
-              <div data-reveal class="rounded-2xl border border-white/5 bg-surface/60 p-4 text-center">
-                <div class="font-mono text-3xl font-bold text-text">
+              <div
+                data-reveal
+                class="spotlight-card p-4 text-center transition-all duration-300"
+              >
+                <div class="font-mono text-3xl sm:text-4xl font-extrabold text-text">
                   <span data-count={s.count}>{s.val.replace(/[^\d۰-۹,]/g, "")}</span>
                   {s.suffix && <span class="text-tech-cyan">{s.suffix}</span>}
                 </div>
-                <div data-i18n={s.labelKey} class="mt-1 text-xs leading-tight text-muted">
+                <div data-i18n={s.labelKey} class="mt-1.5 font-semibold text-xs text-text/90">
                   {s.label}
+                </div>
+                <div data-i18n={s.noteKey} class="mt-0.5 text-[10px] text-muted font-mono">
+                  {s.note}
                 </div>
               </div>
             ))
@@ -78,26 +119,36 @@ const stats = [
       </div>
     </div>
 
-    <!-- Timeline -->
-    <div class="mt-20 lg:mt-28">
-      <h3 data-reveal data-i18n="about.timelineTitle" class="mb-8 text-center font-mono text-sm uppercase tracking-[0.3em] text-muted">
-        {fa.about.timelineTitle}
-      </h3>
+    <!-- Milestone Chronology Roadmap -->
+    <div class="mt-24 lg:mt-32">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <p data-reveal class="eyebrow justify-center">
+          <Icon name="sparkle" size={12} />
+          <span>Timeline</span>
+        </p>
+        <h3 data-reveal data-i18n="about.timelineTitle" class="heading-lg text-2xl sm:text-3xl">
+          {fa.about.timelineTitle}
+        </h3>
+      </div>
 
-      <div class="relative mx-auto max-w-2xl">
-        <!-- vertical line -->
+      <div class="relative mx-auto max-w-3xl">
+        <!-- Glowing spine line -->
         <div
-          class="absolute bottom-0 start-[5px] top-2 w-px bg-gradient-to-b from-nature-gold-bright via-tech-cyan/40 to-transparent"
+          class="absolute bottom-0 start-[6px] top-3 w-[2px] bg-gradient-to-b from-nature-gold-bright via-tech-cyan to-transparent shadow-[0_0_10px_rgba(100,255,218,0.3)]"
         >
         </div>
 
         <ol data-i18n-list="timeline" class="space-y-0">
           {
             fa.about.timeline.map((item) => (
-              <li class="timeline-item relative ps-8 pb-8" data-reveal>
-                <span class="timeline-dot absolute start-0 top-1.5 grid h-3 w-3 place-items-center rounded-full bg-nature-gold-bright ring-4 ring-nature-gold-bright/15" />
-                <span class="font-mono text-sm font-semibold text-tech-cyan">{item.year}</span>
-                <p class="mt-1 text-sm text-muted">{item.text}</p>
+              <li class="timeline-item relative ps-8 pb-8 group" data-reveal>
+                <span class="timeline-dot absolute start-0 top-1.5 grid h-3.5 w-3.5 place-items-center rounded-full bg-nature-gold-bright ring-4 ring-nature-gold-bright/20 transition-transform duration-300 group-hover:scale-125">
+                  <span class="h-1.5 w-1.5 rounded-full bg-bg"></span>
+                </span>
+                <div class="rounded-xl border border-white/5 bg-surface/40 p-4 transition-all duration-300 group-hover:border-nature-gold/40 group-hover:bg-surface/70">
+                  <span class="font-mono text-sm font-bold text-tech-cyan">{item.year}</span>
+                  <p class="mt-1 text-sm text-text/80 leading-relaxed font-sans">{item.text}</p>
+                </div>
               </li>
             ))
           }

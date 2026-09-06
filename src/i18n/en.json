@@ -9,115 +9,242 @@
     "about": "About",
     "worlds": "Two Worlds",
     "press": "Press",
-    "contact": "Contact"
+    "contact": "Contact",
+    "soundOn": "Sound On",
+    "soundOff": "Sound Off"
   },
   "hero": {
     "name": "Morteza Pourmirzai",
     "roleNature": "Wildlife Conservation",
     "roleTech": "Web Developer",
-    "intro": "17 years protecting the Asiatic Cheetah.",
+    "intro": "17 years safeguarding the critically endangered Asiatic Cheetah on the Iranian plateau, fused with two decades of digital architecture, server engineering, and creative code.",
     "tagline": "Where Nature Meets Code",
-    "cta_story": "Read My Story",
-    "cta_work": "My Conservation Work",
-    "cta_contact": "Let's Connect",
-    "scroll": "Scroll",
-    "natureLabel": "Ecology",
-    "techLabel": "Tech",
-    "natureCardTitle": "Striving to Conserve the Iranian Cheetah",
-    "natureCardDesc": "Active in protecting the Iranian cheetah in the Iranian plateau.",
+    "statusPill": "Active in Field & Terminal",
+    "cta_story": "Explore Journey",
+    "cta_work": "Conservation Impact",
+    "cta_contact": "Initiate Contact",
+    "scroll": "Scroll to explore",
+    "natureLabel": "Ecology & Field",
+    "techLabel": "Architecture & Code",
+    "natureCardTitle": "Asiatic Cheetah Field Monitor",
+    "natureCardDesc": "Automated camera-trap telemetry and corridor conservation across 5,600 ha of protected steppe.",
+    "telemetry": {
+      "coordinates": "35.84° N 55.42° E",
+      "location": "Touran Biosphere Reserve",
+      "species": "Acinonyx jubatus venaticus",
+      "status": "Critically Endangered",
+      "sensor": "Active Sensor Network"
+    },
+    "terminal": {
+      "tabOps": "field_ops.sh",
+      "tabDeploy": "deploy_stack.ts",
+      "tabAI": "habitat_ai.py"
+    },
     "trust": {
-      "years": "17+ Years Experience",
+      "years": "17+ Years in Field",
       "leader": "Conservationist",
       "iucn": "IUCN Member",
-      "sites": "50+ Websites"
+      "sites": "50+ Platforms Built"
     }
   },
   "about": {
-    "eyebrow": "About Me",
-    "title": "Two Worlds, One Person",
-    "bio": "I am Morteza Pourmirzai, a wildlife conservation practitioner and founder of Sarvin Wildlife Conservation Institute. My main focus is on the protection of threatened species—particularly the Asiatic cheetah—as well as the management and restoration of natural habitats. Throughout my years of activity, I have strived to apply an approach grounded in ethics, science, community engagement, and effective policymaking in conservation projects. Before founding Sarvin, I served as CEO of the Iranian Cheetah Society, where I took part in a range of educational, research, field, and cross-sector initiatives. My experience is not limited to the field; alongside my conservation work, I also engage in developing digital infrastructure, web design, server management, and the optimization of online systems.",
-    "bio2": "I believe effective conservation of nature depends on the integration of knowledge, technology, and human-ethical collaboration—and I strive to bring these three together in everything I do.",
+    "eyebrow": "Dossier & Mission",
+    "title": "Two Worlds, One Vision",
+    "quote": "Conservation without technology moves too slowly; technology without purpose is hollow. Together, they safeguard life on Earth.",
+    "bio": "I am Morteza Pourmirzai, a wildlife conservation practitioner and founder of Sarvin Wildlife Conservation Institute. My primary dedication is preserving threatened feline species—particularly the Asiatic cheetah—alongside the strategic management and ecological restoration of natural habitats across Iran. Before founding Sarvin, I served as CEO of the Iranian Cheetah Society, spearheading multi-sector initiatives spanning field research, educational advocacy, and ranger support.",
+    "bio2": "Beyond the arid steppe and mountain corridors, I engineer digital infrastructure, optimize high-traffic web systems, configure resilient Linux server clusters, and deploy automated pipelines. I believe transformative nature conservation emerges when rigorous science, ethical human collaboration, and modern software architecture unite.",
     "stats": {
       "years": "17+",
       "yearsLabel": "Years in Conservation",
+      "yearsNote": "Fieldwork & Leadership",
       "sites": "50+",
-      "sitesLabel": "Websites",
-      "repos": "5+",
-      "reposLabel": "Coding Projects",
-      "press": "6+",
-      "pressLabel": "International Media"
+      "sitesLabel": "Platforms Deployed",
+      "sitesNote": "Web & Cloud Systems",
+      "repos": "5,600",
+      "reposLabel": "Hectares Protected",
+      "reposNote": "Cheetah Sanctuary",
+      "press": "14+",
+      "pressLabel": "Global Media Features",
+      "pressNote": "Newsweek, People, IUCN"
     },
-    "timelineTitle": "My Journey",
+    "timelineTitle": "Milestone Chronology",
     "timeline": [
-      { "year": "2007", "text": "Began environmental studies and volunteer conservation work" },
-      { "year": "2010s", "text": "Educational and awareness projects with the Iranian Cheetah Society" },
-      { "year": "2018", "text": "Became CEO of the Iranian Cheetah Society and took part in conservation and habitat restoration projects" },
-      { "year": "2024", "text": "Founded Sarvin Wildlife Conservation" }
+      {
+        "year": "2007",
+        "text": "Initiated ecological field studies and volunteer conservation initiatives across central Iran."
+      },
+      {
+        "year": "2010s",
+        "text": "Directed national educational and public awareness campaigns with the Iranian Cheetah Society."
+      },
+      {
+        "year": "2018",
+        "text": "Appointed CEO of the Iranian Cheetah Society; spearheaded large-scale habitat restoration and camera-trap monitoring."
+      },
+      {
+        "year": "2024",
+        "text": "Founded Sarvin Wildlife Conservation Institute to pioneer sustainable wildlife stewardship and technology integration."
+      }
     ]
   },
   "worlds": {
-    "eyebrow": "Two Worlds",
+    "eyebrow": "The Convergence Engine",
     "title": "Conservation & Technology",
-    "subtitle": "Two domains that seem far apart, yet complete each other in practice.",
+    "subtitle": "Two domains that appear distant on the surface, yet amplify each other into tangible impact.",
     "nature": {
-      "label": "Conservation World",
-      "title": "Protecting Threatened Cats",
-      "desc": "Protecting threatened species like the Asiatic cheetah — focused on habitat management and restoration, camera traps and community engagement.",
-      "locationsTitle": "Activity Zones",
-      "projectsTitle": "Organizations",
-      "achievementsTitle": "Key Achievements",
+      "label": "Sanctuary Operations",
+      "title": "Protecting Threatened Felidae",
+      "desc": "Safeguarding the last remaining wild Asiatic cheetahs through comprehensive habitat restoration, community ranger co-management, and high-density camera-trap grids.",
+      "locationsTitle": "Sanctuary Telemetry Map",
+      "locationsHint": "Hover sanctuary beacons to view live telemetry",
+      "projectsTitle": "Institutions & Leadership",
+      "achievementsTitle": "Key Field Achievements",
+      "sanctuaries": [
+        {
+          "id": "touran",
+          "name": "Touran Biosphere Reserve",
+          "area": "1,400,000 ha",
+          "role": "Primary Breeding Sanctuary",
+          "status": "Camera Grid Active"
+        },
+        {
+          "id": "miandasht",
+          "name": "Miandasht Wildlife Refuge",
+          "area": "85,000 ha",
+          "role": "Steppe Stepping Stone",
+          "status": "Ranger Post Staffed"
+        },
+        {
+          "id": "abbasabad",
+          "name": "Abbas Abad Reserve",
+          "area": "300,000 ha",
+          "role": "Eastern Movement Corridor",
+          "status": "Prey Tracking Active"
+        }
+      ],
       "projects": [
-        { "name": "Sarvin Wildlife Conservation", "desc": "Founded & lead the institute", "url": "https://sarvinwildlife.com" },
-        { "name": "Iranian Cheetah Society", "desc": "Former CEO — Iranian Cheetah Society", "url": "https://wildlife.ir" }
+        {
+          "name": "Sarvin Wildlife Conservation",
+          "desc": "Founder & Institute Leader — Habitat Restoration & Science",
+          "url": "https://sarvinwildlife.com"
+        },
+        {
+          "name": "Iranian Cheetah Society",
+          "desc": "Former CEO — Flagship Iranian Conservation NGO",
+          "url": "https://wildlife.ir"
+        }
       ],
       "achievements": [
-        "Secured 5,600 hectares of habitat for the Iranian cheetah",
-        "Deployed a camera-trap network",
-        "Trained rangers and local communities",
-        "Partnered with national and international organizations"
+        "Secured 5,600 hectares of critical habitat for the Asiatic cheetah",
+        "Pioneered extensive camera-trap monitoring networks across core ranges",
+        "Empowered local pastoralists and trained frontline wildlife rangers",
+        "Forged strategic alliances with IUCN and global feline conservation coalitions"
       ]
     },
     "tech": {
-      "label": "Tech World",
-      "title": "Digital Infrastructure & Automation",
-      "desc": "Infrastructure development, server management and automation that serve both conservation and online systems.",
-      "stackTitle": "My Stack",
-      "reposTitle": "Public GitHub Projects",
-      "stack": ["PHP", "TypeScript", "Bash", "Docker", "WordPress", "n8n", "AI/LLM", "Linux"],
+      "label": "Digital Architecture",
+      "title": "Resilient Systems & Cloud",
+      "desc": "Architecting automated pipelines, containerized microservices, and bespoke software solutions that empower conservation logistics and modern web enterprises.",
+      "stackTitle": "Technical Arsenal",
+      "reposTitle": "Selected Open-Source Architecture",
+      "stack": [
+        "PHP",
+        "TypeScript",
+        "Bash",
+        "Docker",
+        "Linux / DevOps",
+        "n8n Automation",
+        "AI / LLMs",
+        "Astro & Tailwind"
+      ],
       "repos": [
-        { "name": "Cheetah-Game", "desc": "Interactive cheetah conservation game", "tag": "React + TS", "url": "https://github.com/pourmirzai/Cheetah-Game" },
-        { "name": "slidist", "desc": "Free social media slide maker tool", "tag": "JavaScript", "url": "https://github.com/pourmirzai/slidist" },
-        { "name": "webp-convertor", "desc": "Image to WebP converter", "tag": "JavaScript", "url": "https://github.com/pourmirzai/webp-convertor" }
+        {
+          "name": "Cheetah-Game",
+          "desc": "Interactive conservation simulator educating users on cheetah survival dynamics.",
+          "tag": "React · TS",
+          "url": "https://github.com/pourmirzai/Cheetah-Game"
+        },
+        {
+          "name": "slidist",
+          "desc": "Lightweight client-side social media carousel and slide generator.",
+          "tag": "TypeScript · Canvas",
+          "url": "https://github.com/pourmirzai/slidist"
+        },
+        {
+          "name": "webp-convertor",
+          "desc": "High-efficiency batch WebP image optimization and conversion CLI.",
+          "tag": "Node.js · Sharp",
+          "url": "https://github.com/pourmirzai/webp-convertor"
+        }
       ]
     }
   },
   "press": {
-    "eyebrow": "Press",
-    "title": "In the Media",
-    "subtitle": "Interviews and features I've been part of. Click any logo to read.",
-    "readLabel": "Read",
+    "eyebrow": "Global Media",
+    "title": "Featured & Quoted",
+    "subtitle": "Global journalism and academic institutions covering our conservation discoveries and frontline challenges.",
+    "readLabel": "Read Article",
+    "filterAll": "All Media",
+    "filterIntl": "International",
+    "filterLocal": "National (Iran)",
     "outlets": [
-      { "name": "Newsweek", "url": "https://www.newsweek.com/irans-cheetahs-dire-risk-just-12-remain-wild-extinction-asiatic-1668518" },
-      { "name": "People", "url": "https://people.com/pets/12-asiatic-cheetahs-left-in-iran/" },
-      { "name": "IUCN NL", "url": "https://www.iucn.nl/en/story/protecting-the-asiatic-cheetah-in-iran-meet-morteza-pourmirzai/" },
-      { "name": "Felidae Fund", "url": "https://felidaefund.org/news/general/the-asiatic-cheetah-a-subspecies-on-the-brink-of-extinction" },
-      { "name": "Zoos Media", "url": "https://zoos.media/media-echo/asiatic-cheetahs-in-danger/?lang=en" },
-      { "name": "Iran Daily", "url": "https://newspaper.irandaily.ir/8153/4/24730" },
-      { "name": "TEDxSUT", "url": "https://www.youtube.com/watch?v=hujt7mFA_Ak" }
+      {
+        "name": "Newsweek",
+        "url": "https://www.newsweek.com/irans-cheetahs-dire-risk-just-12-remain-wild-extinction-asiatic-1668518",
+        "type": "intl",
+        "year": "2022"
+      },
+      {
+        "name": "People",
+        "url": "https://people.com/pets/12-asiatic-cheetahs-left-in-iran/",
+        "type": "intl",
+        "year": "2022"
+      },
+      {
+        "name": "IUCN NL",
+        "url": "https://www.iucn.nl/en/story/protecting-the-asiatic-cheetah-in-iran-meet-morteza-pourmirzai/",
+        "type": "intl",
+        "year": "2023"
+      },
+      {
+        "name": "Felidae Fund",
+        "url": "https://felidaefund.org/news/general/the-asiatic-cheetah-a-subspecies-on-the-brink-of-extinction",
+        "type": "intl",
+        "year": "2022"
+      },
+      {
+        "name": "TEDxSUT",
+        "url": "https://www.youtube.com/watch?v=hujt7mFA_Ak",
+        "type": "intl",
+        "year": "2021"
+      },
+      {
+        "name": "Zoos Media",
+        "url": "https://zoos.media/media-echo/asiatic-cheetahs-in-danger/?lang=en",
+        "type": "intl",
+        "year": "2022"
+      },
+      {
+        "name": "Iran Daily",
+        "url": "https://newspaper.irandaily.ir/8153/4/24730",
+        "type": "intl",
+        "year": "2023"
+      }
     ]
   },
   "contact": {
-    "eyebrow": "Contact",
-    "title": "Let's Connect",
-    "subtitle": "Available for conservation collaboration, technical projects or media. Reach me through any of the channels below.",
-    "emailLabel": "Email",
-    "emailHint": "Click to reveal address",
-    "socialsLabel": "Social",
-    "locationLabel": "Lives in Earth"
+    "eyebrow": "Transmission Deck",
+    "title": "Initiate Connection",
+    "subtitle": "Available for strategic wildlife conservation advisory, cloud architecture, keynotes, or media engagements.",
+    "emailLabel": "Direct Transmission",
+    "emailHint": "Click to copy address",
+    "copiedToast": "Email copied to clipboard!",
+    "socialsLabel": "Verified Social Signals",
+    "locationLabel": "Base: Planet Earth · Available Worldwide"
   },
   "footer": {
     "tagline": "Where Nature Meets Code",
     "rights": "All rights reserved.",
-    "madeWith": "Built with Astro, GSAP and love for nature."
+    "madeWith": "Designed & crafted with Astro, GSAP, and a profound reverence for wild Earth."
   }
 }

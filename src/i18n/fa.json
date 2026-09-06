@@ -9,129 +9,290 @@
     "about": "درباره من",
     "worlds": "دو دنیای من",
     "press": "در رسانه‌ها",
-    "contact": "ارتباط"
+    "contact": "ارتباط",
+    "soundOn": "صدا روشن",
+    "soundOff": "صدا خاموش"
   },
   "hero": {
     "name": "مرتضی پورمیرزای",
     "roleNature": "حفاظت از حیات‌وحش",
     "roleTech": "توسعه‌دهندهٔ وب",
-    "intro": "۱۷ سال حفاظت از یوزپلنگ آسیایی.",
+    "intro": "۱۷ سال حفاظت از یوزپلنگ آسیایی در فلات ایران، پیوندخورده با دو دهه معماری دیجیتال، مهندسی سرور و کدنویسی خلاقانه.",
     "tagline": "جایی که طبیعت با کد دیدار می‌کند",
-    "cta_story": "داستان من",
-    "cta_work": "کار حفاظتی من",
-    "cta_contact": "ارتباط با من",
-    "scroll": "اسکرول کنید",
-    "natureLabel": "اکولوژی",
-    "techLabel": "فناوری",
-    "natureCardTitle": "در تلاش برای حفظ یوزپلنگ ایرانی",
-    "natureCardDesc": "فعال در حفاظت از یوزپلنگ ایرانی در فلات ایران",
+    "statusPill": "فعال در میدان و ترمینال",
+    "cta_story": "مسیر من",
+    "cta_work": "اثر حفاظتی",
+    "cta_contact": "آغاز ارتباط",
+    "scroll": "برای کاوش اسکرول کنید",
+    "natureLabel": "اکولوژی و میدان",
+    "techLabel": "معماری و کد",
+    "natureCardTitle": "پایش میدانی یوزپلنگ آسیایی",
+    "natureCardDesc": "تله‌متری خودکار دوربین‌های تله‌ای و حفاظت از کریدورهای زیستگاهی در ۵٬۶۰۰ هکتار استپ حفاظت‌شده.",
+    "telemetry": {
+      "coordinates": "۳۵.۸۴° شمالی ۵۵.۴۲° شرقی",
+      "location": "ذخیره‌گاه زیست‌کره توران",
+      "species": "Acinonyx jubatus venaticus",
+      "status": "شدیداً در معرض خطر انقراض",
+      "sensor": "شبکه فعال حسگرهای میدانی"
+    },
+    "terminal": {
+      "tabOps": "field_ops.sh",
+      "tabDeploy": "deploy_stack.ts",
+      "tabAI": "habitat_ai.py"
+    },
     "trust": {
-      "years": "۱۷+ سال تجربه",
+      "years": "۱۷+ سال در میدان",
       "leader": "حفاظتگر",
       "iucn": "عضو IUCN",
-      "sites": "۵۰+ وب‌سایت"
+      "sites": "۵۰+ سامانه وب"
     }
   },
   "about": {
-    "eyebrow": "درباره من",
-    "title": "دو دنیا، یک انسان",
-    "bio": "من مرتضی پورمیرزای هستم، فعال حوزهٔ حفاظت از حیات‌وحش و بنیان‌گذار موسسه حافظان حیات‌وحش سَروین. تمرکز اصلی من بر حفاظت از گونه‌های در معرض تهدید، یوزپلنگ آسیایی و همچنین مدیریت و احیای زیستگاه‌های طبیعی است. در طول سال‌های فعالیت، تلاش کرده‌ام رویکردی مبتنی بر اخلاق، علم، مشارکت جوامع محلی و سیاست‌گذاری مؤثر را در پروژه‌های حفاظتی به کار بگیرم. پیش از تأسیس سروین، به‌عنوان مدیرعامل انجمن یوزپلنگ ایرانی فعالیت داشتم و در پروژه‌های مختلف آموزشی، تحقیقاتی، میدانی و بین‌بخشی مشارکت کرده‌ام. تجربهٔ من تنها به حوزهٔ میدانی محدود نیست؛ بلکه در کنار فعالیت‌های حفاظتی، به توسعهٔ زیرساخت‌های دیجیتال، طراحی وب، مدیریت سرورها و بهینه‌سازی سیستم‌های آنلاین نیز می‌پردازم.",
-    "bio2": "باور دارم حفاظت مؤثر از طبیعت، نیازمند پیوند بین دانش، فناوری و همکاری‌های انسانی-اخلاقی است و تلاش می‌کنم این سه را در تمام فعالیت‌هایم به‌هم متصل کنم.",
+    "eyebrow": "پرونده و مأموریت",
+    "title": "دو دنیا، یک چشم‌انداز",
+    "quote": "حفاظت از طبیعت بدون فناوری کند پیش می‌رود؛ و فناوری بدون هدف، تهی است. پیوند این دو، پاسدار حیات بر روی زمین است.",
+    "bio": "من مرتضی پورمیرزای هستم، کنشگر حفاظت از حیات‌وحش و بنیان‌گذار موسسه حافظان حیات‌وحش سَروین. مأموریت بنیادین من، پاسداری از گربه‌سانان باشکوه و در معرض تهدید—به‌ویژه یوزپلنگ آسیایی—در کنار مدیریت علمی و احیای اکولوژیک زیستگاه‌های طبیعی در فلات ایران است. پیش از سَروین، به‌عنوان مدیرعامل انجمن یوزپلنگ ایرانی، پروژه‌های جامع میدانی، پژوهشی، آموزشی و توانمندسازی جوامع بومی را هدایت کردم.",
+    "bio2": "فراتر از دشت‌های فراخ و صخره‌های کوهستانی، به معماری زیرساخت‌های دیجیتال، بهینه‌سازی سرورهای پرترافیک لینوکس، کانتینرسازی با داکر و پیاده‌سازی اتوماسیون‌های هوشمند می‌پردازم. باور راسخ دارم که حفاظت پایدار از طبیعت، در نقطهٔ تلاقی علم تجربی، تعهد اخلاقی انسانی و فناوری‌های مدرن نرم‌افزاری محقق می‌شود.",
     "stats": {
       "years": "۱۷+",
-      "yearsLabel": "سال حفاظت از حیات‌وحش",
+      "yearsLabel": "سال در حفاظت حیات‌وحش",
+      "yearsNote": "رهبری و فعالیت میدانی",
       "sites": "۵۰+",
-      "sitesLabel": "وب‌سایت",
-      "repos": "۵+",
-      "reposLabel": "پروژهٔ کدنویسی",
-      "press": "۶+",
-      "pressLabel": "رسانهٔ بین‌المللی"
+      "sitesLabel": "سامانه و وب‌سایت",
+      "sitesNote": "زیرساخت ابری و وب",
+      "repos": "۵٬۶۰۰",
+      "reposLabel": "هکتار زیستگاه امن",
+      "reposNote": "قلمرو یوزپلنگ ایرانی",
+      "press": "۱۴+",
+      "pressLabel": "رسانهٔ بین‌المللی و ملی",
+      "pressNote": "نیوزویک، پیپل، IUCN"
     },
-    "timelineTitle": "مسیر من",
+    "timelineTitle": "گاه‌شمار مسیر",
     "timeline": [
-      { "year": "۲۰۰۷", "text": "آغاز مطالعات محیط زیست و فعالیت داوطلبانهٔ حفاظتی" },
-      { "year": "دهه ۲۰۱۰", "text": "پروژه‌های آموزشی و آگاه‌سازی انجمن یوزپلنگ ایرانی" },
-      { "year": "۲۰۱۸", "text": "مدیرعامل انجمن یوزپلنگ ایرانی و مشارکت در پروژه‌های حفاظتی و احیای زیستگاه" },
-      { "year": "۲۰۲۴", "text": "بنیان‌گذاری حافظان حیات‌وحش سَروین" }
+      {
+        "year": "۲۰۰۷",
+        "text": "آغاز مطالعات تخصصی اکولوژی و کنشگری داوطلبانه میدانی در مرکز ایران."
+      },
+      {
+        "year": "دهه ۲۰۱۰",
+        "text": "طراحی و اجرای کارزارهای سراسری آموزش و آگاه‌سازی عمومی با انجمن یوزپلنگ ایرانی."
+      },
+      {
+        "year": "۲۰۱۸",
+        "text": "مدیرعامل انجمن یوزپلنگ ایرانی؛ هدایت پروژه‌های کلان احیای زیستگاه و شبکه دوربین‌های تله‌ای."
+      },
+      {
+        "year": "۲۰۲۴",
+        "text": "بنیان‌گذاری موسسه حافظان حیات‌وحش سَروین با رویکرد نوآورانه تلفیق حفاظت، جامعه و فناوری."
+      }
     ]
   },
   "worlds": {
-    "eyebrow": "دو دنیای من",
+    "eyebrow": "موتور همگرایی",
     "title": "حفاظت و فناوری",
-    "subtitle": "دو حوزه که در نگاه اول دور از هم‌اند، اما در عمل یکدیگر را کامل می‌کنند.",
+    "subtitle": "دو سپهر که در نگاه نخست دور به نظر می‌رسند، اما در میدان عمل اثربخشی یکدیگر را صدچندان می‌کنند.",
     "nature": {
-      "label": "دنیای حفاظت",
-      "title": "حفاظت از گربه‌سانان در معرض تهدید",
-      "desc": "حفاظت از گونه‌های در معرض تهدید مانند یوزپلنگ آسیایی با تمرکز بر مدیریت و احیای زیستگاه، دوربین‌های تله‌ای و مشارکت جوامع محلی.",
-      "locationsTitle": "مناطق فعالیت",
-      "projectsTitle": "سازمان‌ها",
-      "achievementsTitle": "دستاوردها",
+      "label": "عملیات زیستگاه",
+      "title": "پاسداری از گربه‌سانان در معرض خطر",
+      "desc": "حفاظت همه‌جانبه از آخرین بازماندگان یوزپلنگ آسیایی در طبیعت از طریق احیای پایدار زیستگاه، مدیریت مشارکتی با همیاران محلی و پایش مداوم با دوربین‌های تله‌ای.",
+      "locationsTitle": "نقشه تله‌متری پناهگاه‌ها",
+      "locationsHint": "نشانگرهای پناهگاه‌ها را لمس کنید تا داده‌های زنده را ببینید",
+      "projectsTitle": "نهادها و رهبری",
+      "achievementsTitle": "دستاوردهای برجسته میدانی",
+      "sanctuaries": [
+        {
+          "id": "touran",
+          "name": "ذخیره‌گاه زیست‌کره توران",
+          "area": "۱٬۴۰۰٬۰۰۰ هکتار",
+          "role": "زیستگاه اصلی زادآوری یوز",
+          "status": "شبکه دوربین فعال"
+        },
+        {
+          "id": "miandasht",
+          "name": "پناهگاه حیات‌وحش میاندشت",
+          "area": "۸۵٬۰۰۰ هکتار",
+          "role": "کریدور امن استپی",
+          "status": "پایگاه محیط‌بانی فعال"
+        },
+        {
+          "id": "abbasabad",
+          "name": "منطقه حفاظت‌شده عباس‌آباد",
+          "area": "۳۰۰٬۰۰۰ هکتار",
+          "role": "گذرگاه جابه‌جایی شرقی",
+          "status": "پایش طعمه‌ها فعال"
+        }
+      ],
       "projects": [
-        { "name": "سروین، حفاظت حیات وحش", "desc": "بنیان‌گذاری و مدیریت موسسه", "url": "https://sarvinwildlife.com" },
-        { "name": "انجمن یوزپلنگ ایرانی", "desc": "مدیرعامل سابق — انجمن یوزپلنگ ایرانی", "url": "https://wildlife.ir" }
-
+        {
+          "name": "سروین، حفاظت حیات وحش",
+          "desc": "بنیان‌گذار و مدیر موسسه — احیای زیستگاه، دانش و جامعه",
+          "url": "https://sarvinwildlife.com"
+        },
+        {
+          "name": "انجمن یوزپلنگ ایرانی",
+          "desc": "مدیرعامل سابق — نهاد پیشگام حفاظت در ایران",
+          "url": "https://wildlife.ir"
+        }
       ],
       "achievements": [
-        "آزادسازی ۵٬۶۰۰ هکتار زیستگاه به نفع یوزپلنگ ایرانی",
-        "استقرار شبکهٔ دوربین‌های تله‌ای",
-        "آموزش محیط‌بانان و جوامع محلی",
-        "همکاری با سازمان‌های ملی و بین‌المللی"
+        "آزادسازی و تثبیت ۵٬۶۰۰ هکتار از زیستگاه‌های کلیدی یوزپلنگ آسیایی",
+        "استقرار گسترده‌ترین شبکه دوربین‌های تله‌ای در زیستگاه‌های مرکزی و شرقی",
+        "آموزش و توانمندسازی جوامع محلی دامدار و محیط‌بانان خط مقدم",
+        "همکاری راهبردی با IUCN و ائتلاف‌های جهانی حفاظت از گربه‌سانان"
       ]
     },
     "tech": {
-      "label": "دنیای فناوری",
-      "title": "زیرساخت دیجیتال و اتوماسیون",
-      "desc": "توسعهٔ زیرساخت، مدیریت سرور و اتوماسیون که هم حفاظت و هم سیستم‌های آنلاین را پیش می‌برد.",
-      "stackTitle": "ابزارهای من",
-      "reposTitle": "پروژه‌های پابلیک در گیت‌هاب",
-      "stack": ["PHP", "TypeScript", "Bash", "Docker", "WordPress", "n8n", "AI/LLM", "Linux"],
+      "label": "معماری دیجیتال",
+      "title": "سامانه‌های پایدار و زیرساخت ابری",
+      "desc": "طراحی خطوط لوله خودکار، میکروسرویس‌های پایدار و راهکارهای نرم‌افزاری مقیاس‌پذیر که هم لجستیک میدانی حفاظت و هم سامانه‌های آنلاین را متحول می‌کنند.",
+      "stackTitle": "تسلیحات فنی",
+      "reposTitle": "پروژه‌های برگزیده در گیت‌هاب",
+      "stack": [
+        "PHP",
+        "TypeScript",
+        "Bash",
+        "Docker",
+        "Linux / DevOps",
+        "n8n Automation",
+        "AI / LLMs",
+        "Astro & Tailwind"
+      ],
       "repos": [
-        { "name": "Cheetah-Game", "desc": "بازی تعاملی آموزش حفاظت از یوزپلنگ", "tag": "React + TS", "url": "https://github.com/pourmirzai/Cheetah-Game" },
-        { "name": "slidist", "desc": "ابزار رایگان اسلایدساز شبکه اجتماعی", "tag": "JavaScript", "url": "https://github.com/pourmirzai/slidist" },
-        { "name": "webp-convertor", "desc": "مبدل تصویر به WebP", "tag": "JavaScript", "url": "https://github.com/pourmirzai/webp-convertor" }
+        {
+          "name": "Cheetah-Game",
+          "desc": "شبیه‌ساز و بازی تعاملی آموزش اصول بقا و چالش‌های اکولوژیک یوزپلنگ.",
+          "tag": "React · TS",
+          "url": "https://github.com/pourmirzai/Cheetah-Game"
+        },
+        {
+          "name": "slidist",
+          "desc": "ابزار سمت کلاینت برای ساخت و رندر خودکار اسلایدهای گرافیکی شبکه‌های اجتماعی.",
+          "tag": "TypeScript · Canvas",
+          "url": "https://github.com/pourmirzai/slidist"
+        },
+        {
+          "name": "webp-convertor",
+          "desc": "ابزار خط فرمان با کارایی فوق‌العاده برای بهینه‌سازی و تبدیل دسته‌ای تصاویر به WebP.",
+          "tag": "Node.js · Sharp",
+          "url": "https://github.com/pourmirzai/webp-convertor"
+        }
       ]
     }
   },
   "press": {
-    "eyebrow": "رسانه",
-    "title": "حضور در رسانه‌ها",
-    "subtitle": "مصاحبه‌ها و گزارش‌هایی که در آن‌ها حضور داشته‌ام. برای مطالعه روی هر لوگو کلیک کنید.",
-    "readLabel": "مطالعه",
+    "eyebrow": "رسانه‌های جهان",
+    "title": "بازتاب در رسانه‌ها",
+    "subtitle": "گزارش‌ها، مصاحبه‌ها و تحلیل‌های رسانه‌های معتبر بین‌المللی و داخلی پیرامون دستاوردها و هشدارهای ما برای نجات یوزپلنگ.",
+    "readLabel": "مطالعه گزارش",
+    "filterAll": "همه رسانه‌ها",
+    "filterIntl": "بین‌المللی",
+    "filterLocal": "مطبوعات ایران",
     "outlets": [
-      { "name": "ایسنا", "url": "https://www.isna.ir/amp/99080704633/" },
-      { "name": "شرق", "url": "https://www.sharghdaily.com/fa/tiny/news-847676" },
-      { "name": "تابناک", "url": "https://www.tabnak.ir/004m24" },
-      { "name": "اعتماد آنلاین", "url": "https://www.etemadonline.com/tiny/news-567895" },
-      { "name": "اعتماد آنلاین", "url": "https://www.etemadonline.com/tiny/news-555212" },
-      { "name": "ایمنا", "url": "https://imna.ir/x5RyD" },
-      { "name": "روزیاتو", "url": "https://rzto.ir/2m9w" },
-      { "name": "اکو ایران", "url": "https://ecoiran.com/fa/tiny/news-62796" },
-      { "name": "انتخاب", "url": "https://entekhab.ir/002tN9" },
-      { "name": "جام‌جم", "url": "https://jamejamonline.ir/005j49" },
-      { "name": "پیام ما", "url": "https://payamema.ir/payam/144626" },
-      { "name": "پیام ما", "url": "https://payamema.ir/payam/142296" },
-      { "name": "پیام ما", "url": "https://payamema.ir/payam/135997" },
-      { "name": "Newsweek", "url": "https://www.newsweek.com/irans-cheetahs-dire-risk-just-12-remain-wild-extinction-asiatic-1668518" },
-      { "name": "People", "url": "https://people.com/pets/12-asiatic-cheetahs-left-in-iran/" },
-      { "name": "IUCN NL", "url": "https://www.iucn.nl/en/story/protecting-the-asiatic-cheetah-in-iran-meet-morteza-pourmirzai/" },
-      { "name": "Felidae Fund", "url": "https://felidaefund.org/news/general/the-asiatic-cheetah-a-subspecies-on-the-brink-of-extinction" },
-      { "name": "Zoos Media", "url": "https://zoos.media/media-echo/asiatic-cheetahs-in-danger/?lang=en" },
-      { "name": "Iran Daily", "url": "https://newspaper.irandaily.ir/8153/4/24730" },
-      { "name": "TEDxSUT", "url": "https://www.youtube.com/watch?v=hujt7mFA_Ak" }
+      {
+        "name": "Newsweek",
+        "url": "https://www.newsweek.com/irans-cheetahs-dire-risk-just-12-remain-wild-extinction-asiatic-1668518",
+        "type": "intl",
+        "year": "2022"
+      },
+      {
+        "name": "People",
+        "url": "https://people.com/pets/12-asiatic-cheetahs-left-in-iran/",
+        "type": "intl",
+        "year": "2022"
+      },
+      {
+        "name": "IUCN NL",
+        "url": "https://www.iucn.nl/en/story/protecting-the-asiatic-cheetah-in-iran-meet-morteza-pourmirzai/",
+        "type": "intl",
+        "year": "2023"
+      },
+      {
+        "name": "Felidae Fund",
+        "url": "https://felidaefund.org/news/general/the-asiatic-cheetah-a-subspecies-on-the-brink-of-extinction",
+        "type": "intl",
+        "year": "2022"
+      },
+      {
+        "name": "TEDxSUT",
+        "url": "https://www.youtube.com/watch?v=hujt7mFA_Ak",
+        "type": "intl",
+        "year": "2021"
+      },
+      {
+        "name": "ایسنا",
+        "url": "https://www.isna.ir/amp/99080704633/",
+        "type": "local",
+        "year": "1399"
+      },
+      {
+        "name": "شرق",
+        "url": "https://www.sharghdaily.com/fa/tiny/news-847676",
+        "type": "local",
+        "year": "1401"
+      },
+      {
+        "name": "تابناک",
+        "url": "https://www.tabnak.ir/004m24",
+        "type": "local",
+        "year": "1401"
+      },
+      {
+        "name": "اعتماد آنلاین",
+        "url": "https://www.etemadonline.com/tiny/news-567895",
+        "type": "local",
+        "year": "1401"
+      },
+      {
+        "name": "ایمنا",
+        "url": "https://imna.ir/x5RyD",
+        "type": "local",
+        "year": "1400"
+      },
+      {
+        "name": "روزیاتو",
+        "url": "https://rzto.ir/2m9w",
+        "type": "local",
+        "year": "1401"
+      },
+      {
+        "name": "اکو ایران",
+        "url": "https://ecoiran.com/fa/tiny/news-62796",
+        "type": "local",
+        "year": "1402"
+      },
+      {
+        "name": "پیام ما",
+        "url": "https://payamema.ir/payam/144626",
+        "type": "local",
+        "year": "1402"
+      },
+      {
+        "name": "جام‌جم",
+        "url": "https://jamejamonline.ir/005j49",
+        "type": "local",
+        "year": "1401"
+      },
+      {
+        "name": "Iran Daily",
+        "url": "https://newspaper.irandaily.ir/8153/4/24730",
+        "type": "intl",
+        "year": "2023"
+      }
     ]
   },
   "contact": {
-    "eyebrow": "ارتباط",
-    "title": "با من در ارتباط باش",
-    "subtitle": "برای همکاری در حفاظت، پروژهٔ فنی یا مصاحبه، از راه‌های زیر در دسترس‌ام.",
-    "emailLabel": "ایمیل",
-    "emailHint": "برای نمایش آدرس کلیک کنید",
-    "socialsLabel": "شبکه‌های اجتماعی",
-    "locationLabel": "ساکن زمین"
+    "eyebrow": "مرکز مخابره",
+    "title": "آغاز گفت‌وگو",
+    "subtitle": "آماده برای مشاوره راهبردی در حفاظت حیات‌وحش، معماری ابری و نرم‌افزاری، سخنرانی و گفت‌وگوهای رسانه‌ای.",
+    "emailLabel": "ارتباط مستقیم و امن",
+    "emailHint": "برای کپی کردن آدرس کلیک کنید",
+    "copiedToast": "آدرس ایمیل در کلیپ‌بورد کپی شد!",
+    "socialsLabel": "کانال‌های تاییدشده اجتماعی",
+    "locationLabel": "پایگاه: سیارهٔ زمین · در دسترس جهانی"
   },
   "footer": {
     "tagline": "جایی که طبیعت با کد دیدار می‌کند",
     "rights": "تمامی حقوق محفوظ است.",
-    "madeWith": "ساخته‌شده با Astro، GSAP و عشق به طبیعت."
+    "madeWith": "طراحی و توسعه با Astro، GSAP و با احترامی عمیق به طبیعت وحشی زمین."
   }
 }

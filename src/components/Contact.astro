@@ -12,78 +12,81 @@ const socials = [
 ---
 
 <section id="contact" class="section-pad relative overflow-hidden">
-  <div class="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_100%,rgba(100,255,218,0.07),transparent_70%)]"></div>
+  <!-- Subtle cyan mesh glow from bottom -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_100%,rgba(100,255,218,0.06),transparent_70%)] pointer-events-none"></div>
+
   <div class="container-px relative">
-    <div class="mx-auto max-w-2xl text-center">
+    <div class="mx-auto max-w-2xl text-center mb-16">
       <p data-reveal class="eyebrow justify-center">
         <Icon name="mail" size={14} />
         <span data-i18n="contact.eyebrow">{fa.contact.eyebrow}</span>
       </p>
-      <h2 data-reveal data-i18n="contact.title" class="heading-lg">{fa.contact.title}</h2>
-      <p data-reveal data-i18n="contact.subtitle" class="mx-auto mt-4 text-muted">{fa.contact.subtitle}</p>
+      <h2 data-reveal data-i18n="contact.title" class="heading-lg tracking-tight">{fa.contact.title}</h2>
+      <p data-reveal data-i18n="contact.subtitle" class="mx-auto mt-4 text-base sm:text-lg text-muted font-sans max-w-xl">{fa.contact.subtitle}</p>
     </div>
 
-    <div class="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-2">
-      <!-- Email (masked) -->
-      <div data-reveal class="card flex flex-col items-center justify-center gap-3 p-8 text-center">
-        <span class="grid h-12 w-12 place-items-center rounded-full bg-tech-cyan/10 text-tech-cyan">
-          <Icon name="mail" size={22} />
+    <div class="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2">
+      <!-- Direct Transmission / Email Card with One-Click Copy -->
+      <div
+        data-reveal
+        data-copy-text="morteza@pourmirzai.com"
+        role="button"
+        tabindex="0"
+        class="spotlight-card group flex flex-col items-center justify-center gap-4 p-8 text-center cursor-pointer select-none transition-all duration-300 hover:border-tech-cyan/50"
+      >
+        <span class="grid h-14 w-14 place-items-center rounded-2xl bg-tech-cyan/10 border border-tech-cyan/20 text-tech-cyan transition-all duration-300 group-hover:scale-110 group-hover:bg-tech-cyan/20 group-hover:shadow-[0_0_25px_rgba(100,255,218,0.3)]">
+          <Icon name="mail" size={24} />
         </span>
-        <h3 data-i18n="contact.emailLabel" class="font-mono text-xs uppercase tracking-[0.25em] text-muted">
-          {fa.contact.emailLabel}
-        </h3>
-        <a
-          id="email-link"
-          href="#"
-          class="rounded-md font-mono text-base text-text transition-colors hover:text-tech-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-cyan/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-        >
-          info [at] sarvinwildlife [dot] com
-        </a>
-        <span data-i18n="contact.emailHint" class="text-xs text-muted/70">{fa.contact.emailHint}</span>
+        
+        <div>
+          <h3 data-i18n="contact.emailLabel" class="font-mono text-xs uppercase tracking-[0.25em] text-muted">
+            {fa.contact.emailLabel}
+          </h3>
+          <p class="mt-2 font-mono text-base sm:text-lg font-bold text-text group-hover:text-tech-cyan transition-colors">
+            morteza@pourmirzai.com
+          </p>
+        </div>
+
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-tech-cyan/30 bg-tech-cyan/10 px-3 py-1 font-mono text-[11px] text-tech-cyan transition-all group-hover:bg-tech-cyan group-hover:text-tech-navy">
+          <Icon name="copy" size={12} />
+          <span data-i18n="contact.emailHint">{fa.contact.emailHint}</span>
+        </span>
       </div>
 
-      <!-- Socials -->
-      <div data-reveal class="card flex flex-col items-center justify-center gap-4 p-8 text-center">
-        <span class="grid h-12 w-12 place-items-center rounded-full bg-nature-gold-bright/10 text-nature-gold-bright">
-          <Icon name="sparkle" size={22} />
+      <!-- Verified Socials Card -->
+      <div
+        data-reveal
+        class="spotlight-card spotlight-card-gold flex flex-col items-center justify-center gap-4 p-8 text-center"
+      >
+        <span class="grid h-14 w-14 place-items-center rounded-2xl bg-nature-gold-bright/10 border border-nature-gold-bright/20 text-nature-gold-bright transition-all duration-300 group-hover:scale-110">
+          <Icon name="sparkle" size={24} />
         </span>
-        <h3 data-i18n="contact.socialsLabel" class="font-mono text-xs uppercase tracking-[0.25em] text-muted">
-          {fa.contact.socialsLabel}
-        </h3>
-        <div class="flex flex-wrap items-center justify-center gap-3">
-          {
-            socials.map((s) => (
-              <a
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.label}
-                class="grid h-12 w-12 place-items-center rounded-xl border border-white/10 text-muted transition-all hover:-translate-y-0.5 hover:border-tech-cyan hover:text-tech-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-cyan/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-              >
-                <Icon name={s.name} size={20} />
-              </a>
-            ))
-          }
+
+        <div>
+          <h3 data-i18n="contact.socialsLabel" class="font-mono text-xs uppercase tracking-[0.25em] text-muted">
+            {fa.contact.socialsLabel}
+          </h3>
+          <div class="mt-4 flex flex-wrap items-center justify-center gap-3">
+            {
+              socials.map((s) => (
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  class="grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/[0.02] text-muted transition-all duration-300 hover:-translate-y-1 hover:border-nature-gold-bright hover:text-nature-gold-bright hover:shadow-[0_0_15px_rgba(199,154,58,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-nature-gold-bright/60"
+                >
+                  <Icon name={s.name} size={18} />
+                </a>
+              ))
+            }
+          </div>
         </div>
-        <span data-i18n="contact.locationLabel" class="text-xs text-muted/70">{fa.contact.locationLabel}</span>
+
+        <span data-i18n="contact.locationLabel" class="text-xs text-muted/80 font-mono mt-1">
+          {fa.contact.locationLabel}
+        </span>
       </div>
     </div>
   </div>
 </section>
-
-<script>
-  // Email de-obfuscation: reveal the real address on click/hover (spam-safe).
-  const link = document.getElementById("email-link");
-  if (link) {
-    const reveal = () => {
-      link.textContent = "morteza@pourmirzai.com";
-      link.setAttribute("href", "mailto:morteza@pourmirzai.com");
-    };
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      reveal();
-    });
-    link.addEventListener("mouseenter", reveal, { once: true });
-    link.addEventListener("focus", reveal, { once: true });
-  }
-</script>
