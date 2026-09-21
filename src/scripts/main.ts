@@ -6,6 +6,7 @@ declare global {
     __APP_BOOTED__?: boolean;
     __SOUND_ACTIVE__?: boolean;
     showToast?: (msg: string) => void;
+    toggleNightVision?: () => boolean;
   }
 }
 
@@ -94,12 +95,64 @@ function initCustomCursor() {
   });
 }
 
-/* ============ PROCEDURAL WEB AUDIO SYNTHESIZER ============ */
+/* ============ PROCEDURAL WEB AUDIO SYNTHESIZER (DUAL-BIOME) ============ */
 let audioCtx: AudioContext | null = null;
 let ambientGain: GainNode | null = null;
 let ambientOsc1: OscillatorNode | null = null;
 let ambientOsc2: OscillatorNode | null = null;
 let isSoundPlaying = false;
+let currentBiome: "nature" | "tech" = "nature";
+
+function setBiomeFrequencies(biome: "nature" | "tech", immediate = false) {
+  if (!isSoundPlaying || !audioCtx || !ambientOsc1 || !ambientOsc2) return;
+  if (currentBiome === biome && !immediate) return;
+  currentBiome = biome;
+
+  const ctx = audioCtx;
+  const t = ctx.currentTime;
+  const dur = immediate ? 0.05 : 1.2;
+
+  try {
+    if (biome === "nature") {
+      // Warm organic steppe root (A2 = 110Hz, E3 = 164.81Hz)
+      ambientOsc1.frequency.exponentialRampToValueAtTime(110, t + dur);
+      ambientOsc2.frequency.exponentialRampToValueAtTime(164.81, t + dur);
+    } else {
+      // Cyber digital harmonic (D3 = 146.83Hz, A3 = 220Hz)
+      ambientOsc1.frequency.exponentialRampToValueAtTime(146.83, t + dur);
+      ambientOsc2.frequency.exponentialRampToValueAtTime(220, t + dur);
+    }
+  } catch {}
+}
+
+function initBiomeObserver() {
+  const techZone = document.querySelector("[data-i18n-list='tech-stack']")?.closest("div");
+  const worldsSec = document.getElementById("worlds");
+  if (!worldsSec) return;
+
+  const ioTech = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setBiomeFrequencies("tech");
+      }
+    });
+  }, { threshold: 0.2 });
+
+  if (techZone) ioTech.observe(techZone);
+
+  const heroSec = document.getElementById("hero");
+  const aboutSec = document.getElementById("about");
+  const ioNature = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setBiomeFrequencies("nature");
+      }
+    });
+  }, { threshold: 0.15 });
+
+  if (heroSec) ioNature.observe(heroSec);
+  if (aboutSec) ioNature.observe(aboutSec);
+}
 
 function initAudio() {
   const soundBtn = document.getElementById("sound-toggle");
@@ -140,6 +193,7 @@ function initAudio() {
     ambientOsc2.start();
     isSoundPlaying = true;
     soundBtn.classList.add("is-playing");
+    setBiomeFrequencies(currentBiome, true);
   };
 
   const stopAmbientSound = () => {
@@ -170,6 +224,8 @@ function initAudio() {
     }
     window.__SOUND_ACTIVE__ = isSoundPlaying;
   });
+
+  initBiomeObserver();
 }
 
 function playInterfaceChime(freq = 880, vol = 0.02, duration = 0.05) {
@@ -186,6 +242,30 @@ function playInterfaceChime(freq = 880, vol = 0.02, duration = 0.05) {
     osc.start();
     osc.stop(audioCtx.currentTime + duration);
   } catch {}
+}
+
+/* ============ IR NIGHT-VISION CAMERA-TRAP MODE (850nm) ============ */
+function toggleNightVision(): boolean {
+  const isIR = document.documentElement.classList.toggle("theme-ir");
+  const irBtn = document.getElementById("ir-toggle");
+  if (irBtn) irBtn.classList.toggle("is-active", isIR);
+
+  playInterfaceChime(isIR ? 1320 : 660, 0.035, 0.07);
+
+  const isFa = document.documentElement.lang === "fa";
+  if (isIR) {
+    showToast(isFa ? "حالت دید در شب دوربین‌های تله‌ای (۸۵۰ نانومتر) فعال شد" : "IR Night-Vision Mode Activated (850nm)");
+  } else {
+    showToast(isFa ? "حالت دید در شب غیرفعال شد" : "IR Night-Vision Mode Deactivated");
+  }
+  return isIR;
+}
+window.toggleNightVision = toggleNightVision;
+
+function initNightVision() {
+  const irBtn = document.getElementById("ir-toggle");
+  if (!irBtn) return;
+  irBtn.addEventListener("click", () => toggleNightVision());
 }
 
 /* ============ TOAST NOTIFICATION ============ */
@@ -279,9 +359,12 @@ const TERMINAL_DATA = {
   ],
 };
 
-function initTerminalTabs() {
+function initTerminalCLI() {
   const terminalLine = document.getElementById("terminal-line");
   const tabBtns = document.querySelectorAll<HTMLButtonElement>("[data-term-tab]");
+  const form = document.getElementById("terminal-form") as HTMLFormElement | null;
+  const input = document.getElementById("terminal-input") as HTMLInputElement | null;
+  const historyEl = document.getElementById("terminal-history");
   if (!terminalLine) return;
 
   let activeTab: "ops" | "deploy" | "ai" = "ops";
@@ -289,8 +372,10 @@ function initTerminalTabs() {
   let charIdx = 0;
   let isDeleting = false;
   let timer: ReturnType<typeof setTimeout> | null = null;
+  let isInteractive = false;
 
   function typeTick() {
+    if (isInteractive) return;
     const list = TERMINAL_DATA[activeTab];
     const full = list[step];
     if (!isDeleting) {
@@ -315,6 +400,118 @@ function initTerminalTabs() {
     }
   }
 
+  function appendOutput(cmd: string, outputHtml: string) {
+    if (!historyEl) return;
+    const item = document.createElement("div");
+    item.className = "term-entry pb-1 border-b border-white/5";
+    const cleanCmd = cmd.replace(/[&<>"']/g, "");
+    item.innerHTML = `
+      <div class="flex items-center gap-1.5 font-mono text-[11px] text-tech-cyan">
+        <span class="opacity-70">msh›</span>
+        <span class="font-bold">${cleanCmd}</span>
+      </div>
+      <div class="mt-0.5 text-[11px] leading-relaxed text-text/90 font-mono">
+        ${outputHtml}
+      </div>
+    `;
+    historyEl.appendChild(item);
+    historyEl.scrollTop = historyEl.scrollHeight;
+  }
+
+  function executeCommand(raw: string) {
+    const cmd = raw.trim().toLowerCase();
+    if (!cmd) return;
+
+    playInterfaceChime(1100, 0.025, 0.05);
+
+    switch (cmd) {
+      case "help":
+        appendOutput(
+          raw,
+          `<span class="text-muted">Available commands:</span> <span class="text-tech-cyan">cheetah</span>, <span class="text-tech-cyan">touran</span>, <span class="text-tech-cyan">miandasht</span>, <span class="text-tech-cyan">tech</span>, <span class="text-tech-cyan">ir</span>, <span class="text-tech-cyan">audio</span>, <span class="text-tech-cyan">clear</span>`
+        );
+        break;
+
+      case "cheetah":
+      case "status":
+        appendOutput(
+          raw,
+          `<span class="text-nature-gold-bright font-bold">Acinonyx jubatus venaticus</span> — Asiatic Cheetah.<br/>Status: Critically Endangered (IUCN). Estimated &lt; 20 in wild.<br/>Active protected corridors: Touran Biosphere & Miandasht.`
+        );
+        break;
+
+      case "touran":
+        appendOutput(
+          raw,
+          `Touran Biosphere Reserve: 1,400,000 ha.<br/>Status: Primary breeding habitat. 42 camera traps online. Telemetry sync verified.`
+        );
+        break;
+
+      case "miandasht":
+        appendOutput(
+          raw,
+          `Miandasht Wildlife Refuge: 85,000 ha.<br/>Status: Essential steppe movement corridor. 18 water points operational.`
+        );
+        break;
+
+      case "tech":
+      case "stack":
+        appendOutput(
+          raw,
+          `Digital Stack: Astro 7, Tailwind CSS v4, GSAP, Lenis, Web Audio API, Docker, n8n, Linux DevOps, Python/YOLOv9.`
+        );
+        break;
+
+      case "ir":
+        if (window.toggleNightVision) {
+          const active = window.toggleNightVision();
+          appendOutput(raw, `IR Night-Vision Mode: <span class="text-emerald-400 font-bold">${active ? "ENABLED (850nm)" : "DISABLED"}</span>`);
+        }
+        break;
+
+      case "audio":
+        const soundBtn = document.getElementById("sound-toggle");
+        soundBtn?.click();
+        appendOutput(raw, `Ambient audio soundscape toggled.`);
+        break;
+
+      case "clear":
+      case "cls":
+        if (historyEl) historyEl.innerHTML = "";
+        break;
+
+      default:
+        appendOutput(
+          raw,
+          `<span class="text-red-400">msh: command not found: '${raw.replace(/[&<>"']/g, "")}'</span>. Type <span class="text-tech-cyan">help</span> for field commands.`
+        );
+        break;
+    }
+  }
+
+  if (form && input) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const val = input.value;
+      if (!val.trim()) return;
+      executeCommand(val);
+      input.value = "";
+    });
+
+    input.addEventListener("focus", () => {
+      isInteractive = true;
+      if (timer) clearTimeout(timer);
+    });
+
+    input.addEventListener("blur", () => {
+      if (!input.value.trim()) {
+        isInteractive = false;
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(typeTick, 1200);
+      }
+    });
+  }
+
   tabBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       const tab = btn.dataset.termTab as "ops" | "deploy" | "ai";
@@ -323,6 +520,7 @@ function initTerminalTabs() {
       step = 0;
       charIdx = 0;
       isDeleting = false;
+      isInteractive = false;
 
       tabBtns.forEach((b) => {
         const isSelected = b === btn;
@@ -336,6 +534,8 @@ function initTerminalTabs() {
       terminalLine!.textContent = "";
       typeTick();
       playInterfaceChime(1050, 0.02, 0.06);
+
+      appendOutput(`run ./${tab === "ops" ? "field_ops.sh" : tab === "deploy" ? "deploy.ts" : "habitat_ai.py"}`, `<span class="text-tech-cyan/90">Executing script:</span> ${TERMINAL_DATA[tab][0]}`);
     });
   });
 
@@ -661,7 +861,8 @@ function boot() {
   safe("cursor", initCustomCursor);
   safe("audio", initAudio);
   safe("spotlight", initSpotlightTilt);
-  safe("terminalTabs", initTerminalTabs);
+  safe("nightVision", initNightVision);
+  safe("terminalCLI", initTerminalCLI);
   safe("sanctuaryMap", initSanctuaryMap);
   safe("clipboard", initClipboardCopy);
   safe("hero", initHero);

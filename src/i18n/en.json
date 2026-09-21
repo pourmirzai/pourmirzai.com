@@ -28,6 +28,9 @@
     "techLabel": "Architecture & Code",
     "natureCardTitle": "Asiatic Cheetah Field Monitor",
     "natureCardDesc": "Automated camera-trap telemetry and corridor conservation across 5,600 ha of protected steppe.",
+    "irToggle": "IR 850nm",
+    "irActive": "IR Night-Vision Mode Activated (850nm nocturnal filter)",
+    "irMuted": "IR Night-Vision Mode Deactivated",
     "telemetry": {
       "coordinates": "35.84° N 55.42° E",
       "location": "Touran Biosphere Reserve",

@@ -4,7 +4,7 @@ import Icon from "./Icon.astro";
 import { topoPaths, corridor } from "../data/topo";
 ---
 
-<section id="hero" class="relative min-h-screen min-h-[100svh] overflow-hidden bg-bg flex items-center">
+<section id="hero" class="relative min-h-screen min-h-[100svh] overflow-hidden bg-bg flex flex-col justify-center">
   <!-- ===== ATMOSPHERIC BACKGROUND (Organic × Tech Fusion) ===== -->
   <div class="hero-bg absolute inset-0" aria-hidden="true">
     <!-- Deep gradient backdrop -->
@@ -63,28 +63,40 @@ import { topoPaths, corridor } from "../data/topo";
   </div>
 
   <!-- ===== FOREGROUND CONTENT ===== -->
-  <div class="relative z-10 w-full py-24 md:py-32">
+  <div class="relative z-10 w-full pt-28 pb-16 md:pt-32 md:pb-24">
     <div class="container-px">
-      <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-14 xl:gap-16">
+      <div class="grid items-center gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
         
         <!-- VISUAL COLUMN: DUAL-CORE INTERACTIVE HUD (5 Cols on LG) -->
         <div data-hero-anim class="order-2 lg:order-1 lg:col-span-5 relative perspective-1000">
           <!-- Main Camera-Trap Telemetry Card -->
           <div class="spotlight-card spotlight-card-gold p-4 sm:p-5 shadow-2xl backdrop-blur-xl border border-nature-gold/30">
             <!-- Header Bar -->
-            <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
-              <div class="flex items-center gap-2">
-                <span class="relative flex h-2.5 w-2.5">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3 mb-3">
+              <div class="flex items-center gap-2 min-w-0 flex-1">
+                <span class="relative flex h-2.5 w-2.5 shrink-0">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-nature-gold-bright opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-nature-gold-bright"></span>
                 </span>
-                <span class="font-mono text-xs font-semibold text-nature-gold-bright tracking-wider uppercase" data-i18n="hero.natureCardTitle">
+                <span class="font-mono text-xs font-semibold text-nature-gold-bright tracking-wider uppercase truncate" data-i18n="hero.natureCardTitle">
                   {fa.hero.natureCardTitle}
                 </span>
               </div>
-              <span class="font-mono text-[10px] text-muted border border-white/10 px-2 py-0.5 rounded-full bg-white/5">
-                LIVE REC
-              </span>
+              <div class="flex items-center gap-2 shrink-0 ms-auto">
+                <button
+                  id="ir-toggle"
+                  type="button"
+                  class="group flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-950/40 px-2.5 py-0.5 font-mono text-[10px] text-emerald-400 hover:border-emerald-400 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-400"
+                  aria-label="Toggle IR night-vision camera mode"
+                  title="Toggle 850nm Infrared nocturnal filter"
+                >
+                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 group-hover:animate-ping"></span>
+                  <span data-i18n="hero.irToggle">{fa.hero.irToggle || "IR 850nm"}</span>
+                </button>
+                <span class="font-mono text-[10px] text-muted border border-white/10 px-2 py-0.5 rounded-full bg-white/5">
+                  LIVE REC
+                </span>
+              </div>
             </div>
 
             <!-- Image with HUD Grid Overlay -->
@@ -92,7 +104,7 @@ import { topoPaths, corridor } from "../data/topo";
               <img
                 src="/images/cheetah-nature.webp"
                 alt="Asiatic Cheetah Field Camera-Trap Telemetry"
-                class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                class="cheetah-camera-img h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                 loading="eager"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none"></div>
@@ -104,14 +116,14 @@ import { topoPaths, corridor } from "../data/topo";
               <div class="absolute bottom-2.5 right-2.5 w-4 h-4 border-b-2 border-r-2 border-nature-gold-bright/60"></div>
 
               <!-- Telemetry Overlay Data -->
-              <div class="absolute bottom-2.5 inset-x-3 flex items-end justify-between font-mono text-[11px] text-white/90 drop-shadow">
-                <div>
-                  <div class="text-[9px] text-nature-gold-bright font-bold uppercase tracking-widest">Target Specimen</div>
-                  <div class="font-semibold">{fa.hero.telemetry.species}</div>
+              <div class="absolute bottom-2.5 inset-x-3 flex flex-wrap items-end justify-between gap-2 font-mono text-[11px] text-white/90 drop-shadow pointer-events-none">
+                <div class="min-w-0 max-w-[55%]">
+                  <div class="text-[9px] text-nature-gold-bright font-bold uppercase tracking-widest truncate">Target Specimen</div>
+                  <div class="font-semibold truncate">{fa.hero.telemetry.species}</div>
                 </div>
-                <div class="text-end">
+                <div class="text-end shrink-0 ms-auto">
                   <div class="text-[9px] text-tech-cyan uppercase tracking-widest">{fa.hero.telemetry.coordinates}</div>
-                  <div class="text-[10px] text-muted">{fa.hero.telemetry.location}</div>
+                  <div class="text-[10px] text-muted truncate">{fa.hero.telemetry.location}</div>
                 </div>
               </div>
             </div>
@@ -130,34 +142,54 @@ import { topoPaths, corridor } from "../data/topo";
                   <button
                     type="button"
                     data-term-tab="ops"
-                    class="px-2 py-0.5 rounded border border-tech-cyan/40 bg-tech-cyan/10 text-tech-cyan transition-colors"
+                    class="px-2 py-0.5 rounded border border-tech-cyan/40 bg-tech-cyan/10 text-tech-cyan transition-colors cursor-pointer"
                   >
                     field_ops.sh
                   </button>
                   <button
                     type="button"
                     data-term-tab="deploy"
-                    class="px-2 py-0.5 rounded border border-transparent text-muted hover:text-white transition-colors"
+                    class="px-2 py-0.5 rounded border border-transparent text-muted hover:text-white transition-colors cursor-pointer"
                   >
                     deploy.ts
                   </button>
                   <button
                     type="button"
                     data-term-tab="ai"
-                    class="px-2 py-0.5 rounded border border-transparent text-muted hover:text-white transition-colors"
+                    class="px-2 py-0.5 rounded border border-transparent text-muted hover:text-white transition-colors cursor-pointer"
                   >
                     habitat_ai.py
                   </button>
                 </div>
               </div>
 
-              <!-- Terminal Body Output -->
-              <div class="p-3.5 font-terminal text-[15px] leading-relaxed text-text">
-                <div class="flex items-center gap-1.5">
-                  <span class="text-tech-cyan font-bold">›</span>
-                  <span id="terminal-line" class="text-white/95"></span>
-                  <span class="text-tech-cyan animate-pulse">▋</span>
+              <!-- Terminal Body Output (Streaming + Interactive CLI) -->
+              <div id="terminal-body" class="p-3.5 font-terminal text-[14px] leading-relaxed text-text">
+                <!-- Command History Container -->
+                <div id="terminal-history" class="space-y-1 mb-2 max-h-32 overflow-y-auto text-xs font-mono empty:hidden"></div>
+
+                <!-- Active Stream / Prompt Line -->
+                <div id="terminal-stream-row" class="flex items-center gap-1.5 min-w-0 overflow-hidden">
+                  <span class="text-tech-cyan font-bold shrink-0">›</span>
+                  <span id="terminal-line" class="text-white/95 font-terminal text-[14px] truncate block flex-1"></span>
+                  <span class="text-tech-cyan animate-pulse shrink-0">▋</span>
                 </div>
+
+                <!-- Interactive Command Input Prompt -->
+                <form id="terminal-form" class="mt-2.5 pt-2 border-t border-white/10 flex items-center gap-2">
+                  <span class="font-mono text-xs text-tech-cyan font-semibold shrink-0">msh›</span>
+                  <input
+                    id="terminal-input"
+                    type="text"
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    placeholder="type 'help', 'cheetah', 'touran'..."
+                    class="font-mono text-xs text-text bg-transparent outline-none w-full placeholder:text-muted/50"
+                  />
+                  <span class="hidden sm:inline font-mono text-[9px] text-muted/60 uppercase tracking-widest shrink-0">↵ enter</span>
+                </form>
               </div>
             </div>
           </div>
@@ -254,7 +286,7 @@ import { topoPaths, corridor } from "../data/topo";
   <!-- Ambient Scroll Hint -->
   <a
     href="#about"
-    class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center gap-2 text-muted/60 hover:text-tech-cyan transition-colors"
+    class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 hidden 2xl:flex flex-col items-center gap-2 text-muted/60 hover:text-tech-cyan transition-colors"
     aria-label="Scroll to about section"
   >
     <span class="font-mono text-[10px] uppercase tracking-[0.25em]" data-i18n="hero.scroll">{fa.hero.scroll}</span>
