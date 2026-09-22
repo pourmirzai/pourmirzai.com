@@ -69,8 +69,8 @@ import { topoPaths, corridor } from "../data/topo";
         
         <!-- VISUAL COLUMN: DUAL-CORE INTERACTIVE HUD (5 Cols on LG) -->
         <div data-hero-anim class="order-2 lg:order-1 lg:col-span-5 relative perspective-1000">
-          <!-- Main Camera-Trap Telemetry Card -->
-          <div class="spotlight-card spotlight-card-gold p-4 sm:p-5 shadow-2xl backdrop-blur-xl border border-nature-gold/30">
+          <!-- Main Camera-Trap Telemetry Card (static: no mouse tilt, no spotlight tracking) -->
+          <div data-no-tilt class="spotlight-card spotlight-card-gold p-4 sm:p-5 shadow-2xl backdrop-blur-xl border border-nature-gold/30">
             <!-- Header Bar -->
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3 mb-3">
               <div class="flex items-center gap-2 min-w-0 flex-1">
@@ -99,12 +99,27 @@ import { topoPaths, corridor } from "../data/topo";
               </div>
             </div>
 
-            <!-- Image with HUD Grid Overlay -->
-            <div class="relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10 bg-black/40">
+            <!-- Image with HUD Grid Overlay (periodic signal-glitch, no mouse input) -->
+            <div class="hero-glitch-frame relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10 bg-black/40">
               <img
                 src="/images/cheetah-nature.webp"
                 alt="Asiatic Cheetah Field Camera-Trap Telemetry"
-                class="cheetah-camera-img h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                class="cheetah-camera-img h-full w-full object-cover"
+                loading="eager"
+              />
+              <!-- Glitch slice layers (aria-hidden duplicates, visible only during glitch bursts) -->
+              <img
+                src="/images/cheetah-nature.webp"
+                alt=""
+                aria-hidden="true"
+                class="cheetah-camera-img hero-glitch-img hero-glitch-a h-full w-full object-cover"
+                loading="eager"
+              />
+              <img
+                src="/images/cheetah-nature.webp"
+                alt=""
+                aria-hidden="true"
+                class="cheetah-camera-img hero-glitch-img hero-glitch-b h-full w-full object-cover"
                 loading="eager"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none"></div>
@@ -270,7 +285,7 @@ import { topoPaths, corridor } from "../data/topo";
             </div>
             <div>
               <div class="font-mono text-xl font-bold text-emerald-400" data-i18n="hero.trust.iucn">{fa.hero.trust.iucn}</div>
-              <div class="text-[11px] text-muted mt-0.5">Cat Specialist Group</div>
+              <div class="text-[11px] text-muted mt-0.5" data-i18n="hero.trust.iucnNote">{fa.hero.trust.iucnNote || "CEM & WCPA Commissions"}</div>
             </div>
             <div>
               <div class="font-mono text-xl font-bold text-text" data-i18n="hero.trust.leader">{fa.hero.trust.leader}</div>

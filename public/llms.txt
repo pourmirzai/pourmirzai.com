@@ -1,0 +1,24 @@
+# Morteza Pourmirzai — Where Nature Meets Code
+
+> Wildlife conservation practitioner focused on the critically endangered Asiatic cheetah in Iran, and a web developer working with AI agents & automation, websites, web-based reporting dashboards, bots, and SEO. Founder of Sarvin Wildlife Conservation; former CEO of the Iranian Cheetah Society; member of the IUCN Commission on Ecosystem Management (CEM) and the IUCN World Commission on Protected Areas (WCPA).
+
+Single-page bilingual portfolio (English / Persian, client-side toggle, defaults to English) at https://pourmirzai.com
+
+## Site sections
+
+- **Hero**: 17+ years in cheetah conservation, 50+ web platforms built, IUCN CEM & WCPA membership.
+- **About**: bio, guiding philosophy ("being alive is an ethical commitment to safeguarding life on Earth"), and a milestone timeline (2007 volunteer with the Iranian Cheetah Society → 2018 CEO → 2024 founded Sarvin).
+- **Two Worlds**:
+  - Conservation: Touran Biosphere Reserve (1.4M ha, primary breeding sanctuary) and Miandasht Wildlife Refuge (85,000 ha, stepping-stone corridor), connected by a dispersal corridor that is cut by the Tehran–Mashhad highway, a major mortality threat to cheetahs.
+  - Technology: practical web engineering — AI agents and automation (n8n), websites, web-based reporting dashboards, chatbots, SEO, digital marketing. Open-source repos: What-If, Cheetah-Game, slidist, webp-convertor (https://github.com/pourmirzai).
+- **Press**: featured by Newsweek, People, IUCN NL, Felidae Fund, TEDxSUT, and Iranian national media.
+- **Contact**: morteza@pourmirzai.com
+
+## Affiliations
+
+- Sarvin Wildlife Conservation (founder): https://sarvinwildlife.com
+- Iranian Cheetah Society (former CEO): https://wildlife.ir
+- IUCN CEM: https://iucn.org/our-union/commissions/commission-ecosystem-management
+- IUCN WCPA: https://iucn.org/our-union/commissions/world-commission-protected-areas
+
+Note: he is NOT a member of the IUCN Cat Specialist Group.

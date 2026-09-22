@@ -7,7 +7,6 @@ import Icon from "./Icon.astro";
 
 const stats = [
   { key: "years", count: 17, suffix: "+", labelKey: "about.stats.yearsLabel", label: fa.about.stats.yearsLabel, noteKey: "about.stats.yearsNote", note: fa.about.stats.yearsNote, val: fa.about.stats.years },
-  { key: "repos", count: 5600, suffix: "", labelKey: "about.stats.reposLabel", label: fa.about.stats.reposLabel, noteKey: "about.stats.reposNote", note: fa.about.stats.reposNote, val: fa.about.stats.repos },
   { key: "sites", count: 50, suffix: "+", labelKey: "about.stats.sitesLabel", label: fa.about.stats.sitesLabel, noteKey: "about.stats.sitesNote", note: fa.about.stats.sitesNote, val: fa.about.stats.sites },
   { key: "press", count: 14, suffix: "+", labelKey: "about.stats.pressLabel", label: fa.about.stats.pressLabel, noteKey: "about.stats.pressNote", note: fa.about.stats.pressNote, val: fa.about.stats.press },
 ];
@@ -56,7 +55,7 @@ const stats = [
             <div class="absolute bottom-3 start-3 end-3 flex items-center justify-between text-[11px] font-mono text-white/90 drop-shadow">
               <span class="flex items-center gap-1.5">
                 <span class="h-1.5 w-1.5 rounded-full bg-nature-gold-bright animate-ping"></span>
-                <span>Touran · Miandasht · Global</span>
+                <span data-i18n="about.portraitTag">{fa.about.portraitTag || "Citizen of planet Earth"}</span>
               </span>
               <span class="text-tech-cyan/90">35.8° N · 55.4° E</span>
             </div>
@@ -67,7 +66,7 @@ const stats = [
         <div class="mt-4 rounded-2xl border border-white/10 bg-surface/80 p-5 backdrop-blur-xl shadow-xl">
           <p class="font-mono text-[10px] text-nature-gold-bright uppercase tracking-widest flex items-center gap-1.5">
             <Icon name="sparkle" size={12} />
-            <span>Guiding Philosophy</span>
+            <span data-i18n="about.philosophyTitle">{fa.about.philosophyTitle || "Guiding Philosophy"}</span>
           </p>
           <blockquote data-i18n="about.quote" class="mt-2 text-xs sm:text-sm text-text/85 italic leading-relaxed font-sans">
             "{fa.about.quote}"
@@ -86,16 +85,14 @@ const stats = [
           {fa.about.title}
         </h2>
 
-        <p data-reveal data-i18n="about.bio" class="mt-6 text-base sm:text-lg text-text/90 leading-relaxed font-sans">
-          {fa.about.bio}
-        </p>
+        <p data-reveal data-i18n-html="about.bio" class="mt-6 text-base sm:text-lg text-text/90 leading-relaxed font-sans" set:html={fa.about.bio} />
 
         <p data-reveal data-i18n="about.bio2" class="mt-4 text-sm sm:text-base text-muted leading-relaxed font-sans">
           {fa.about.bio2}
         </p>
 
         <!-- Bento-Grid Metrics -->
-        <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
           {
             stats.map((s) => (
               <div

@@ -302,6 +302,9 @@ function initSpotlightTilt() {
 
   const cards = document.querySelectorAll<HTMLElement>(".spotlight-card, .fusion-card");
   cards.forEach((card) => {
+    // Static cards (e.g. hero camera-trap card) opt out of mouse tracking entirely
+    if (card.hasAttribute("data-no-tilt")) return;
+
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;

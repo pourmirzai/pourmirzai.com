@@ -83,6 +83,73 @@ const socials = [
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 
+    <!-- Structured data: Person + WebSite (SEO / LLM readability) -->
+    <script is:inline type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://pourmirzai.com/#person",
+            "name": "Morteza Pourmirzai",
+            "alternateName": "مرتضی پورمیرزای",
+            "url": "https://pourmirzai.com",
+            "image": "https://pourmirzai.com/og.png",
+            "jobTitle": "Wildlife Conservationist & Web Developer",
+            "description": "Wildlife conservation practitioner focused on the Asiatic cheetah in Iran; founder of Sarvin Wildlife Conservation and former CEO of the Iranian Cheetah Society. Also works in web development: AI agents and automation, websites, reporting dashboards, bots, and SEO.",
+            "email": "mailto:morteza@pourmirzai.com",
+            "knowsLanguage": ["en", "fa"],
+            "knowsAbout": [
+              "Asiatic cheetah conservation",
+              "Camera-trap monitoring",
+              "Habitat restoration",
+              "AI agents and automation",
+              "Web development",
+              "Web-based reporting dashboards",
+              "Chatbots",
+              "SEO",
+              "Digital marketing"
+            ],
+            "memberOf": [
+              {
+                "@type": "Organization",
+                "name": "IUCN Commission on Ecosystem Management",
+                "alternateName": "CEM",
+                "url": "https://iucn.org/our-union/commissions/commission-ecosystem-management"
+              },
+              {
+                "@type": "Organization",
+                "name": "IUCN World Commission on Protected Areas",
+                "alternateName": "WCPA",
+                "url": "https://iucn.org/our-union/commissions/world-commission-protected-areas"
+              }
+            ],
+            "founderOf": {
+              "@type": "Organization",
+              "name": "Sarvin Wildlife Conservation",
+              "url": "https://sarvinwildlife.com"
+            },
+            "sameAs": [
+              "https://github.com/pourmirzai",
+              "https://linkedin.com/in/pourmirzai",
+              "https://instagram.com/pourmirzai",
+              "https://t.me/pourmirzai",
+              "https://x.com/pourmirzai"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://pourmirzai.com/#website",
+            "url": "https://pourmirzai.com",
+            "name": "Morteza Pourmirzai — Where Nature Meets Code",
+            "inLanguage": ["en", "fa"],
+            "about": { "@id": "https://pourmirzai.com/#person" },
+            "publisher": { "@id": "https://pourmirzai.com/#person" }
+          }
+        ]
+      }
+    </script>
+
     <!-- Pre-paint language and theme setup -->
     <script is:inline>
       (function () {

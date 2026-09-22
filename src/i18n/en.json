@@ -47,15 +47,18 @@
       "years": "17+ Years in Field",
       "leader": "Conservationist",
       "iucn": "IUCN Member",
+      "iucnNote": "CEM & WCPA Commissions",
       "sites": "50+ Platforms Built"
     }
   },
   "about": {
     "eyebrow": "Dossier & Mission",
     "title": "Two Worlds, One Vision",
-    "quote": "Conservation without technology moves too slowly; technology without purpose is hollow. Together, they safeguard life on Earth.",
-    "bio": "I am Morteza Pourmirzai, a wildlife conservation practitioner and founder of Sarvin Wildlife Conservation Institute. My primary dedication is preserving threatened feline species—particularly the Asiatic cheetah—alongside the strategic management and ecological restoration of natural habitats across Iran. Before founding Sarvin, I served as CEO of the Iranian Cheetah Society, spearheading multi-sector initiatives spanning field research, educational advocacy, and ranger support.",
-    "bio2": "Beyond the arid steppe and mountain corridors, I engineer digital infrastructure, optimize high-traffic web systems, configure resilient Linux server clusters, and deploy automated pipelines. I believe transformative nature conservation emerges when rigorous science, ethical human collaboration, and modern software architecture unite.",
+    "quote": "Being alive is an ethical commitment to safeguarding life on Earth — in whatever way we can, and wherever we stand.",
+    "philosophyTitle": "Guiding Philosophy",
+    "bio": "I am Morteza Pourmirzai, a wildlife conservation practitioner and founder of <a href=\"https://sarvinwildlife.com\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-nature-gold-bright font-semibold underline decoration-nature-gold/40 underline-offset-4 transition-colors hover:text-nature-gold hover:decoration-nature-gold\">Sarvin Wildlife Conservation</a>. My primary dedication is preserving threatened feline species—particularly the Asiatic cheetah—alongside the strategic management and ecological restoration of natural habitats across Iran. Before founding Sarvin, I served as CEO of the Iranian Cheetah Society, spearheading multi-sector initiatives spanning field research, educational advocacy, and ranger support.",
+    "bio2": "Beyond the steppe and mountain corridors, I have built AI agents and automation workflows, designed websites and web-based reporting dashboards, developed bots, led a digital-marketing team, and worked across SEO. I believe transformative conservation emerges when rigorous science, ethical human collaboration, and modern tools unite.",
+    "portraitTag": "Citizen of planet Earth",
     "stats": {
       "years": "17+",
       "yearsLabel": "Years in Conservation",
@@ -63,9 +66,6 @@
       "sites": "50+",
       "sitesLabel": "Platforms Deployed",
       "sitesNote": "Web & Cloud Systems",
-      "repos": "5,600",
-      "reposLabel": "Hectares Protected",
-      "reposNote": "Cheetah Sanctuary",
       "press": "14+",
       "pressLabel": "Global Media Features",
       "pressNote": "Newsweek, People, IUCN"
@@ -74,7 +74,7 @@
     "timeline": [
       {
         "year": "2007",
-        "text": "Initiated ecological field studies and volunteer conservation initiatives across central Iran."
+        "text": "Began volunteering with the Iranian Cheetah Society, starting hands-on ecological fieldwork."
       },
       {
         "year": "2010s",
@@ -116,13 +116,6 @@
           "area": "85,000 ha",
           "role": "Steppe Stepping Stone",
           "status": "Ranger Post Staffed"
-        },
-        {
-          "id": "abbasabad",
-          "name": "Abbas Abad Reserve",
-          "area": "300,000 ha",
-          "role": "Eastern Movement Corridor",
-          "status": "Prey Tracking Active"
         }
       ],
       "projects": [
@@ -147,7 +140,7 @@
     "tech": {
       "label": "Digital Architecture",
       "title": "Resilient Systems & Cloud",
-      "desc": "Architecting automated pipelines, containerized microservices, and bespoke software solutions that empower conservation logistics and modern web enterprises.",
+      "desc": "Practical web engineering: websites and reporting dashboards, AI agents and n8n automation, bots, and SEO — tools built to serve real work, from conservation logistics to everyday web projects.",
       "stackTitle": "Technical Arsenal",
       "reposTitle": "Selected Open-Source Architecture",
       "stack": [
@@ -161,6 +154,12 @@
         "Astro & Tailwind"
       ],
       "repos": [
+        {
+          "name": "What-If",
+          "desc": "An open-source Agent Skill that turns AI coding assistants into imaginative \"what if?\" brainstorming partners.",
+          "tag": "Node.js · Agent Skills",
+          "url": "https://github.com/pourmirzai/What-If"
+        },
         {
           "name": "Cheetah-Game",
           "desc": "Interactive conservation simulator educating users on cheetah survival dynamics.",

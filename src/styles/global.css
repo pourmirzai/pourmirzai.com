@@ -761,9 +761,16 @@ h1.hero-legible {
     height: 64px;
     top: -32px;
     left: -32px;
-    border-color: rgba(199, 154, 58, 0.6);
-    background-color: rgba(100, 255, 218, 0.06);
-    backdrop-filter: blur(2px);
+    border-color: rgba(57, 255, 20, 0.5);
+    /* IR night-vision scanlines inside the ring — keeps what's beneath readable
+       (no backdrop blur, no fade of the hovered element) */
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(57, 255, 20, 0.08) 0px,
+      rgba(57, 255, 20, 0.08) 1px,
+      transparent 1px,
+      transparent 3px
+    );
   }
   body.cursor-hover .cursor-dot {
     transform: scale(1.5);
@@ -901,12 +908,12 @@ h1.hero-legible {
 /* ---------- Sanctuary Radar Ping & Beacon Animation ---------- */
 @keyframes radarPing {
   0% {
-    r: 6;
+    r: 8;
     stroke-opacity: 0.9;
-    stroke-width: 2;
+    stroke-width: 2.5;
   }
   100% {
-    r: 28;
+    r: 34;
     stroke-opacity: 0;
     stroke-width: 0.5;
   }
@@ -914,6 +921,99 @@ h1.hero-legible {
 .radar-pulse {
   animation: radarPing 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
   transform-origin: center;
+}
+
+/* ============================================================
+   HERO CAMERA-TRAP SIGNAL GLITCH (periodic, mouse-free)
+   Cycles every 9s: two short RGB-split slice bursts (~4.5% and ~9%)
+   over the base photo. Slice layers stay at opacity 0 otherwise.
+   ============================================================ */
+.hero-glitch-frame {
+  /* Subtle chromatic aberration vignette so the glitch reads as a camera signal */
+  --glitch-cycle: 4.5s;
+}
+.hero-glitch-img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity, transform, clip-path;
+}
+.hero-glitch-a {
+  animation: heroGlitchA var(--glitch-cycle) steps(1, end) infinite;
+}
+.hero-glitch-b {
+  animation: heroGlitchB var(--glitch-cycle) steps(1, end) infinite;
+}
+@keyframes heroGlitchA {
+  0%, 4.4%, 4.9%, 100% { opacity: 0; transform: none; clip-path: inset(0 0 0 0); }
+  4.45% {
+    opacity: 0.9;
+    clip-path: inset(12% 0 68% 0);
+    transform: translate3d(-10px, 0, 0);
+    filter: hue-rotate(140deg) saturate(2.2) contrast(1.4);
+  }
+  4.65% {
+    opacity: 0.9;
+    clip-path: inset(52% 0 26% 0);
+    transform: translate3d(12px, 0, 0);
+    filter: hue-rotate(-100deg) saturate(1.8) contrast(1.6);
+  }
+  4.85% {
+    opacity: 0.85;
+    clip-path: inset(78% 0 8% 0);
+    transform: translate3d(-6px, 0, 0);
+    filter: invert(0.85) hue-rotate(60deg);
+  }
+}
+@keyframes heroGlitchB {
+  0%, 8.8%, 9.3%, 100% { opacity: 0; transform: none; clip-path: inset(0 0 0 0); }
+  8.85% {
+    opacity: 0.85;
+    clip-path: inset(30% 0 52% 0);
+    transform: translate3d(9px, 0, 0);
+    filter: hue-rotate(180deg) saturate(2) contrast(1.5);
+  }
+  9.05% {
+    opacity: 0.9;
+    clip-path: inset(64% 0 18% 0);
+    transform: translate3d(-11px, 0, 0);
+    filter: invert(0.7) hue-rotate(-60deg) contrast(1.3);
+  }
+  9.25% {
+    opacity: 0.8;
+    clip-path: inset(4% 0 84% 0);
+    transform: translate3d(7px, 0, 0);
+    filter: hue-rotate(90deg) saturate(2.4);
+  }
+}
+/* One-frame white noise flash across the whole frame during each burst */
+.hero-glitch-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  animation: heroGlitchNoise var(--glitch-cycle) steps(1, end) infinite;
+}
+@keyframes heroGlitchNoise {
+  0%, 4.4%, 4.9%, 8.8%, 9.3%, 100% { opacity: 0; }
+  4.45%, 8.85% { opacity: 0.16; }
+  4.65%, 9.05% { opacity: 0.1; }
+}
+
+/* ============================================================
+   SANCTUARY MAP: TEHRAN–MASHHAD HIGHWAY (threat barrier)
+   ============================================================ */
+.highway-line {
+  animation: highwayFlow 1.4s linear infinite;
+}
+@keyframes highwayFlow {
+  to {
+    stroke-dashoffset: -32;
+  }
 }
 
 /* ---------- Telemetry Live Badge ---------- */
