@@ -32,7 +32,6 @@
     "irActive": "IR Night-Vision Mode Activated (850nm nocturnal filter)",
     "irMuted": "IR Night-Vision Mode Deactivated",
     "telemetry": {
-      "coordinates": "35.84° N 55.42° E",
       "location": "Touran Biosphere Reserve",
       "species": "Acinonyx jubatus venaticus",
       "status": "Critically Endangered",

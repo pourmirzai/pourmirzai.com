@@ -358,7 +358,7 @@ const TERMINAL_DATA = {
     "model = load_weights('yolov9-felidae-v3.pt')",
     "preds = model.detect('camera_trap_042.jpg', conf=0.94)",
     "logger.info('Match verified: Asiatic Cheetah (Acinonyx)')",
-    "export_geojson(coords=[35.84, 55.42], status='live')",
+    "export_geojson(corridor='eastern', status='live')",
   ],
 };
 
